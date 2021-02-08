@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="pl-PL">
+{% include 'head.html' %}
+<body class="body-bck">
+  {% include 'navbar.html' %}
+  <div id="main-window" class="main-window">
+      <div class="middle-cont">
+          {% if message %}
+          <span>{{message}}</span>
+          {% endif %}
+      </div>
+      <div class="middle-cont">
+          <form method="post">
+              <label>Author (initials):</label><input type="text" name="card_author"/>
+              <label>Emotions:</label><input type="text" name="card_emotions"/>
+              <label>Text:</label><input type="text" name="card_text"/>
+              <label>Type:</label>
+              <select name="card_type">
+                  <option value="good">good</option>
+                  <option value="bad">bad</option>
+              </select>
+              <button type="submit" name="add_card_btn" value="add_card">Add card</button>
+          </form>
+      </div>
+      {% include 'footer.html' %}
+  </div>
+</body>
+</html>
