@@ -1,0 +1,9 @@
+- author: AA
+  value: "+"
+  show: true
+- author: CC
+  value: "-"
+  show: true
+- author: BB
+  value: "+"
+  show: true
