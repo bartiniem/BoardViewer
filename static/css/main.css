@@ -101,12 +101,11 @@ body::-webkit-scrollbar-thumb {
     display: inline-block;
     margin: 0.1em;
     vertical-align: top;
-    border: 1px solid #bbb;
     border-radius: 5px;
     width: 250px;
-    padding: 1em 0.2em;
-    background-color: #d2ad11;
+    padding: 0.1em 0.2em;
     color: #333;
+    position: relative;
 }
 
 .card-title {
@@ -122,6 +121,102 @@ body::-webkit-scrollbar-thumb {
     display: block;
 }
 
+.card-main {
+    padding: 0.2em;
+    font-size: 18px;
+    display: block;
+    min-height: 70px;
+    background-color: #d2ad11;
+    margin-top: 1em;
+    margin-left: 1em;
+    margin-bottom: 0.2em;
+    margin-right: 0.2em;
+    border-radius: 5px;
+    box-shadow: 5px 5px 5px #505050;
+}
+
+.card-line-text {
+    padding: 0.9em;
+    font-size: 18px;
+    display: block;
+    min-height: 70px;
+    background-color: #d2ad11;
+}
+
+.card-line-border {
+    padding: 0.2em;
+    font-size: 16px;
+    display: block;
+}
+
+.card-line-details {
+    display:block;
+}
+
+.card-line-footer {
+    padding: 0.2em;
+    font-size: 16px;
+    display: block;
+    font-size: 16px;
+    color: #444;
+}
+
+.card-line-emotion {
+    padding: 0.2em;
+    display: block;
+    font-size: 14px;
+    position: absolute;
+    background-color: #565656;
+    border-radius: 4px;
+    color: #dedede;
+    left: 40px;
+    top: 10px;
+    box-shadow: 2px 2px 2px #505050;
+}
+
+.card-line-author {
+    padding: 0.4em;
+    display: block;
+    font-size: 18px;
+    color: #444;
+    position: absolute;
+    background-color: #f3ebeb;
+    border-radius: 26px;
+    line-height: 26px;
+    left: 0;
+    top: 0;
+    box-shadow: 2px 2px 2px #505050;
+}
+
+.card-line-id {
+    padding: 0.2em;
+    display: block;
+    font-size: 14px;
+    color: #444;
+    text-align: right;
+    position: absolute;
+    bottom: 5px;
+    left: 25px;
+}
+
+.card-line-points {
+    padding: 0.2em;
+    display: block;
+    font-size: 14px;
+    color: #444;
+    text-align: right;
+    position: absolute;
+    bottom: 5px;
+    right: 10px;
+}
+
+.card-small {
+    width: 250px;
+}
+
+.card-large {
+    width: 515px;
+}
 
 .active {
     background-color: #00953a;
@@ -186,10 +281,16 @@ body::-webkit-scrollbar-thumb {
     background-color: #d2ad11;
     color: #333;
     width: 100%;
+    font-size: 20px;
 }
 
 input, select {
     -webkit-box-sizing: border-box;
        -moz-box-sizing: border-box;
             box-sizing: border-box;
+}
+
+.header-area {
+    border: 1px solid;
+    padding: 0.2em;
 }

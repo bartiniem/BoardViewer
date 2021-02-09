@@ -5,8 +5,9 @@
   {% include 'navbar.html' %}
   <div id="main-window" class="main-window">
       <div class="middle-cont">
-          <span>Last update: {{last_update}} | </span>
-          <span>Cards: {{sum_cards}} | </span>
+          <span class="header-area">Last update: {{last_update}}</span>
+          <span class="header-area">Cards: {{sum_cards}}</span>
+          <span class="header-area">
           {% for vote in votes %}
             {% if vote.show == true %}
                   {% if vote.value == "+" %}
@@ -18,32 +19,49 @@
                   {% endif %}
               {% endif %}
           {% endfor %}
+          </span>
       </div>
       <div class="middle-cont">
           <span class="middle-title">+</span>
           <div class="cards">
               {% for card in good_cards %}
                 {% if card.show == true %}
-                  <div class="card">
-                      <span class="card-line">{{card.name}}</span>
-                      <span class="card-line">"{{card.emotions}}"</span>
-                      <span class="card-line">Id: {{card.id }} | A: {{card.author}} | P: {{card.points}} | S: {{card.points_sum}}</span>
-                  </div>
+                  <div class="card{{' card-large' if card.name|length > 80}}">
+                      <span class="card-main">
+                          <span class="card-line-text">
+                              <span>{{card.name}}</span>
+                              <span class="card-line-id">#{{card.id}}</span>
+                              {% if card.points  != '' %}
+                              <span class="card-line-points">{{card.points}} = {{card.points_sum}}</span>
+                              {% endif %}
+                          </span>
+                      </span>
+                      <span class="card-line-emotion">"{{card.emotions}}"</span>
+                      <span class="card-line-author">{{card.author}}</span>
+                      </div>
                 {% endif %}
               {% endfor %}
           </div>
       </div>
-          <hr>
+      <hr>
       <div class="middle-cont">
-          <span class="middle-title">-</span>
+          <span class="middle-title">+</span>
           <div class="cards">
               {% for card in bad_cards %}
                 {% if card.show == true %}
-                  <div class="card">
-                      <span class="card-line">{{card.name}}</span>
-                      <span class="card-line">"{{card.emotions}}"</span>
-                      <span class="card-line">Id: {{card.id }} | A: {{card.author}} | P: {{card.points}} | S: {{card.points_sum}}</span>
-                  </div>
+                  <div class="card{{' card-large' if card.name|length > 80}}">
+                      <span class="card-main">
+                          <span class="card-line-text">
+                              <span>{{card.name}}</span>
+                              <span class="card-line-id">#{{card.id}}</span>
+                              {% if card.points  != '' %}
+                              <span class="card-line-points">{{card.points}} = {{card.points_sum}}</span>
+                              {% endif %}
+                          </span>
+                      </span>
+                      <span class="card-line-emotion">"{{card.emotions}}"</span>
+                      <span class="card-line-author">{{card.author}}</span>
+                      </div>
                 {% endif %}
               {% endfor %}
           </div>

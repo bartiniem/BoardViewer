@@ -1,0 +1,25 @@
+.table {
+    border: 1px solid #656565;
+    border-collapse: collapse;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 0.3em;
+    width: 100%;
+    background-color: #8c8980;
+    color: #1e1e21;
+}
+
+.table td{
+    border: 1px solid #656565;
+    padding: 0.3em 1em;
+}
+
+.table th{
+    border: 1px solid #656565;
+    background-color: #d2ad11;
+    padding: 0.3em 1em;
+}
+
+.table tr{
+    border: 1px solid #656565;
+}

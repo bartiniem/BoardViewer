@@ -33,3 +33,12 @@ class DataUtils:
                     points_sum += int(points)
             card["points_sum"] = points_sum
         return cards
+
+    @staticmethod
+    def get_card_by_id(filename, card_id):
+        cards = DataUtils().load_yaml_data(filename)
+        matched_card = {}
+        for card in cards:
+            if str(card.get("id")) == str(card_id):
+                matched_card = card
+        return matched_card

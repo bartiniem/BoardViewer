@@ -1,18 +1,18 @@
 - author: AA
   emotions: emocje
   id: 1
-  name: nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa
-  points: ''
-  points_sum: 0
-  show: false
+  name: To jest testowy opis wydarzenia
+  points: 1,2,3
+  points_sum: 6
+  show: true
   type: good
 - author: AA
   emotions: emocje
   id: 2
   name: nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa
-  points: ''
-  points_sum: 0
-  show: false
+  points: 2,3,4
+  points_sum: 9
+  show: true
   type: good
 - author: AA
   emotions: emocje
@@ -20,7 +20,7 @@
   name: nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa
   points: ''
   points_sum: 0
-  show: true
+  show: false
   type: good
 - author: AA
   emotions: emocje
@@ -28,14 +28,14 @@
   name: nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa
   points: ''
   points_sum: 0
-  show: true
+  show: false
   type: good
 - author: AA
   emotions: emocje
   id: 5
   name: nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa
-  points: ''
-  points_sum: 0
+  points: 2,3,4,5
+  points_sum: 14
   show: true
   type: good
 - author: AA
@@ -57,7 +57,7 @@
 - author: AA
   emotions: emocje
   id: 8
-  name: nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa
+  name: Krotka nazwa
   points: ''
   points_sum: 0
   show: true
@@ -81,7 +81,8 @@
 - author: AA
   emotions: emocje
   id: 11
-  name: nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa
+  name: nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa
+    nazwa nazwa nazwa
   points: ''
   points_sum: 0
   show: true
@@ -156,7 +157,7 @@
   name: nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa
   points: ''
   points_sum: 0
-  show: true
+  show: false
   type: good
 - author: BB
   emotions: emocje
@@ -164,7 +165,7 @@
   name: nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa
   points: ''
   points_sum: 0
-  show: true
+  show: false
   type: bad
 - author: BA
   emotions: emocje
@@ -172,7 +173,7 @@
   name: nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa
   points: ''
   points_sum: 0
-  show: true
+  show: false
   type: bad
 - author: BA
   emotions: emocje
@@ -180,7 +181,7 @@
   name: nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa
   points: ''
   points_sum: 0
-  show: true
+  show: false
   type: bad
 - author: BA
   emotions: emocje
@@ -196,7 +197,7 @@
   name: nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa
   points: ''
   points_sum: 0
-  show: true
+  show: false
   type: bad
 - author: BA
   emotions: emocje
@@ -212,7 +213,7 @@
   name: nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa
   points: ''
   points_sum: 0
-  show: true
+  show: false
   type: bad
 - author: BA
   emotions: emocje
@@ -220,7 +221,7 @@
   name: nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa
   points: ''
   points_sum: 0
-  show: true
+  show: false
   type: bad
 - author: BA
   emotions: emocje
@@ -228,7 +229,7 @@
   name: nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa
   points: ''
   points_sum: 0
-  show: true
+  show: false
   type: bad
 - author: BA
   emotions: emocje
@@ -236,7 +237,7 @@
   name: nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa
   points: ''
   points_sum: 0
-  show: true
+  show: false
   type: bad
 - author: BA
   emotions: emocje
@@ -244,7 +245,7 @@
   name: nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa
   points: 6,6,6,6,6,6,3,1,1,1,1
   points_sum: 43
-  show: true
+  show: false
   type: bad
 - author: BA
   emotions: emocje
@@ -252,5 +253,5 @@
   name: nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa
   points: ''
   points_sum: 0
-  show: true
+  show: false
   type: bad

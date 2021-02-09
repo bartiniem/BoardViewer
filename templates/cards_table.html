@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="pl-PL">
+{% include 'head.html' %}
+<body class="body-bck">
+  {% include 'navbar_management.html' %}
+  <div id="main-window" class="main-window">
+      <div class="middle-cont">
+          <span class="middle-title">Cards</span>
+          <div class="cards">
+              <div class="form-card">
+                  <table class="table">
+                    <tr>
+                        <th>Id</th>
+                        <th>Name</th>
+                        <th>Emotions</th>
+                        <th>Author</th>
+                        <th>Type</th>
+                        <th>Points</th>
+                        <th>Sum</th>
+                        <th>Show</th>
+                        <th></th>
+                    </tr>
+                      {% for card in cards %}
+                        <tr>
+                            <td>{{card.id}}</td>
+                            <td>{{card.name}}</td>
+                            <td>{{card.emotions}}</td>
+                            <td>{{card.author}}</td>
+                            <td>{{card.type}}</td>
+                            <td>{{card.points}}</td>
+                            <td>{{card.points_sum}}</td>
+                            <td><a href="/management/showcard/{{card.id}}">{{card.show}}</a></td>
+                            <td><a href="/management/card/{{card.id}}">Edytuj</a></td>
+                        </tr>
+                    {% endfor %}
+                </table>
+              </div>
+          </div>
+      </div>
+      {% include 'footer.html' %}
+  </div>
+</body>
+</html>

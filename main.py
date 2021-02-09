@@ -58,13 +58,52 @@ def add_card():
             card_text = request.form.get("card_text") if request.form.get("card_text") else ""
             card_type = request.form.get("card_type") if request.form.get("card_type") else ""
             cards = DataUtils().get_cards(CARDS_FILE)
-            new_card = {"author": card_author, "emotions": card_emotions, "id": id_to_set, "name": card_text,
+            new_card = {"author": card_author, "emotions": card_emotions, "id": int(id_to_set), "name": card_text,
                         "points": "", "show": False, "type": card_type}
             cards.append(new_card)
             DataUtils().save_data_to_yaml(cards, CARDS_FILE)
             message = "New card added: {}".format(new_card)
 
     return render_template('add_card.html', title="Add card", message=message)
+
+
+@app.route('/management/cards', methods=['GET', 'POST'])
+def management_cards():
+    cards = DataUtils().get_cards(CARDS_FILE)
+    return render_template('management_cards.html', title="Management cards", cards=cards)
+
+
+@app.route('/management/card/<card_id>', methods=['GET', 'POST'])
+def edit_card(card_id):
+    message = ""
+    if request.method == 'POST':
+        if request.form.get("save_card_btn"):
+            card_author = request.form.get("card_author") if request.form.get("card_author") else ""
+            card_emotions = request.form.get("card_emotions") if request.form.get("card_emotions") else ""
+            card_text = request.form.get("card_text") if request.form.get("card_text") else ""
+            card_type = request.form.get("card_type") if request.form.get("card_type") else ""
+            card_show = request.form.get("card_show") if request.form.get("card_show") else False
+            card_points = request.form.get("card_points") if request.form.get("card_points") else ""
+            cards = DataUtils().get_cards(CARDS_FILE)
+            new_card = {"author": card_author, "emotions": card_emotions, "id": int(card_id), "name": card_text,
+                        "points": card_points, "show": bool(card_show), "type": card_type}
+            for card in cards:
+                if str(card.get("id")) == str(card_id):
+                    card.update(new_card)
+            DataUtils().save_data_to_yaml(cards, CARDS_FILE)
+            message = "Saved card data: {}".format(new_card)
+    card = DataUtils().get_card_by_id(CARDS_FILE, card_id)
+    return render_template('edit_card.html', title="Edit card", card=card, message=message)
+
+
+@app.route('/management/showcard/<card_id>', methods=['GET', 'POST'])
+def show_card(card_id):
+    cards = DataUtils().get_cards(CARDS_FILE)
+    for card in cards:
+        if str(card.get("id")) == str(card_id):
+            card["show"] = False if card.get("show") in [True] else True
+    DataUtils().save_data_to_yaml(cards, CARDS_FILE)
+    return redirect(url_for('management_cards'))
 
 
 if __name__ == '__main__':
