@@ -2,53 +2,6 @@
 <html lang="pl-PL">
 {% include 'head.html' %}
 <body class="body-bck">
-  {% include 'navbar.html' %}
-  <div id="main-window" class="main-window">
-      <div class="middle-cont">
-          <span>Last update: {{last_update}} | </span>
-          <span>Cards: {{sum_cards}} | </span>
-          {% for vote in votes %}
-            {% if vote.show == true %}
-                  {% if vote.value == "+" %}
-                    <span>{{vote.author}}: 👍 | </span>
-                  {% elif vote.value == "-" %}
-                    <span>{{vote.author}}: 👎 | </span>
-                  {% else %}
-                    <span>{{vote.author}}: {{vote.value}} | </span>
-                  {% endif %}
-              {% endif %}
-          {% endfor %}
-      </div>
-      <div class="middle-cont">
-          <span class="middle-title">+</span>
-          <div class="cards">
-              {% for card in good_cards %}
-                {% if card.show == true %}
-                  <div class="card">
-                      <span class="card-line">{{card.name}}</span>
-                      <span class="card-line">"{{card.emotions}}"</span>
-                      <span class="card-line">Id: {{card.id }} | A: {{card.author}} | P: {{card.points}} | S: {{card.points_sum}}</span>
-                  </div>
-                {% endif %}
-              {% endfor %}
-          </div>
-      </div>
-          <hr>
-      <div class="middle-cont">
-          <span class="middle-title">-</span>
-          <div class="cards">
-              {% for card in bad_cards %}
-                {% if card.show == true %}
-                  <div class="card">
-                      <span class="card-line">{{card.name}}</span>
-                      <span class="card-line">"{{card.emotions}}"</span>
-                      <span class="card-line">Id: {{card.id }} | A: {{card.author}} | P: {{card.points}} | S: {{card.points_sum}}</span>
-                  </div>
-                {% endif %}
-              {% endfor %}
-          </div>
-      </div>
-      {% include 'footer.html' %}
-  </div>
+    {% include 'board_cards.html' %}
 </body>
 </html>
