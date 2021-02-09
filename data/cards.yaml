@@ -1,61 +1,61 @@
 - author: AA
-  emotions: emocje
+  emotions: ulga
   id: 1
-  name: To jest testowy opis wydarzenia
+  name: To jest testowy opis wydarzenia - fajnie, ze dziala
   points: 1,2,3
   points_sum: 6
   show: true
   type: good
-- author: AA
-  emotions: emocje
+- author: BB
+  emotions: szczescie
   id: 2
   name: nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa
   points: 2,3,4
   points_sum: 9
   show: true
   type: good
-- author: AA
-  emotions: emocje
+- author: CC
+  emotions: "rado\u015B\u0107"
   id: 3
   name: nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa
   points: ''
   points_sum: 0
-  show: false
+  show: true
   type: good
-- author: AA
-  emotions: emocje
+- author: DD
+  emotions: "znu\u017Cenie"
   id: 4
   name: nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa
   points: ''
   points_sum: 0
-  show: false
+  show: true
   type: good
 - author: AA
-  emotions: emocje
+  emotions: znudzenie
   id: 5
   name: nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa
   points: 2,3,4,5
   points_sum: 14
   show: true
   type: good
-- author: AA
-  emotions: emocje
+- author: DD
+  emotions: ekscytacja
   id: 6
   name: nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa
   points: ''
   points_sum: 0
   show: true
   type: good
-- author: AA
-  emotions: emocje
+- author: CC
+  emotions: zlosc
   id: 7
   name: nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa
   points: ''
   points_sum: 0
   show: true
   type: good
-- author: AA
-  emotions: emocje
+- author: BB
+  emotions: skrajne emocje
   id: 8
   name: Krotka nazwa
   points: ''
@@ -63,7 +63,7 @@
   show: true
   type: good
 - author: AA
-  emotions: emocje
+  emotions: pewnosc
   id: 9
   name: nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa
   points: ''
@@ -71,7 +71,7 @@
   show: true
   type: good
 - author: AA
-  emotions: emocje
+  emotions: niepewnosc
   id: 10
   name: nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa
   points: ''
@@ -79,7 +79,7 @@
   show: true
   type: good
 - author: AA
-  emotions: emocje
+  emotions: irytacja
   id: 11
   name: nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa
     nazwa nazwa nazwa
@@ -88,7 +88,7 @@
   show: true
   type: good
 - author: AA
-  emotions: emocje
+  emotions: zazdrosc
   id: 12
   name: nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa
   points: ''
@@ -96,7 +96,7 @@
   show: true
   type: good
 - author: AA
-  emotions: emocje
+  emotions: wdziecznosc
   id: 13
   name: nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa
   points: ''
@@ -104,7 +104,7 @@
   show: true
   type: good
 - author: AA
-  emotions: emocje
+  emotions: Wkurzenie
   id: 14
   name: nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa
   points: ''
@@ -112,7 +112,7 @@
   show: true
   type: good
 - author: AA
-  emotions: emocje
+  emotions: zlosc
   id: 15
   name: nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa
   points: ''
@@ -120,7 +120,7 @@
   show: true
   type: good
 - author: AA
-  emotions: emocje
+  emotions: napiecie
   id: 16
   name: nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa
   points: ''
@@ -128,7 +128,7 @@
   show: true
   type: good
 - author: AA
-  emotions: emocje
+  emotions: relaks
   id: 17
   name: nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa
   points: ''
@@ -136,7 +136,7 @@
   show: true
   type: good
 - author: AA
-  emotions: emocje
+  emotions: Chill
   id: 18
   name: nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa
   points: ''
@@ -144,7 +144,7 @@
   show: true
   type: good
 - author: AA
-  emotions: emocje
+  emotions: Radosc, zal, smutek, wszystko
   id: 19
   name: nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa
   points: ''
@@ -152,39 +152,39 @@
   show: true
   type: good
 - author: AA
-  emotions: emocje
+  emotions: strach
   id: 20
   name: nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa
   points: ''
   points_sum: 0
-  show: false
+  show: true
   type: good
 - author: BB
-  emotions: emocje
+  emotions: wspolnota
   id: 21
   name: nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa
   points: ''
   points_sum: 0
-  show: false
+  show: true
   type: bad
 - author: BA
-  emotions: emocje
+  emotions: niepewnosc
   id: 22
   name: nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa
   points: ''
   points_sum: 0
-  show: false
+  show: true
   type: bad
 - author: BA
-  emotions: emocje
+  emotions: niezrozumienie
   id: 23
   name: nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa
   points: ''
   points_sum: 0
-  show: false
+  show: true
   type: bad
 - author: BA
-  emotions: emocje
+  emotions: przerazenie
   id: 24
   name: nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa
   points: ''
@@ -192,15 +192,15 @@
   show: true
   type: bad
 - author: BA
-  emotions: emocje
+  emotions: chaos
   id: 25
   name: nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa
   points: ''
   points_sum: 0
-  show: false
+  show: true
   type: bad
 - author: BA
-  emotions: emocje
+  emotions: samotnosc
   id: 26
   name: nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa
   points: ''
@@ -208,50 +208,50 @@
   show: true
   type: bad
 - author: BA
-  emotions: emocje
+  emotions: sila
   id: 27
   name: nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa
   points: ''
   points_sum: 0
-  show: false
+  show: true
   type: bad
-- author: BA
-  emotions: emocje
+- author: CC
+  emotions: zjednoczenie
   id: 28
   name: nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa
   points: ''
   points_sum: 0
-  show: false
+  show: true
   type: bad
-- author: BA
+- author: DD
   emotions: emocje
   id: 29
   name: nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa
   points: ''
   points_sum: 0
-  show: false
+  show: true
   type: bad
 - author: BA
-  emotions: emocje
+  emotions: slabosc
   id: 30
   name: nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa
   points: ''
   points_sum: 0
-  show: false
+  show: true
   type: bad
 - author: BA
-  emotions: emocje
+  emotions: spokoj
   id: 31
   name: nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa
   points: 6,6,6,6,6,6,3,1,1,1,1
   points_sum: 43
-  show: false
+  show: true
   type: bad
 - author: BA
-  emotions: emocje
+  emotions: rozdraznienie
   id: 32
   name: nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa
   points: ''
   points_sum: 0
-  show: false
+  show: true
   type: bad

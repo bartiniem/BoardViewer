@@ -11,11 +11,11 @@
           {% for vote in votes %}
             {% if vote.show == true %}
                   {% if vote.value == "+" %}
-                    <span>{{vote.author}}: 👍 | </span>
+                    <span><span class="logo-author-small author-{{vote.author}}">{{vote.author}}</span>👍</span>
                   {% elif vote.value == "-" %}
-                    <span>{{vote.author}}: 👎 | </span>
+                    <span><span class="logo-author-small author-{{vote.author}}">{{vote.author}}</span>👎</span>
                   {% else %}
-                    <span>{{vote.author}}: {{vote.value}} | </span>
+                    <span><span class="logo-author-small author-{{vote.author}}">{{vote.author}}</span>{{vote.value}}</span>
                   {% endif %}
               {% endif %}
           {% endfor %}
@@ -37,7 +37,7 @@
                           </span>
                       </span>
                       <span class="card-line-emotion">"{{card.emotions}}"</span>
-                      <span class="card-line-author">{{card.author}}</span>
+                      <span class="card-line-author author-{{card.author}}">{{card.author}}</span>
                       </div>
                 {% endif %}
               {% endfor %}
@@ -45,7 +45,7 @@
       </div>
       <hr>
       <div class="middle-cont">
-          <span class="middle-title">+</span>
+          <span class="middle-title">-</span>
           <div class="cards">
               {% for card in bad_cards %}
                 {% if card.show == true %}
@@ -60,7 +60,7 @@
                           </span>
                       </span>
                       <span class="card-line-emotion">"{{card.emotions}}"</span>
-                      <span class="card-line-author">{{card.author}}</span>
+                      <span class="card-line-author author-{{card.author}}">{{card.author}}</span>
                       </div>
                 {% endif %}
               {% endfor %}

@@ -126,7 +126,8 @@ body::-webkit-scrollbar-thumb {
     font-size: 18px;
     display: block;
     min-height: 70px;
-    background-color: #d2ad11;
+    /*background-color: #d2ad11;*/
+    background-color: #ceb553;
     margin-top: 1em;
     margin-left: 1em;
     margin-bottom: 0.2em;
@@ -140,7 +141,6 @@ body::-webkit-scrollbar-thumb {
     font-size: 18px;
     display: block;
     min-height: 70px;
-    background-color: #d2ad11;
 }
 
 .card-line-border {
@@ -292,5 +292,17 @@ input, select {
 
 .header-area {
     border: 1px solid;
-    padding: 0.2em;
+    padding: 0.5em;
+    font-size: 20px;
+}
+
+.logo-author-small {
+    padding: 0.4em;
+    display: inline-block;
+    font-size: 14px;
+    color: #444;
+    background-color: #f3ebeb;
+    border-radius: 16px;
+    line-height: 16px;
+    box-shadow: 2px 2px 2px #505050;
 }
