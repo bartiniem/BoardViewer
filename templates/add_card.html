@@ -10,17 +10,23 @@
           {% endif %}
       </div>
       <div class="middle-cont">
-          <form method="post">
-              <label>Author (initials):</label><input type="text" name="card_author"/>
-              <label>Emotions:</label><input type="text" name="card_emotions"/>
-              <label>Text:</label><input type="text" name="card_text"/>
-              <label>Type:</label>
-              <select name="card_type">
-                  <option value="good">good</option>
-                  <option value="bad">bad</option>
-              </select>
-              <button type="submit" name="add_card_btn" value="add_card">Add card</button>
-          </form>
+          <div class="cards">
+              <form method="post" class="form-main">
+                  <div class="form-card">
+                      <span class="form-line"><label class="form-label">Author (initials):</label><input type="text" class="form-element" name="card_author" maxlength="2"/></span>
+                      <span class="form-line"><label class="form-label">Text:</label><input type="text" class="form-element" name="card_text" maxlength="300"/></span>
+                      <span class="form-line"><label class="form-label">Emotions:</label><input type="text" class="form-element" name="card_emotions" maxlength="40"/></span>
+                      <span class="form-line"><label class="form-label">Type:</label>
+                          <select name="card_type" class="form-element">
+                              <option value=""></option>
+                              <option value="good">good</option>
+                              <option value="bad">bad</option>
+                          </select>
+                      </span>
+                      <span class="form-line"><button type="submit" class="form-btn" name="add_card_btn" value="add_card">Add card</button></span>
+                  </div>
+              </form>
+          </div>
       </div>
       {% include 'footer.html' %}
   </div>
