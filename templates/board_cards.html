@@ -1,27 +1,20 @@
-<!DOCTYPE html>
-<html lang="pl-PL">
-{% include 'head.html' %}
-<body class="body-bck">
-  {% include 'navbar.html' %}
-  <div id="main-window" class="main-window">
-      <div class="middle-cont">
-          <span class="middle-title">+</span>
-          <div class="cards">
-              {% for card in good_cards %}
-                {% include 'card.html' %}
-              {% endfor %}
-          </div>
+<div id="main-window" class="main-window">
+  <div class="middle-cont">
+      <span class="middle-title">+</span>
+      <div class="cards">
+          {% for card in good_cards %}
+            {% include 'card.html' %}
+          {% endfor %}
       </div>
-      <hr>
-      <div class="middle-cont">
-          <span class="middle-title">-</span>
-          <div class="cards">
-              {% for card in bad_cards %}
-                {% include 'card.html' %}
-              {% endfor %}
-          </div>
-      </div>
-      {% include 'footer.html' %}
   </div>
-</body>
-</html>
+  <hr>
+  <div class="middle-cont">
+      <span class="middle-title">-</span>
+      <div class="cards">
+          {% for card in bad_cards %}
+            {% include 'card.html' %}
+          {% endfor %}
+      </div>
+  </div>
+  {% include 'footer.html' %}
+</div>

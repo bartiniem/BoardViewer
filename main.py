@@ -19,6 +19,7 @@ VOTES_FILE = "data/votes.yaml"
 app = Flask(__name__)
 app.config['SECRET_KEY'] = os.getenv('SECRET_KEY') or 'e5ac358c-f0bf-11e5-9e39-d3b532c10a28'
 app.config['next_id'] = 100
+app.config['last_show_id'] = 2
 
 
 # ROUTES
@@ -31,7 +32,8 @@ def index():
     votes = DataUtils().load_yaml_data(VOTES_FILE)
     sum_cards = len(cards)
     return render_template('dashboard.html', title="BoardViewer", good_cards=good_cards, bad_cards=bad_cards,
-                           last_update=last_update, votes=votes, sum_cards=sum_cards)
+                           last_update=last_update, votes=votes, sum_cards=sum_cards,
+                           last_show_id=app.config['last_show_id'])
 
 
 @app.route('/preview', methods=['GET', 'POST'])
