@@ -59,7 +59,7 @@ body::-webkit-scrollbar-thumb {
     color: #fff;
     text-decoration: none;
     font-size: 16px;
-    padding: 10px 30px;
+    padding: 10px 20px;
     margin: 10px;
 }
 
@@ -99,11 +99,11 @@ body::-webkit-scrollbar-thumb {
 
 .card {
     display: inline-block;
-    margin: 0.1em;
+    margin: 0;
     vertical-align: top;
     border-radius: 5px;
     width: 250px;
-    padding: 0.1em 0.2em;
+    padding: 0.1em 0;
     color: #333;
     position: relative;
 }
@@ -133,14 +133,14 @@ body::-webkit-scrollbar-thumb {
     margin-bottom: 0.2em;
     margin-right: 0.2em;
     border-radius: 5px;
-    box-shadow: 5px 5px 5px #505050;
+    box-shadow: 5px 5px 5px rgba(0,0,0,.2);
 }
 
 .card-line-text {
     padding: 0.9em;
     font-size: 18px;
     display: block;
-    min-height: 70px;
+    min-height: 85px;
 }
 
 .card-line-border {
@@ -162,16 +162,18 @@ body::-webkit-scrollbar-thumb {
 }
 
 .card-line-emotion {
-    padding: 0.2em;
+    padding: 0.2em 0.5em 0.2em 1.0em;
     display: block;
     font-size: 14px;
     position: absolute;
+    /*background-color: #d4d4d4;*/
     background-color: #565656;
     border-radius: 4px;
+    /*color: #000000;*/
     color: #dedede;
-    left: 40px;
+    left: 30px;
     top: 10px;
-    box-shadow: 2px 2px 2px #505050;
+    box-shadow: 2px 2px 2px rgba(0,0,0,.2);
 }
 
 .card-line-author {
@@ -185,29 +187,29 @@ body::-webkit-scrollbar-thumb {
     line-height: 26px;
     left: 0;
     top: 0;
-    box-shadow: 2px 2px 2px #505050;
+    box-shadow: 2px 2px 2px rgba(0,0,0,.2);
 }
 
 .card-line-id {
     padding: 0.2em;
     display: block;
     font-size: 14px;
-    color: #444;
+    color: #565656;
     text-align: right;
     position: absolute;
     bottom: 5px;
-    left: 25px;
+    left: 20px;
 }
 
 .card-line-points {
     padding: 0.2em;
     display: block;
     font-size: 14px;
-    color: #444;
+    color: #565656;
     text-align: right;
     position: absolute;
     bottom: 5px;
-    right: 10px;
+    right: 5px;
 }
 
 .card-small {
@@ -215,7 +217,7 @@ body::-webkit-scrollbar-thumb {
 }
 
 .card-large {
-    width: 515px;
+    width: 505px;
 }
 
 .active {
@@ -258,13 +260,21 @@ body::-webkit-scrollbar-thumb {
 }
 
 .form-line {
-    display: block;
+    display: flex;
     text-align: right;
     padding: 0.2em;
 }
 
 .form-element {
     width: 500px;
+    font-size: 20px;
+}
+
+.form-textarea {
+    width: 500px;
+    overflow-wrap: break-word;
+    resize: none;
+    font-family: "Montserrat",sans-serif;
     font-size: 20px;
 }
 
@@ -284,15 +294,16 @@ body::-webkit-scrollbar-thumb {
     font-size: 20px;
 }
 
-input, select {
+input, select, textarea {
     -webkit-box-sizing: border-box;
        -moz-box-sizing: border-box;
             box-sizing: border-box;
 }
 
 .header-area {
-    border: 1px solid;
-    padding: 0.5em;
+    border: 1px solid #555;
+    padding: 0.5em 1.5em;
+    margin: 0.2em;
     font-size: 20px;
 }
 
@@ -304,5 +315,9 @@ input, select {
     background-color: #f3ebeb;
     border-radius: 16px;
     line-height: 16px;
-    box-shadow: 2px 2px 2px #505050;
+}
+
+.navbar-info {
+    color: #555;
+    margin: 0 0.5em;
 }

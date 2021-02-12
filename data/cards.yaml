@@ -1,5 +1,5 @@
 - author: AA
-  emotions: ulga
+  emotions: Ulga
   id: 1
   name: To jest testowy opis wydarzenia - fajnie, ze dziala
   points: 1,2,3
@@ -7,55 +7,55 @@
   show: true
   type: good
 - author: BB
-  emotions: szczescie
+  emotions: Szczescie
   id: 2
-  name: nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa
+  name: Pokazowka
   points: 2,3,4
   points_sum: 9
   show: true
   type: good
 - author: CC
-  emotions: "rado\u015B\u0107"
+  emotions: "Rado\u015B\u0107"
   id: 3
-  name: nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa
+  name: Nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa
   points: ''
   points_sum: 0
   show: true
   type: good
 - author: DD
-  emotions: "znu\u017Cenie"
+  emotions: "Znu\u017Cenie"
   id: 4
-  name: nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa
+  name: Nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa
   points: ''
   points_sum: 0
   show: true
   type: good
 - author: AA
-  emotions: znudzenie
+  emotions: Znudzenie
   id: 5
-  name: nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa
+  name: Nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa
   points: 2,3,4,5
   points_sum: 14
   show: true
   type: good
 - author: DD
-  emotions: ekscytacja
+  emotions: Ekscytacja
   id: 6
-  name: nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa
+  name: Nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa
   points: ''
   points_sum: 0
   show: true
   type: good
 - author: CC
-  emotions: zlosc
+  emotions: Zlosc
   id: 7
-  name: nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa
+  name: Nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa
   points: ''
   points_sum: 0
   show: true
   type: good
 - author: BB
-  emotions: skrajne emocje
+  emotions: Skrajne emocje
   id: 8
   name: Krotka nazwa
   points: ''
@@ -63,42 +63,43 @@
   show: true
   type: good
 - author: AA
-  emotions: pewnosc
+  emotions: Pewnosc
   id: 9
-  name: nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa
+  name: Nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa
   points: ''
   points_sum: 0
   show: true
   type: good
 - author: AA
-  emotions: niepewnosc
+  emotions: Niepewnosc
   id: 10
-  name: nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa
+  name: Nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa
   points: ''
   points_sum: 0
   show: true
   type: good
 - author: AA
-  emotions: irytacja
+  emotions: Irytacja
   id: 11
-  name: nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa
-    nazwa nazwa nazwa
+  name: Nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa
+    nazwa nazwa nazwa dsad asd as as dasd asd asd asdas asd asda sda sda sdas dasd
+    asd asd af fdsf ds fds fsd fdsf sdf sdf sdf sdf
   points: ''
   points_sum: 0
   show: true
   type: good
 - author: AA
-  emotions: zazdrosc
+  emotions: Zazdrosc
   id: 12
-  name: nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa
+  name: Nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa
   points: ''
   points_sum: 0
   show: true
   type: good
 - author: AA
-  emotions: wdziecznosc
+  emotions: Wdziecznosc
   id: 13
-  name: nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa
+  name: Nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa
   points: ''
   points_sum: 0
   show: true
@@ -106,31 +107,31 @@
 - author: AA
   emotions: Wkurzenie
   id: 14
-  name: nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa
+  name: Nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa
   points: ''
   points_sum: 0
   show: true
   type: good
 - author: AA
-  emotions: zlosc
+  emotions: Zlosc
   id: 15
-  name: nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa
+  name: Nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa
   points: ''
   points_sum: 0
   show: true
   type: good
 - author: AA
-  emotions: napiecie
+  emotions: Napiecie
   id: 16
-  name: nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa
+  name: Nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa
   points: ''
   points_sum: 0
   show: true
   type: good
 - author: AA
-  emotions: relaks
+  emotions: Relaks
   id: 17
-  name: nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa
+  name: Nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa
   points: ''
   points_sum: 0
   show: true
@@ -138,120 +139,128 @@
 - author: AA
   emotions: Chill
   id: 18
-  name: nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa
+  name: Nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa
   points: ''
   points_sum: 0
   show: true
   type: good
 - author: AA
-  emotions: Radosc, zal, smutek, wszystko
+  emotions: Radosc, zal, smutek, wszystko rozne
   id: 19
-  name: nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa
+  name: Nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa
   points: ''
   points_sum: 0
   show: true
   type: good
 - author: AA
-  emotions: strach
+  emotions: Strach
   id: 20
-  name: nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa
+  name: Nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa
   points: ''
   points_sum: 0
   show: true
   type: good
 - author: BB
-  emotions: wspolnota
+  emotions: Wspolnota
   id: 21
-  name: nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa
+  name: Nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa
   points: ''
   points_sum: 0
   show: true
   type: bad
 - author: BA
-  emotions: niepewnosc
+  emotions: Niepewnosc
   id: 22
-  name: nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa
+  name: Nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa
   points: ''
   points_sum: 0
   show: true
   type: bad
 - author: BA
-  emotions: niezrozumienie
+  emotions: Niezrozumienie
   id: 23
-  name: nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa
+  name: Nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa
   points: ''
   points_sum: 0
   show: true
   type: bad
 - author: BA
-  emotions: przerazenie
+  emotions: Przerazenie
   id: 24
-  name: nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa
+  name: Nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa
   points: ''
   points_sum: 0
   show: true
   type: bad
 - author: BA
-  emotions: chaos
+  emotions: Chaos
   id: 25
-  name: nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa
+  name: Nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa
   points: ''
   points_sum: 0
   show: true
   type: bad
 - author: BA
-  emotions: samotnosc
+  emotions: Samotnosc
   id: 26
-  name: nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa
+  name: Nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa
   points: ''
   points_sum: 0
   show: true
   type: bad
 - author: BA
-  emotions: sila
+  emotions: Sila
   id: 27
-  name: nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa
+  name: Nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa
   points: ''
   points_sum: 0
   show: true
   type: bad
 - author: CC
-  emotions: zjednoczenie
+  emotions: Zjednoczenie
   id: 28
-  name: nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa
+  name: Nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa
   points: ''
   points_sum: 0
   show: true
   type: bad
 - author: DD
-  emotions: emocje
+  emotions: Emocje
   id: 29
-  name: nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa
+  name: Nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa
   points: ''
   points_sum: 0
   show: true
   type: bad
 - author: BA
-  emotions: slabosc
+  emotions: Slabosc
   id: 30
-  name: nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa
+  name: Nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa
   points: ''
   points_sum: 0
   show: true
   type: bad
 - author: BA
-  emotions: spokoj
+  emotions: Spokoj
   id: 31
-  name: nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa
+  name: Nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa
   points: 6,6,6,6,6,6,3,1,1,1,1
   points_sum: 43
   show: true
   type: bad
 - author: BA
-  emotions: rozdraznienie
+  emotions: Rozdraznienie
   id: 32
-  name: nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa
+  name: Nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa1
   points: ''
   points_sum: 0
   show: true
+  type: bad
+- author: AA
+  emotions: Zle, bardzo zle
+  id: 101
+  name: Moje wydarzenie
+  points: ''
+  points_sum: 0
+  show: false
   type: bad

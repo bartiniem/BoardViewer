@@ -53,9 +53,9 @@ def add_card():
     app.config['next_id'] += 1
     if request.method == 'POST':
         if request.form.get("add_card_btn"):
-            card_author = request.form.get("card_author") if request.form.get("card_author") else ""
-            card_emotions = request.form.get("card_emotions") if request.form.get("card_emotions") else ""
-            card_text = request.form.get("card_text") if request.form.get("card_text") else ""
+            card_author = request.form.get("card_author").upper() if request.form.get("card_author") else ""
+            card_emotions = request.form.get("card_emotions").capitalize() if request.form.get("card_emotions") else ""
+            card_text = request.form.get("card_text").capitalize() if request.form.get("card_text") else ""
             card_type = request.form.get("card_type") if request.form.get("card_type") else ""
             cards = DataUtils().get_cards(CARDS_FILE)
             new_card = {"author": card_author, "emotions": card_emotions, "id": int(id_to_set), "name": card_text,
@@ -78,9 +78,9 @@ def edit_card(card_id):
     message = ""
     if request.method == 'POST':
         if request.form.get("save_card_btn"):
-            card_author = request.form.get("card_author") if request.form.get("card_author") else ""
-            card_emotions = request.form.get("card_emotions") if request.form.get("card_emotions") else ""
-            card_text = request.form.get("card_text") if request.form.get("card_text") else ""
+            card_author = request.form.get("card_author").upper() if request.form.get("card_author") else ""
+            card_emotions = request.form.get("card_emotions").capitalize() if request.form.get("card_emotions") else ""
+            card_text = request.form.get("card_text").capitalize() if request.form.get("card_text") else ""
             card_type = request.form.get("card_type") if request.form.get("card_type") else ""
             card_show = request.form.get("card_show") if request.form.get("card_show") else False
             card_points = request.form.get("card_points") if request.form.get("card_points") else ""

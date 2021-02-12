@@ -1,0 +1,23 @@
+{% if card.show == true %}
+  <div class="card{{' card-large' if card.name|length > 80}}">
+      <span class="card-main">
+          <span class="card-line-text">
+              {% if card.name|length > 180 %}
+                <span title="{{card.name}}">{{card.name[0:180]}}..․</span>
+              {% else %}
+                <span>{{card.name}}</span>
+              {% endif %}
+              <span class="card-line-id">#{{card.id}}</span>
+              {% if card.points  != '' %}
+              <span class="card-line-points">{{card.points}} = {{card.points_sum}}</span>
+              {% endif %}
+          </span>
+      </span>
+      {% if card.emotions|length > 28 %}
+      <span class="card-line-emotion" title="{{card.emotions}}">{{card.emotions[0:28]}}...</span>
+      {% else %}
+      <span class="card-line-emotion">{{card.emotions}}</span>
+      {% endif %}
+      <span class="card-line-author author-{{card.author}}">{{card.author}}</span>
+      </div>
+{% endif %}
