@@ -1,20 +1,23 @@
 <div class="header-bar">
-        <span class="navbar"><a href="/">Main</a></span>
-        <span class="navbar"><a href="/add_card">Add Card</a></span>
-        <span class="navbar"><a href="/preview">Preview (auto refresh)</a></span>
-        <span class="navbar-info">
-        {% for vote in votes %}
-                {% if vote.show == true %}
-                        {% if vote.value == "+" %}
-                                <span><span class="logo-author-small author-{{vote.author}}">{{vote.author}}</span>👍</span>
-                        {% elif vote.value == "-" %}
-                                <span><span class="logo-author-small author-{{vote.author}}">{{vote.author}}</span>👎</span>
-                        {% else %}
-                                <span><span class="logo-author-small author-{{vote.author}}">{{vote.author}}</span>{{vote.value}}</span>
-                        {% endif %}
+    <span class="navbar"><a href="/">Main</a></span>
+    <span class="navbar"><a href="/add_card">Add Card</a></span>
+    <span class="navbar"><a href="/preview">Preview (auto refresh)</a></span>
+    <span class="navbar-info">
+    {% for vote in votes %}
+        {% if vote.show == true %}
+            <span class="vote-label">
+                <span class="logo-author-small author-{{vote.author}}" title="{{vote.author}}" style="background-color: {{vote.author_color}}">{{vote.author_icon}}</span>
+                {% if vote.value == "+" %}
+                <span>👍</span>
+                {% elif vote.value == "-" %}
+                <span>👎</span>
+                {% else %}
+                <span>{{vote.value}}</span>
                 {% endif %}
-        {% endfor %}
-        </span>
-        <span class="navbar-info">Cards: {{sum_cards}}</span>
-        <span class="navbar-info">Last update: {{last_update}}</span>
+            </span>
+        {% endif %}
+    {% endfor %}
+    </span>
+    <span class="navbar-info">Cards: {{sum_cards}}</span>
+    <span class="navbar-info">Last update: {{last_update}}</span>
 </div>

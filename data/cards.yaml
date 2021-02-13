@@ -70,7 +70,7 @@
   points_sum: 0
   show: true
   type: good
-- author: AA
+- author: BB
   emotions: Niepewnosc
   id: 10
   name: Nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa
@@ -78,7 +78,7 @@
   points_sum: 0
   show: true
   type: good
-- author: AA
+- author: DD
   emotions: Irytacja
   id: 11
   name: Nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa
@@ -88,7 +88,7 @@
   points_sum: 0
   show: true
   type: good
-- author: AA
+- author: CC
   emotions: Zazdrosc
   id: 12
   name: Nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa
@@ -112,7 +112,7 @@
   points_sum: 0
   show: true
   type: good
-- author: AA
+- author: BB
   emotions: Zlosc
   id: 15
   name: Nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa
@@ -128,7 +128,7 @@
   points_sum: 0
   show: true
   type: good
-- author: AA
+- author: DD
   emotions: Relaks
   id: 17
   name: Nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa
@@ -144,15 +144,15 @@
   points_sum: 0
   show: true
   type: good
-- author: AA
-  emotions: Radosc, zal, smutek, wszystko rozne
+- author: BB
+  emotions: Radość, zal, smutek, wszystko rozne
   id: 19
   name: Nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa
   points: ''
   points_sum: 0
   show: true
   type: good
-- author: AA
+- author: DD
   emotions: Strach
   id: 20
   name: Nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa
@@ -192,7 +192,7 @@
   points_sum: 0
   show: true
   type: bad
-- author: BA
+- author: CC
   emotions: Chaos
   id: 25
   name: Nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa
@@ -208,7 +208,7 @@
   points_sum: 0
   show: true
   type: bad
-- author: BA
+- author: AA
   emotions: Sila
   id: 27
   name: Nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa
@@ -248,7 +248,7 @@
   points_sum: 43
   show: true
   type: bad
-- author: BA
+- author: DD
   emotions: Rozdraznienie
   id: 32
   name: Nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa1

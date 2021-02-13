@@ -1,7 +1,7 @@
 {% if card.show == true %}
   <div class="card{{' card-large' if card.name|length > 80}}">
       <span class="card-main">
-          <span class="card-line-text">
+          <span class="card-line-text{{' card-line-text-large' if card.name|length > 80}}">
               {% if card.name|length > 180 %}
                 <span title="{{card.name}}">{{card.name[0:180]}}..․</span>
               {% else %}
@@ -18,6 +18,6 @@
       {% else %}
       <span class="card-line-emotion">{{card.emotions}}</span>
       {% endif %}
-      <span class="card-line-author author-{{card.author}}">{{card.author}}</span>
+      <span class="card-line-author author-{{card.author}}" title="{{card.author}}" style="background-color: {{card.author_color}}">{{card.author_icon}}</span>
       </div>
 {% endif %}

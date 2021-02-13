@@ -31,6 +31,9 @@ def index():
     bad_cards = [card for card in cards if card.get("type") in "bad"]
     votes = DataUtils().load_yaml_data(VOTES_FILE)
     sum_cards = len(cards)
+    good_cards = DataUtils().update_user_data(good_cards)
+    bad_cards = DataUtils().update_user_data(bad_cards)
+    votes = DataUtils().update_votes_data(votes)
     return render_template('dashboard.html', title="BoardViewer", good_cards=good_cards, bad_cards=bad_cards,
                            last_update=last_update, votes=votes, sum_cards=sum_cards,
                            last_show_id=app.config['last_show_id'])
@@ -44,6 +47,9 @@ def preview():
     bad_cards = [card for card in cards if card.get("type") in "bad"]
     votes = DataUtils().load_yaml_data(VOTES_FILE)
     sum_cards = len(cards)
+    good_cards = DataUtils().update_user_data(good_cards)
+    bad_cards = DataUtils().update_user_data(bad_cards)
+    votes = DataUtils().update_votes_data(votes)
     return render_template('preview.html', title="BoardViewer", good_cards=good_cards, bad_cards=bad_cards,
                            last_update=last_update, votes=votes, sum_cards=sum_cards)
 
@@ -106,6 +112,12 @@ def show_card(card_id):
             card["show"] = False if card.get("show") in [True] else True
     DataUtils().save_data_to_yaml(cards, CARDS_FILE)
     return redirect(url_for('management_cards'))
+
+
+@app.route('/management/users', methods=['GET', 'POST'])
+def management_users():
+    users = DataUtils().get_users()
+    return render_template('management_users.html', title="Management users", users=users)
 
 
 if __name__ == '__main__':

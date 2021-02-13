@@ -143,8 +143,15 @@ body::-webkit-scrollbar-thumb {
 .card-line-text {
     padding: 0.9em;
     font-size: 18px;
-    display: block;
     min-height: 85px;
+    display: table-cell;
+    vertical-align: middle;
+    height: 85px;
+    width: 200px;
+}
+
+.card-line-text-large {
+    width: 445px;
 }
 
 .card-line-border {
@@ -315,8 +322,8 @@ input, select, textarea {
     padding: 0.4em;
     display: inline-block;
     font-size: 14px;
-    color: #444;
-    background-color: #f3ebeb;
+    color: #eaeaea;
+    background-color: #6b6b6b;
     border-radius: 16px;
     line-height: 16px;
 }
@@ -324,4 +331,8 @@ input, select, textarea {
 .navbar-info {
     color: #555;
     margin: 0 0.5em;
+}
+
+.vote-label {
+    margin: 0 0.2em;
 }

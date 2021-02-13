@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="pl-PL">
+{% include 'head.html' %}
+<body class="body-bck">
+  {% include 'navbar_management.html' %}
+  <div id="main-window" class="main-window">
+      <div class="middle-cont">
+          <span class="middle-title">Users</span>
+          <div class="cards">
+              <div class="form-card">
+                  <table class="table">
+                    <tr>
+                        <th>Id</th>
+                        <th>Initials</th>
+                        <th>Icon</th>
+                        <th>Bg color</th>
+                        <th></th>
+                    </tr>
+                      {% for user in users %}
+                        <tr>
+                            <td>{{user.id}}</td>
+                            <td>{{user.initials}}</td>
+                            <td><span class="logo-author-small" style="background-color: {{user.color}}">{{user.icon}}</span></td>
+                            <td>{{user.color}}</td>
+                            <td><a href="/management/user/{{user.id}}">Edytuj</a></td>
+                        </tr>
+                      {% endfor %}
+                </table>
+              </div>
+          </div>
+      </div>
+      {% include 'footer.html' %}
+  </div>
+</body>
+</html>

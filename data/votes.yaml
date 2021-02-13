@@ -1,12 +1,30 @@
 - author: AA
   value: "+"
   show: true
-- author: CC
+- author: BB
   value: "-"
   show: true
-- author: BB
+- author: CC
   value: "+"
   show: true
-- author: B2
+- author: DD
+  value: "+"
+  show: true
+- author: D5
+  value: "+"
+  show: true
+- author: D6
+  value: "+"
+  show: true
+- author: D7
+  value: "+"
+  show: true
+- author: D8
+  value: "+"
+  show: true
+- author: D9
+  value: "+"
+  show: true
+- author: D0
   value: "+"
   show: true
