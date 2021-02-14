@@ -22,7 +22,7 @@
                             <td>{{user.name}}</td>
                             <td><span class="logo-author-small" style="background-color: {{user.color}}">{{user.icon}}</span></td>
                             <td>{{user.color}}</td>
-                            <td><a href="/user_management/user/{{user.id}}">Edytuj</a></td>
+                            <td><a href="/user_management/user/{{user.id}}"><span title="Edit">✏️</span></a></td>
                         </tr>
                 </table>
               </div>
@@ -49,8 +49,8 @@
                             <td>{{card.type}}</td>
                             <td>{{card.points}}</td>
                             <td>{{card.points_sum}}</td>
-                            <td><a href="/user_management/showcard/{{card.id}}">{{card.show}}</a></td>
-                            <td><a href="/user_management/card/{{card.id}}">Edytuj</a></td>
+                            <td><a href="/user_management/showcard/{{card.id}}"><span title="{{card.show}}">{{'✔️' if card.show == True else '✖️' }}</span></a></td>
+                            <td><a href="/user_management/card/{{card.id}}"><span title="Edit">✏️</span></a></td>
                         </tr>
                     {% endfor %}
                 </table>

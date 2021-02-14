@@ -33,6 +33,10 @@
         {% endif %}
     {% endfor %}
     </span>
+    {% if sum_cards %}
     <span class="navbar-info">Cards: {{sum_cards}}</span>
+    {% endif %}
+    {% if last_update %}
     <span class="navbar-info">Last update: {{last_update}}</span>
+    {% endif %}
 </div>
