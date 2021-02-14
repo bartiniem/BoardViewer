@@ -12,6 +12,8 @@
                     <tr>
                         <th>Id</th>
                         <th>Initials</th>
+                        <th>Name</th>
+                        <th>Role</th>
                         <th>Icon</th>
                         <th>Bg color</th>
                         <th></th>
@@ -20,6 +22,8 @@
                         <tr>
                             <td>{{user.id}}</td>
                             <td>{{user.initials}}</td>
+                            <td>{{user.name}}</td>
+                            <td>{{user.role}}</td>
                             <td><span class="logo-author-small" style="background-color: {{user.color}}">{{user.icon}}</span></td>
                             <td>{{user.color}}</td>
                             <td><a href="/management/user/{{user.id}}">Edytuj</a></td>

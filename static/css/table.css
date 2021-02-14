@@ -39,7 +39,7 @@ tr:nth-child(even) {background-color: #999;}
 }
 
 .table a:hover {
-  color: #bbb;
+  color: #777;
 }
 
 .table a:active {

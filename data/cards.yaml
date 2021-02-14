@@ -267,3 +267,11 @@
   points_sum: 0
   show: false
   type: bad
+- author: FF
+  emotions: Ciekawosc
+  id: 102
+  name: A taka testowa czy dziala dodawanie.
+  points: ''
+  points_sum: 0
+  show: false
+  type: good

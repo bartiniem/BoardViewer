@@ -52,7 +52,7 @@ body::-webkit-scrollbar-thumb {
     background-color: #000000a6;
     padding: 10px;
     line-height: 30px;
-    text-align: center;
+    text-align: left;
     vertical-align: middle;
 }
 
@@ -138,6 +138,10 @@ body::-webkit-scrollbar-thumb {
     margin-right: 0.2em;
     border-radius: 5px;
     box-shadow: 5px 5px 5px rgba(0,0,0,.2);
+}
+
+.card-main:hover {
+    background-color: #f9efc8;
 }
 
 .card-line-text {
@@ -335,4 +339,18 @@ input, select, textarea {
 
 .vote-label {
     margin: 0 0.2em;
+}
+
+.board_good {
+    /*background-color: #5e7769;*/
+    /*background-color: #183123;*/
+    /*background-color: #304c3c;*/
+    background-color: #252b24;
+}
+
+.board_bad {
+    /*background-color: #775e5e;*/
+    /*background-color: #3c0a0a;*/
+    /*background-color: #3a2828;*/
+    background-color: #2b2424;
 }

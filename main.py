@@ -4,11 +4,12 @@
 #  -----------------------------------------------------------------------
 #  """
 
-# IMPORTS
+# GLOBAL IMPORTS
 import os
 from datetime import datetime
 from flask import Flask, session, redirect, url_for, request, render_template
 
+# LOCAL IMPORTS
 from datautils import DataUtils
 
 # DEFINITIONS
@@ -34,9 +35,8 @@ def index():
     bad_cards = DataUtils().update_user_data(bad_cards)
     votes = DataUtils().update_votes_data(votes)
     return render_template('dashboard.html', title="BoardViewer", active_user=active_user,
-                           good_cards=good_cards, bad_cards=bad_cards,
-                           last_update=last_update, votes=votes, sum_cards=sum_cards,
-                           last_show_id=app.config['last_show_id'])
+                           good_cards=good_cards, bad_cards=bad_cards, last_update=last_update, votes=votes,
+                           sum_cards=sum_cards, last_show_id=app.config['last_show_id'])
 
 
 @app.route('/preview', methods=['GET', 'POST'])
@@ -52,8 +52,8 @@ def preview():
     bad_cards = DataUtils().update_user_data(bad_cards)
     votes = DataUtils().update_votes_data(votes)
     return render_template('preview.html', title="BoardViewer", active_user=active_user,
-                           good_cards=good_cards, bad_cards=bad_cards,
-                           last_update=last_update, votes=votes, sum_cards=sum_cards)
+                           good_cards=good_cards, bad_cards=bad_cards, last_update=last_update, votes=votes,
+                           sum_cards=sum_cards)
 
 
 @app.route('/add_card', methods=['GET', 'POST'])
@@ -70,7 +70,8 @@ def management_cards():
     if not active_user or active_user.get("role") != "admin":
         return redirect(url_for('permission_denied'))
     cards = DataUtils().get_cards()
-    return render_template('management_cards.html', title="Management cards", active_user=active_user, cards=cards)
+    return render_template('/management/management_cards.html', title="Management cards", active_user=active_user,
+                           cards=cards)
 
 
 @app.route('/management/card/<card_id>', methods=['GET', 'POST'])
@@ -80,7 +81,8 @@ def edit_card(card_id):
         return redirect(url_for('permission_denied'))
     message = edit_card_form(card_id)
     card = DataUtils().get_card_by_id(card_id)
-    return render_template('edit_card.html', title="Edit card", active_user=active_user, card=card, message=message)
+    return render_template('/management/management_edit_card.html', title="Edit card", active_user=active_user,
+                           card=card, message=message)
 
 
 @app.route('/management/showcard/<card_id>', methods=['GET', 'POST'])
@@ -102,7 +104,8 @@ def management_users():
     if not active_user or active_user.get("role") != "admin":
         return redirect(url_for('permission_denied'))
     users = DataUtils().get_users()
-    return render_template('management_users.html', title="Management users", active_user=active_user, users=users)
+    return render_template('/management/management_users.html', title="Management users", active_user=active_user,
+                           users=users)
 
 
 @app.route('/user_management/configuration', methods=['GET', 'POST'])
@@ -112,8 +115,8 @@ def user_configuration():
     initials = DataUtils().get_user_initials(username)
     cards = DataUtils().get_cards()
     user_cards = [card for card in cards if card.get("author") == initials]
-    return render_template('user_configuration.html', title="User configuration", active_user=active_user,
-                           user=active_user, cards=user_cards)
+    return render_template('/user_management/user_configuration.html', title="User configuration",
+                           active_user=active_user, user=active_user, cards=user_cards)
 
 
 @app.route('/user_management/showcard/<card_id>', methods=['GET', 'POST'])
@@ -131,7 +134,7 @@ def edit_user_card(card_id):
     active_user = get_active_user()
     message = edit_card_form(card_id)
     card = DataUtils().get_card_by_id(card_id)
-    return render_template('edit_user_card.html', title="Edit user card", active_user=active_user, card=card,
+    return render_template('/user_management/user_edit_card.html', title="Edit user card", active_user=active_user, card=card,
                            message=message)
 
 
@@ -158,6 +161,13 @@ def logout():
 def permission_denied():
     active_user = get_active_user()
     return render_template('message_page.html', title="Permission denied.", message="Permission denied.",
+                           active_user=active_user)
+
+
+@app.errorhandler(404)
+def not_found(error):
+    active_user = get_active_user()
+    return render_template('message_page.html', title="Page not found.", message="Something went wrong. 😢",
                            active_user=active_user)
 
 
