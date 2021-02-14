@@ -1,15 +1,15 @@
 - author: AA
   emotions: Ulga
   id: 1
-  name: To jest testowy opis wydarzenia - fajnie, ze dziala
+  name: "\u201Emy poeci kontra hipokryci nowoczesno\u015Bci\u201D"
   points: 1,2,3
   points_sum: 6
   show: true
   type: good
 - author: BB
-  emotions: Szczescie
+  emotions: "Szcze\u015Bcie"
   id: 2
-  name: Pokazowka
+  name: "Cofnijmy si\u0119 do dzieci\u0144stwa"
   points: 2,3,4
   points_sum: 9
   show: true
@@ -17,15 +17,15 @@
 - author: CC
   emotions: "Rado\u015B\u0107"
   id: 3
-  name: Nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa
+  name: "Mo\u017Ce znowu pupa, \u0142ydka, g\u0119ba"
   points: ''
   points_sum: 0
-  show: false
+  show: true
   type: good
 - author: DD
-  emotions: "Znu\u017Cenie"
+  emotions: "Szcz\u0119\u015Bcie"
   id: 4
-  name: Nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa
+  name: "Infantylno\u015B\u0107 zachowam w s\u0142owie"
   points: ''
   points_sum: 0
   show: true
@@ -33,7 +33,7 @@
 - author: AA
   emotions: Znudzenie
   id: 5
-  name: Nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa
+  name: "Czy zbudowa\u0107 sobie form\u0119"
   points: 2,3,4,5
   points_sum: 14
   show: true
@@ -41,7 +41,7 @@
 - author: DD
   emotions: Ekscytacja
   id: 6
-  name: Nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa
+  name: "Wydr\u0105\u017Con\u0105 od \u015Brodka"
   points: 1,2
   points_sum: 3
   show: true
@@ -49,7 +49,7 @@
 - author: CC
   emotions: Zlosc
   id: 7
-  name: Takie sobie wydarzenie
+  name: "Gdy\u017C czym s\u0105 teraz s\u0142owa?"
   points: ''
   points_sum: 0
   show: true
@@ -57,7 +57,7 @@
 - author: BB
   emotions: Skrajne emocje
   id: 8
-  name: Krotka nazwa
+  name: "Mo\u017Ce zajrz\u0119 do biologii"
   points: ''
   points_sum: 0
   show: true
@@ -65,7 +65,7 @@
 - author: AA
   emotions: Pewnosc
   id: 9
-  name: Nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa
+  name: "Mo\u017Ce ma wyt\u0142umaczenie"
   points: ''
   points_sum: 0
   show: true
@@ -73,7 +73,7 @@
 - author: BB
   emotions: Niepewnosc
   id: 10
-  name: Nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa
+  name: Czemu gdy suka szuka
   points: ''
   points_sum: 0
   show: true
@@ -81,9 +81,7 @@
 - author: DD
   emotions: Irytacja
   id: 11
-  name: Nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa
-    nazwa nazwa nazwa dsad asd as as dasd asd asd asdas asd asda sda sda sdas dasd
-    asd asd af fdsf ds fds fsd fdsf sdf sdf sdf sdf
+  name: "Pi\u0119knego psa \u2013 rodz\u0105 si\u0119 kundle?"
   points: ''
   points_sum: 0
   show: true
@@ -91,15 +89,17 @@
 - author: CC
   emotions: Zazdrosc
   id: 12
-  name: Nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa
+  name: "Mo\u017Ce jemio\u0142a mi to powie\r\njak pod ni\u0105 si\u0119 ca\u0142\
+    uj\u0105\r\nmi\u0142o\u015B\u0107 pod ni\u0105 ro\u015Bnie\r\na ona \u017Cy\u0107\
+    \ bez drzewa nie mo\u017Ce."
   points: ''
   points_sum: 0
-  show: false
+  show: true
   type: good
 - author: AA
   emotions: Wdziecznosc
   id: 13
-  name: Nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa
+  name: "To ta hipokryzja nowoczesno\u015Bci"
   points: ''
   points_sum: 0
   show: true
@@ -107,7 +107,7 @@
 - author: AA
   emotions: Wkurzenie
   id: 14
-  name: Nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa
+  name: "Ona temu winna \u017Ce jak jemio\u0142a"
   points: ''
   points_sum: 0
   show: true
@@ -115,7 +115,7 @@
 - author: DD
   emotions: Zlosc
   id: 15
-  name: Nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa
+  name: "Korzeni mie\u0107 nie mog\u0119"
   points: ''
   points_sum: 0
   show: true
@@ -123,7 +123,7 @@
 - author: AA
   emotions: Napiecie
   id: 16
-  name: Nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa
+  name: "I uschn\u0105\u0107 jeszcze za m\u0142odu"
   points: ''
   points_sum: 0
   show: true
@@ -131,7 +131,7 @@
 - author: BB
   emotions: Relaks
   id: 17
-  name: Nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa
+  name: "To oni jak ta suka szukaj\u0105"
   points: ''
   points_sum: 0
   show: true
@@ -139,7 +139,7 @@
 - author: AA
   emotions: Chill
   id: 18
-  name: Nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa
+  name: "Szcz\u0119\u015Bcia w kr\xF3lewskim psie"
   points: ''
   points_sum: 0
   show: true
@@ -147,7 +147,7 @@
 - author: BB
   emotions: "Rado\u015B\u0107, zal, smutek, wszystko rozne"
   id: 19
-  name: Nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa
+  name: A to co wychodzi
   points: ''
   points_sum: 0
   show: true
@@ -155,7 +155,7 @@
 - author: DD
   emotions: Strach
   id: 20
-  name: Nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa
+  name: "To wsp\xF3\u0142czesne kundle\u2026"
   points: ''
   points_sum: 0
   show: true
@@ -163,7 +163,8 @@
 - author: BB
   emotions: Wspolnota
   id: 21
-  name: Nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa
+  name: "Je\u015Bli w \u017Cyciu brakuje miejsca na odwag\u0119, to inne cnoty s\u0105\
+    \ bez znaczenia."
   points: ''
   points_sum: 0
   show: true
@@ -171,7 +172,8 @@
 - author: BA
   emotions: Niepewnosc
   id: 22
-  name: Nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa
+  name: "Je\u017Celi uwa\u017Casz, \u017Ce mo\u017Cesz czego\u015B dokona\u0107 albo\
+    \ przeciwnie, \u017Ce nie dasz rady - w obu przypadkach masz racj\u0119."
   points: ''
   points_sum: 0
   show: true
@@ -179,7 +181,8 @@
 - author: BA
   emotions: Niezrozumienie
   id: 23
-  name: Nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa
+  name: "Ludzie sukcesu wiedz\u0105, \u017Ce sami tworz\u0105 swoje szcz\u0119\u015B\
+    cie."
   points: ''
   points_sum: 0
   show: true
@@ -187,7 +190,7 @@
 - author: AA
   emotions: Przerazenie
   id: 24
-  name: Nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa
+  name: "Cz\u0142owiek staje si\u0119 tym, o czym my\u015Bli."
   points: ''
   points_sum: 0
   show: true
@@ -195,15 +198,15 @@
 - author: CC
   emotions: Chaos
   id: 25
-  name: Nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa
+  name: "Prawdziwe szcz\u0119\u015Bcie jest rzecz\u0105 wysi\u0142ku, odwagi i pracy."
   points: ''
   points_sum: 0
-  show: false
+  show: true
   type: bad
 - author: BA
   emotions: Samotnosc
   id: 26
-  name: Nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa
+  name: "Musisz sam sobie zaufa\u0107, aby mogli zaufa\u0107 ci inni."
   points: ''
   points_sum: 0
   show: true
@@ -211,7 +214,7 @@
 - author: AA
   emotions: Sila
   id: 27
-  name: Nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa
+  name: "M\u0105dro\u015B\u0107 to c\xF3rka do\u015Bwiadczenia."
   points: ''
   points_sum: 0
   show: true
@@ -219,15 +222,15 @@
 - author: CC
   emotions: Zjednoczenie
   id: 28
-  name: Nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa
+  name: "Ka\u017Cdy ma taki \u015Bwiat, jaki widz\u0105 jego oczy."
   points: ''
   points_sum: 0
-  show: false
+  show: true
   type: bad
 - author: DD
   emotions: Emocje
   id: 29
-  name: Nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa
+  name: "Pocz\u0105tek jest najwa\u017Cniejsz\u0105 cz\u0119\u015Bci\u0105 pracy."
   points: ''
   points_sum: 0
   show: true
@@ -235,7 +238,7 @@
 - author: BA
   emotions: Slabosc
   id: 30
-  name: Nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa
+  name: "Kto \u017Cycia nie ceni, nie wart go."
   points: ''
   points_sum: 0
   show: true
@@ -243,7 +246,7 @@
 - author: DD
   emotions: Spokoj
   id: 31
-  name: Nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa
+  name: "Jeste\u015B tym, czym wierzysz, \u017Ce jeste\u015B."
   points: 6,6,6,6,6,6,3,1,1,1,1
   points_sum: 43
   show: true
@@ -251,7 +254,7 @@
 - author: DD
   emotions: Rozdraznienie
   id: 32
-  name: Nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa1
+  name: "W milczeniu nawet s\u0142aby krzyk robi wiele ha\u0142asu."
   points: ''
   points_sum: 0
   show: true

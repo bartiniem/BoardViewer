@@ -72,7 +72,7 @@ class DataUtils:
         for card in cards:
             user = self.get_user(card.get("author"))
             card["author_icon"] = user.get("icon") if user else card["author"]
-            card["author_color"] = user.get("color") if user else "#333"""
+            card["author_color"] = user.get("color") if user else "#333"
         return cards
 
     def update_votes_data(self, votes):

@@ -17,11 +17,15 @@
           <span class="logo-icon" style="background-color: #797d32">🦅</span>
       </div>
       <div class="main-cont">
+          {% if active_user.name is undefined %}
           <form method="post" class="main-form">
               <span>Login: </span><input type="text" id="login_name" name="login_name">
-<!--              <span>Pass: </span><input type="password" name="main_pass">-->
+              <span>Pin: </span><input type="text" name="main_pass">
               <button type="submit" name="login_btn" value="login_btn">Go!</button>
           </form>
+          {% else %}
+          <span>Logged as {{active_user.name}}</span>
+          {% endif %}
       </div>
   </div>
 </div>
