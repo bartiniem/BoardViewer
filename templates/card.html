@@ -9,7 +9,7 @@
               {% endif %}
               <span class="card-line-id">#{{card.id}}</span>
               {% if card.points  != '' %}
-              <span class="card-line-points">{{card.points}} = {{card.points_sum}}</span>
+              <span class="card-line-points">{{card.points}} = {{card.points_sum}} {{ card.points_emoji }}</span>
               {% endif %}
           </span>
       </span>

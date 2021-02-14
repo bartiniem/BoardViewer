@@ -68,6 +68,17 @@ class DataUtils:
         user = self.get_user_by_name(username)
         return user.get("initials") if user else {}
 
+    def update_points_emoji(self, cards):
+        sorted_points = sorted([card.get("points_sum") for card in cards], reverse=True)
+        for card in cards:
+            if len(sorted_points) > 0 and card["points_sum"] == sorted_points[0]:
+                card["points_emoji"] = "🥇"
+            if len(sorted_points) > 1 and card["points_sum"] == sorted_points[1]:
+                card["points_emoji"] = "🥈"
+            if len(sorted_points) > 2 and card["points_sum"] == sorted_points[2]:
+                card["points_emoji"] = "🥉"
+        return cards
+
     def update_user_data(self, cards):
         for card in cards:
             user = self.get_user(card.get("author"))

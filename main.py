@@ -27,6 +27,7 @@ def index():
     active_user = get_active_user()
     last_update = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
     cards = DataUtils().get_cards()
+    cards = DataUtils().update_points_emoji(cards)
     good_cards = [card for card in cards if card.get("type") in "good"]
     bad_cards = [card for card in cards if card.get("type") in "bad"]
     votes = DataUtils().get_votes()
@@ -44,6 +45,7 @@ def preview():
     active_user = get_active_user()
     last_update = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
     cards = DataUtils().get_cards()
+    cards = DataUtils().update_points_emoji(cards)
     good_cards = [card for card in cards if card.get("type") in "good"]
     bad_cards = [card for card in cards if card.get("type") in "bad"]
     votes = DataUtils().get_votes()
