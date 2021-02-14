@@ -113,7 +113,7 @@
   show: true
   type: good
 - author: DD
-  emotions: Zlosc
+  emotions: "Zlo\u015B\u0107"
   id: 15
   name: "Korzeni mie\u0107 nie mog\u0119"
   points: ''

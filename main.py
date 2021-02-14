@@ -67,6 +67,8 @@ def add_card():
 @app.route('/management/cards', methods=['GET', 'POST'])
 def management_cards():
     active_user = get_active_user()
+    if not active_user or active_user.get("role") != "admin":
+        return redirect(url_for('permission_denied'))
     cards = DataUtils().get_cards()
     return render_template('management_cards.html', title="Management cards", active_user=active_user, cards=cards)
 
@@ -74,6 +76,8 @@ def management_cards():
 @app.route('/management/card/<card_id>', methods=['GET', 'POST'])
 def edit_card(card_id):
     active_user = get_active_user()
+    if not active_user or active_user.get("role") != "admin":
+        return redirect(url_for('permission_denied'))
     message = edit_card_form(card_id)
     card = DataUtils().get_card_by_id(card_id)
     return render_template('edit_card.html', title="Edit card", active_user=active_user, card=card, message=message)
@@ -81,6 +85,9 @@ def edit_card(card_id):
 
 @app.route('/management/showcard/<card_id>', methods=['GET', 'POST'])
 def show_card(card_id):
+    active_user = get_active_user()
+    if not active_user or active_user.get("role") != "admin":
+        return redirect(url_for('permission_denied'))
     cards = DataUtils().get_cards()
     for card in cards:
         if str(card.get("id")) == str(card_id):
@@ -92,6 +99,8 @@ def show_card(card_id):
 @app.route('/management/users', methods=['GET', 'POST'])
 def management_users():
     active_user = get_active_user()
+    if not active_user or active_user.get("role") != "admin":
+        return redirect(url_for('permission_denied'))
     users = DataUtils().get_users()
     return render_template('management_users.html', title="Management users", active_user=active_user, users=users)
 
@@ -143,6 +152,13 @@ def logout():
     session.pop('username', None)
     session.pop('passwd', None)
     return redirect(url_for('login'))
+
+
+@app.route('/permission_denied', methods=['GET', 'POST'])
+def permission_denied():
+    active_user = get_active_user()
+    return render_template('message_page.html', title="Permission denied.", message="Permission denied.",
+                           active_user=active_user)
 
 
 def add_card_form(id_to_set):

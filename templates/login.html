@@ -5,17 +5,7 @@
 {% include 'navbar.html' %}
 <div id="main-window" class="main-window">
   <div class="middle-cont">
-      <div class="main-icons">
-          <span class="logo-icon" style="background-color: #888888">🐳</span>
-          <span class="logo-icon" style="background-color: #016d6d">🐦</span>
-          <span class="logo-icon" style="background-color: #154767">🐵</span>
-          <span class="logo-icon" style="background-color: #414e90">🐴</span>
-          <span class="logo-icon" style="background-color: #671515">🐨</span>
-          <span class="logo-icon" style="background-color: #326715">🐺</span>
-          <span class="logo-icon" style="background-color: #153267">🐙</span>
-          <span class="logo-icon" style="background-color: #925312">🦇</span>
-          <span class="logo-icon" style="background-color: #797d32">🦅</span>
-      </div>
+      {% include 'main_icons.html' %}
       <div class="main-cont">
           {% if active_user.name is undefined %}
           <form method="post" class="main-form">
