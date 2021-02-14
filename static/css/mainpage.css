@@ -1,0 +1,19 @@
+.main-cont {
+    margin: 1em;
+    padding: 1em;
+}
+
+.main-icons {
+    margin: 1em;
+    padding: 1em;
+}
+
+.logo-icon {
+    padding: 1em;
+    font-size: 30px;
+    color: #444;
+    background-color: #676767;
+    border-radius: 100px;
+    line-height: 90px;
+    box-shadow: 2px 2px 2px rgb(0 0 0 / 20%);
+}

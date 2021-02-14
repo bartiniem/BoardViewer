@@ -1,20 +1,25 @@
 - initials: AA
+  name: "adam"
   id: 1
   icon: 🐺
   color: '#326715'
 - initials: BA
+  name: "bartek"
   id: 2
   icon: 🐨
   color: '#671515'
 - initials: BB
+  name: "basia"
   id: 3
   icon: 🐵
   color: '#154767'
 - initials: CC
+  name: "cyryl"
   id: 4
   icon: 🐳
   color: '#016d6d'
 - initials: DD
+  name: "damian"
   id: 5
   icon: 🐦
-  color: '#9a9a9a'
+  color: '#888888'

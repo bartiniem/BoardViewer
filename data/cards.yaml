@@ -20,7 +20,7 @@
   name: Nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa
   points: ''
   points_sum: 0
-  show: true
+  show: false
   type: good
 - author: DD
   emotions: "Znu\u017Cenie"
@@ -42,14 +42,14 @@
   emotions: Ekscytacja
   id: 6
   name: Nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa
-  points: ''
-  points_sum: 0
+  points: 1,2
+  points_sum: 3
   show: true
   type: good
 - author: CC
   emotions: Zlosc
   id: 7
-  name: Nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa
+  name: Takie sobie wydarzenie
   points: ''
   points_sum: 0
   show: true
@@ -94,7 +94,7 @@
   name: Nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa
   points: ''
   points_sum: 0
-  show: true
+  show: false
   type: good
 - author: AA
   emotions: Wdziecznosc
@@ -112,7 +112,7 @@
   points_sum: 0
   show: true
   type: good
-- author: BB
+- author: DD
   emotions: Zlosc
   id: 15
   name: Nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa
@@ -128,7 +128,7 @@
   points_sum: 0
   show: true
   type: good
-- author: DD
+- author: BB
   emotions: Relaks
   id: 17
   name: Nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa
@@ -145,7 +145,7 @@
   show: true
   type: good
 - author: BB
-  emotions: Radość, zal, smutek, wszystko rozne
+  emotions: "Rado\u015B\u0107, zal, smutek, wszystko rozne"
   id: 19
   name: Nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa
   points: ''
@@ -198,7 +198,7 @@
   name: Nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa
   points: ''
   points_sum: 0
-  show: true
+  show: false
   type: bad
 - author: BA
   emotions: Samotnosc
@@ -222,7 +222,7 @@
   name: Nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa nazwa
   points: ''
   points_sum: 0
-  show: true
+  show: false
   type: bad
 - author: DD
   emotions: Emocje
