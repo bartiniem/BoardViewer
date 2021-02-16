@@ -6,12 +6,24 @@
 <div id="main-window" class="main-window">
   <div class="middle-cont">
       {% include 'main_icons.html' %}
-      <div class="main-cont">
+  </div>
+  <div class="middle-cont">
+      <div class="cards">
           {% if active_user.name is undefined %}
-          <form method="post" class="main-form">
-              <span>Login: </span><input type="text" id="login_name" name="login_name">
-              <span>Pin: </span><input type="text" name="main_pass">
-              <button type="submit" name="login_btn" value="login_btn">Go!</button>
+          <form method="post" class="form-main">
+              <div class="form-card">
+                  <span class="form-line">
+                      <label class="form-label-sm">Username:</label>
+                      <input class="form-element-sm" type="text" id="login_name" name="login_name">
+                  </span>
+                  <span class="form-line">
+                      <label class="form-label-sm">Pin:</label>
+                      <input class="form-element-sm" type="text" name="main_pass">
+                  </span>
+                  <span class="form-line">
+                      <button class="form-btn-sm" type="submit" name="login_btn" value="login_btn">Go!</button>
+                  </span>
+              </div>
           </form>
           {% else %}
           <span>Logged as {{active_user.name}}</span>

@@ -1,4 +1,4 @@
-- author: AA
+- author: adam
   emotions: Ulga
   id: 1
   name: "\u201Emy poeci kontra hipokryci nowoczesno\u015Bci\u201D"
@@ -6,7 +6,7 @@
   points_sum: 6
   show: true
   type: good
-- author: BB
+- author: basia
   emotions: "Szcze\u015Bcie"
   id: 2
   name: "Cofnijmy si\u0119 do dzieci\u0144stwa"
@@ -14,7 +14,7 @@
   points_sum: 9
   show: true
   type: good
-- author: CC
+- author: cyryl
   emotions: "Rado\u015B\u0107"
   id: 3
   name: "Mo\u017Ce znowu pupa, \u0142ydka, g\u0119ba"
@@ -22,7 +22,7 @@
   points_sum: 0
   show: true
   type: good
-- author: DD
+- author: Damian
   emotions: "Szcz\u0119\u015Bcie"
   id: 4
   name: "Infantylno\u015B\u0107 zachowam w s\u0142owie"
@@ -30,7 +30,7 @@
   points_sum: 0
   show: true
   type: good
-- author: AA
+- author: adam
   emotions: Znudzenie
   id: 5
   name: "Czy zbudowa\u0107 sobie form\u0119"
@@ -38,7 +38,7 @@
   points_sum: 14
   show: true
   type: good
-- author: DD
+- author: Damian
   emotions: Ekscytacja
   id: 6
   name: "Wydr\u0105\u017Con\u0105 od \u015Brodka"
@@ -46,7 +46,7 @@
   points_sum: 3
   show: true
   type: good
-- author: CC
+- author: cyryl
   emotions: Zlosc
   id: 7
   name: "Gdy\u017C czym s\u0105 teraz s\u0142owa?"
@@ -54,7 +54,7 @@
   points_sum: 0
   show: true
   type: good
-- author: BB
+- author: basia
   emotions: Skrajne emocje
   id: 8
   name: "Mo\u017Ce zajrz\u0119 do biologii"
@@ -62,7 +62,7 @@
   points_sum: 0
   show: true
   type: good
-- author: AA
+- author: adam
   emotions: Pewnosc
   id: 9
   name: "Mo\u017Ce ma wyt\u0142umaczenie"
@@ -70,7 +70,7 @@
   points_sum: 0
   show: true
   type: good
-- author: BB
+- author: basia
   emotions: Niepewnosc
   id: 10
   name: Czemu gdy suka szuka
@@ -78,7 +78,7 @@
   points_sum: 0
   show: true
   type: good
-- author: DD
+- author: Damian
   emotions: Irytacja
   id: 11
   name: "Pi\u0119knego psa \u2013 rodz\u0105 si\u0119 kundle?"
@@ -86,7 +86,7 @@
   points_sum: 0
   show: true
   type: good
-- author: CC
+- author: cyryl
   emotions: Zazdrosc
   id: 12
   name: "Mo\u017Ce jemio\u0142a mi to powie\r\njak pod ni\u0105 si\u0119 ca\u0142\
@@ -96,7 +96,7 @@
   points_sum: 0
   show: true
   type: good
-- author: AA
+- author: adam
   emotions: Wdziecznosc
   id: 13
   name: "To ta hipokryzja nowoczesno\u015Bci"
@@ -104,7 +104,7 @@
   points_sum: 0
   show: true
   type: good
-- author: AA
+- author: adam
   emotions: Wkurzenie
   id: 14
   name: "Ona temu winna \u017Ce jak jemio\u0142a"
@@ -112,7 +112,7 @@
   points_sum: 0
   show: true
   type: good
-- author: DD
+- author: Damian
   emotions: "Zlo\u015B\u0107"
   id: 15
   name: "Korzeni mie\u0107 nie mog\u0119"
@@ -120,7 +120,7 @@
   points_sum: 0
   show: true
   type: good
-- author: AA
+- author: adam
   emotions: Napiecie
   id: 16
   name: "I uschn\u0105\u0107 jeszcze za m\u0142odu"
@@ -128,7 +128,7 @@
   points_sum: 0
   show: true
   type: good
-- author: BB
+- author: basia
   emotions: Relaks
   id: 17
   name: "To oni jak ta suka szukaj\u0105"
@@ -136,7 +136,7 @@
   points_sum: 0
   show: true
   type: good
-- author: AA
+- author: adam
   emotions: Chill
   id: 18
   name: "Szcz\u0119\u015Bcia w kr\xF3lewskim psie"
@@ -144,7 +144,7 @@
   points_sum: 0
   show: true
   type: good
-- author: BB
+- author: basia
   emotions: "Rado\u015B\u0107, zal, smutek, wszystko rozne"
   id: 19
   name: A to co wychodzi
@@ -152,7 +152,7 @@
   points_sum: 0
   show: true
   type: good
-- author: DD
+- author: Damian
   emotions: Strach
   id: 20
   name: "To wsp\xF3\u0142czesne kundle\u2026"
@@ -160,7 +160,7 @@
   points_sum: 0
   show: true
   type: good
-- author: BB
+- author: basia
   emotions: Wspolnota
   id: 21
   name: "Je\u015Bli w \u017Cyciu brakuje miejsca na odwag\u0119, to inne cnoty s\u0105\
@@ -169,7 +169,7 @@
   points_sum: 0
   show: true
   type: bad
-- author: BA
+- author: bartek
   emotions: Niepewnosc
   id: 22
   name: "Je\u017Celi uwa\u017Casz, \u017Ce mo\u017Cesz czego\u015B dokona\u0107 albo\
@@ -178,7 +178,7 @@
   points_sum: 0
   show: true
   type: bad
-- author: BA
+- author: bartek
   emotions: Niezrozumienie
   id: 23
   name: "Ludzie sukcesu wiedz\u0105, \u017Ce sami tworz\u0105 swoje szcz\u0119\u015B\
@@ -187,7 +187,7 @@
   points_sum: 0
   show: true
   type: bad
-- author: AA
+- author: adam
   emotions: Przerazenie
   id: 24
   name: "Cz\u0142owiek staje si\u0119 tym, o czym my\u015Bli."
@@ -195,7 +195,7 @@
   points_sum: 0
   show: true
   type: bad
-- author: CC
+- author: cyryl
   emotions: Chaos
   id: 25
   name: "Prawdziwe szcz\u0119\u015Bcie jest rzecz\u0105 wysi\u0142ku, odwagi i pracy."
@@ -203,7 +203,7 @@
   points_sum: 0
   show: true
   type: bad
-- author: BA
+- author: bartek
   emotions: Samotnosc
   id: 26
   name: "Musisz sam sobie zaufa\u0107, aby mogli zaufa\u0107 ci inni."
@@ -211,7 +211,7 @@
   points_sum: 0
   show: true
   type: bad
-- author: AA
+- author: adam
   emotions: Sila
   id: 27
   name: "M\u0105dro\u015B\u0107 to c\xF3rka do\u015Bwiadczenia."
@@ -219,7 +219,7 @@
   points_sum: 0
   show: true
   type: bad
-- author: CC
+- author: cyryl
   emotions: Zjednoczenie
   id: 28
   name: "Ka\u017Cdy ma taki \u015Bwiat, jaki widz\u0105 jego oczy."
@@ -227,7 +227,7 @@
   points_sum: 0
   show: true
   type: bad
-- author: DD
+- author: Damian
   emotions: Emocje
   id: 29
   name: "Pocz\u0105tek jest najwa\u017Cniejsz\u0105 cz\u0119\u015Bci\u0105 pracy."
@@ -235,7 +235,7 @@
   points_sum: 0
   show: true
   type: bad
-- author: BA
+- author: bartek
   emotions: Slabosc
   id: 30
   name: "Kto \u017Cycia nie ceni, nie wart go."
@@ -243,7 +243,7 @@
   points_sum: 0
   show: true
   type: bad
-- author: DD
+- author: Damian
   emotions: Spokoj
   id: 31
   name: "Jeste\u015B tym, czym wierzysz, \u017Ce jeste\u015B."
@@ -251,7 +251,7 @@
   points_sum: 43
   show: true
   type: bad
-- author: DD
+- author: Damian
   emotions: Rozdraznienie
   id: 32
   name: "W milczeniu nawet s\u0142aby krzyk robi wiele ha\u0142asu."
@@ -259,7 +259,7 @@
   points_sum: 0
   show: true
   type: bad
-- author: AA
+- author: adam
   emotions: Zle, bardzo zle
   id: 101
   name: Moje wydarzenie

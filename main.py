@@ -18,6 +18,7 @@ from datautils import DataUtils
 app = Flask(__name__)
 app.config['SECRET_KEY'] = os.getenv('SECRET_KEY') or 'e5ac358c-f0bf-11e5-9e39-d3b532c10a28'
 app.config['next_id'] = 100
+app.config['next_vote_id'] = 100
 app.config['last_show_id'] = 2
 
 
@@ -60,9 +61,11 @@ def preview():
 
 @app.route('/add_card', methods=['GET', 'POST'])
 def add_card():
+    if not get_active_user():
+        return redirect(url_for('login'))
     active_user = get_active_user()
-    app.config['next_id'] += 1
     message = add_card_form(app.config['next_id'])
+    message += vote_form(app.config['next_vote_id'])
     return render_template('add_card.html', title="Add card", active_user=active_user, message=message)
 
 
@@ -100,6 +103,19 @@ def show_card(card_id):
     return redirect(url_for('management_cards'))
 
 
+@app.route('/management/show_vote/<vote_id>', methods=['GET', 'POST'])
+def show_vote(vote_id):
+    active_user = get_active_user()
+    if not active_user or active_user.get("role") != "admin":
+        return redirect(url_for('permission_denied'))
+    votes = DataUtils().get_votes()
+    for vote in votes:
+        if str(vote.get("id")) == str(vote_id):
+            vote["show"] = False if vote.get("show") in [True] else True
+    DataUtils().save_votes(votes)
+    return redirect(url_for('management_cards'))
+
+
 @app.route('/management/users', methods=['GET', 'POST'])
 def management_users():
     active_user = get_active_user()
@@ -114,15 +130,20 @@ def management_users():
 def user_configuration():
     username = get_username()
     active_user = get_active_user()
-    initials = DataUtils().get_user_initials(username)
+    if not active_user:
+        return redirect(url_for('login'))
     cards = DataUtils().get_cards()
-    user_cards = [card for card in cards if card.get("author") == initials]
+    votes = DataUtils().get_votes()
+    user_cards = [card for card in cards if card.get("author") == username]
+    user_votes = [vote for vote in votes if vote.get("author") == username]
     return render_template('/user_management/user_configuration.html', title="User configuration",
-                           active_user=active_user, user=active_user, cards=user_cards)
+                           active_user=active_user, user=active_user, cards=user_cards, votes=user_votes)
 
 
 @app.route('/user_management/showcard/<card_id>', methods=['GET', 'POST'])
 def show_user_card(card_id):
+    if not get_active_user():
+        return redirect(url_for('login'))
     cards = DataUtils().get_cards()
     for card in cards:
         if str(card.get("id")) == str(card_id):
@@ -131,13 +152,27 @@ def show_user_card(card_id):
     return redirect(url_for('user_configuration'))
 
 
+@app.route('/user_management/show_vote/<vote_id>', methods=['GET', 'POST'])
+def show_user_vote(vote_id):
+    if not get_active_user():
+        return redirect(url_for('login'))
+    votes = DataUtils().get_votes()
+    for vote in votes:
+        if str(vote.get("id")) == str(vote_id):
+            vote["show"] = False if vote.get("show") in [True] else True
+    DataUtils().save_votes(votes)
+    return redirect(url_for('user_configuration'))
+
+
 @app.route('/user_management/card/<card_id>', methods=['GET', 'POST'])
 def edit_user_card(card_id):
     active_user = get_active_user()
+    if not active_user:
+        return redirect(url_for('login'))
     message = edit_card_form(card_id)
     card = DataUtils().get_card_by_id(card_id)
-    return render_template('/user_management/user_edit_card.html', title="Edit user card", active_user=active_user, card=card,
-                           message=message)
+    return render_template('/user_management/user_edit_card.html', title="Edit user card", active_user=active_user,
+                           card=card, message=message)
 
 
 @app.route('/login', methods=['GET', 'POST'])
@@ -177,13 +212,13 @@ def add_card_form(id_to_set):
     message = ""
     if request.method == 'POST':
         if request.form.get("add_card_btn"):
-            card_author = request.form.get("card_author").upper() if request.form.get("card_author") else ""
+            active_user = get_active_user()
             card_emotions = request.form.get("card_emotions").capitalize() if request.form.get("card_emotions") else ""
             card_text = request.form.get("card_text").capitalize() if request.form.get("card_text") else ""
             card_type = request.form.get("card_type") if request.form.get("card_type") else ""
             cards = DataUtils().get_cards()
-            new_card = {"author": card_author, "emotions": card_emotions, "id": int(id_to_set), "name": card_text,
-                        "points": "", "show": False, "type": card_type}
+            new_card = {"author": active_user.get("name"), "emotions": card_emotions, "id": int(id_to_set),
+                        "name": card_text, "points": "", "show": False, "type": card_type}
             cards.append(new_card)
             DataUtils().save_cards(cards)
             message = "New card added: {}".format(new_card)
@@ -191,19 +226,34 @@ def add_card_form(id_to_set):
     return message
 
 
+def vote_form(id_to_set):
+    message = ""
+    if request.method == 'POST':
+        if request.form.get("vote_btn"):
+            active_user = get_active_user()
+            vote_type = request.form.get("vote_type").upper() if request.form.get("vote_type") else ""
+            votes = DataUtils().get_votes()
+            new_vote = {"author": active_user.get("name"), "id": int(id_to_set), "value": vote_type, "show": False}
+            votes.append(new_vote)
+            DataUtils().save_votes(votes)
+            message = "New vote added: {}".format(new_vote)
+            app.config['next_vote_id'] += 1
+    return message
+
+
 def edit_card_form(card_id):
     message = ""
     if request.method == 'POST':
         if request.form.get("save_card_btn"):
-            card_author = request.form.get("card_author").upper() if request.form.get("card_author") else ""
+            active_user = get_active_user()
             card_emotions = request.form.get("card_emotions").capitalize() if request.form.get("card_emotions") else ""
             card_text = request.form.get("card_text").capitalize() if request.form.get("card_text") else ""
             card_type = request.form.get("card_type") if request.form.get("card_type") else ""
             card_show = request.form.get("card_show") if request.form.get("card_show") else False
             card_points = request.form.get("card_points") if request.form.get("card_points") else ""
             cards = DataUtils().get_cards()
-            new_card = {"author": card_author, "emotions": card_emotions, "name": card_text, "show": bool(card_show),
-                        "type": card_type}
+            new_card = {"author": active_user.get("name"), "emotions": card_emotions, "name": card_text,
+                        "show": bool(card_show), "type": card_type}
             if card_points:
                 new_card["points"] = card_points
             for card in cards:

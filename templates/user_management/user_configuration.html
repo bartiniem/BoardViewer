@@ -55,6 +55,27 @@
                     {% endfor %}
                 </table>
               </div>
+              <hr>
+              <div class="form-card">
+                  <table class="table">
+                    <tr>
+                        <th>Id</th>
+                        <th>Author</th>
+                        <th>Value</th>
+                        <th>Show</th>
+                        <th></th>
+                    </tr>
+                      {% for vote in votes %}
+                        <tr>
+                            <td>{{vote.id}}</td>
+                            <td>{{vote.author}}</td>
+                            <td>{{vote.value}}</td>
+                            <td><a href="/user_management/show_vote/{{vote.id}}"><span title="{{vote.show}}">{{'✔️' if vote.show == True else '✖️' }}</span></a></td>
+                            <td><a href="/user_management/vote/{{vote.id}}"><span title="Edit">✏️</span></a></td>
+                        </tr>
+                    {% endfor %}
+                </table>
+              </div>
           </div>
       </div>
       {% include 'footer.html' %}

@@ -272,6 +272,10 @@ body::-webkit-scrollbar-thumb {
 }
 
 .form-card {
+    border: 1px solid #696969;
+    border-radius: 10px;
+    padding: 2em;
+    box-shadow: 10px 10px 10px rgba(0,0,0,.2);
 }
 
 .form-line {
@@ -283,6 +287,17 @@ body::-webkit-scrollbar-thumb {
 .form-element {
     width: 500px;
     font-size: 20px;
+    background-color: #afafaf;
+    border: none;
+    border-radius: 5px;
+}
+
+.form-element-sm {
+    width: 250px;
+    font-size: 20px;
+    background-color: #afafaf;
+    border: none;
+    border-radius: 5px;
 }
 
 .form-textarea {
@@ -291,10 +306,18 @@ body::-webkit-scrollbar-thumb {
     resize: none;
     font-family: "Montserrat",sans-serif;
     font-size: 20px;
+    background-color: #afafaf;
+    border: none;
+    border-radius: 5px;
 }
 
 .form-label {
     width: 200px;
+    padding: 0.2em;
+}
+
+.form-label-sm {
+    width: 100px;
     padding: 0.2em;
 }
 
@@ -303,6 +326,17 @@ body::-webkit-scrollbar-thumb {
     border: 1px solid #bbb;
     border-radius: 5px;
     padding: 1em 0.2em;
+    background-color: #d2ad11;
+    color: #333;
+    width: 100%;
+    font-size: 20px;
+}
+
+.form-btn-sm {
+    margin: 0.1em;
+    border: 1px solid #bbb;
+    border-radius: 5px;
+    padding: 0.2em 0.2em;
     background-color: #d2ad11;
     color: #333;
     width: 100%;

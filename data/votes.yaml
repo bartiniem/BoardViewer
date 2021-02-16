@@ -1,30 +1,44 @@
-- author: AA
-  value: "+"
+- author: adam
+  id: 1
   show: true
-- author: BB
-  value: "-"
+  value: +
+- author: basia
+  id: 2
   show: true
-- author: CC
-  value: "+"
+  value: '-'
+- author: cyryl
+  id: 3
   show: true
-- author: DD
-  value: "+"
+  value: +
+- author: Damian
+  id: 4
   show: true
+  value: +
 - author: D5
-  value: "+"
+  id: 5
   show: true
+  value: +
 - author: D6
-  value: "+"
+  id: 6
   show: true
+  value: +
 - author: D7
-  value: "+"
+  id: 7
   show: true
+  value: +
 - author: D8
-  value: "+"
+  id: 8
   show: true
+  value: +
 - author: D9
-  value: "+"
+  id: 9
   show: true
+  value: +
 - author: D0
-  value: "+"
+  id: 10
   show: true
+  value: +
+- author: Damian
+  id: 11
+  show: false
+  value: +

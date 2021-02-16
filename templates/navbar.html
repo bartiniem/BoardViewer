@@ -21,7 +21,7 @@
     {% for vote in votes %}
         {% if vote.show == true %}
             <span class="vote-label">
-                <span class="logo-author-small author-{{vote.author}}" title="{{vote.author}}" style="background-color: {{vote.author_color}}">{{vote.author_icon}}</span>
+                <span class="logo-author-small" title="{{vote.author}}" style="background-color: {{vote.author_color}}">{{vote.author_icon}}</span>
                 {% if vote.value == "+" %}
                 <span>👍</span>
                 {% elif vote.value == "-" %}

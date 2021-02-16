@@ -41,6 +41,9 @@ class DataUtils:
     def save_cards(self, cards):
         self.save_data_to_yaml(cards, CARDS_FILE)
 
+    def save_votes(self, votes):
+        self.save_data_to_yaml(votes, VOTES_FILE)
+
     @staticmethod
     def get_card_by_id(card_id):
         cards = DataUtils().load_yaml_data(CARDS_FILE)
@@ -54,9 +57,9 @@ class DataUtils:
         users = self.load_yaml_data(USERS_FILENAME)
         return users
 
-    def get_user(self, initials):
+    def get_user(self, name):
         users = self.load_yaml_data(USERS_FILENAME)
-        user = [user for user in users if user.get("initials") == initials]
+        user = [user for user in users if user.get("name") == name]
         return user[0] if user else {}
 
     def get_user_by_name(self, username):
@@ -82,6 +85,7 @@ class DataUtils:
     def update_user_data(self, cards):
         for card in cards:
             user = self.get_user(card.get("author"))
+            card["author_initials"] = user.get("initials") if user else card["author"][0:2]
             card["author_icon"] = user.get("icon") if user else card["author"]
             card["author_color"] = user.get("color") if user else "#333"
         return cards
@@ -89,6 +93,7 @@ class DataUtils:
     def update_votes_data(self, votes):
         for vote in votes:
             user = self.get_user(vote.get("author"))
+            vote["author_initials"] = user.get("initials") if user else vote["author"][0:2]
             vote["author_icon"] = user.get("icon") if user else vote["author"]
             vote["author_color"] = user.get("color") if user else "#333"
         return votes

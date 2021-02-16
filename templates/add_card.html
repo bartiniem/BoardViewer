@@ -14,10 +14,6 @@
               <form method="post" class="form-main">
                   <div class="form-card">
                       <span class="form-line">
-                          <label class="form-label">Author (initials):</label>
-                          <input type="text" class="form-element" name="card_author" maxlength="2"/>
-                      </span>
-                      <span class="form-line">
                           <label class="form-label">Text (300-chars):</label>
                           <textarea class="form-textarea" name="card_text" maxlength="300" rows="3" cols="50"></textarea>
                       </span>
@@ -33,6 +29,16 @@
                           </select>
                       </span>
                       <span class="form-line"><button type="submit" class="form-btn" name="add_card_btn" value="add_card">Add card</button></span>
+                  </div>
+                  <div class="form-card">
+                     <span class="form-line"><label class="form-label">Vote:</label>
+                          <select name="vote_type" class="form-element">
+                              <option value=""></option>
+                              <option value="+">positive</option>
+                              <option value="-">negative</option>
+                          </select>
+                      </span>
+                      <span class="form-line"><button type="submit" class="form-btn" name="vote_btn" value="vote_btn">Vote</button></span>
                   </div>
               </form>
           </div>
