@@ -379,12 +379,16 @@ input, select, textarea {
     /*background-color: #5e7769;*/
     /*background-color: #183123;*/
     /*background-color: #304c3c;*/
-    background-color: #252b24;
+    /*background-color: #252b24;*/
+    /*background-image: linear-gradient(#304c3c, #252b24);*/
+    background-image: linear-gradient(#24242b, #152b11, #24242b);
 }
 
 .board_bad {
     /*background-color: #775e5e;*/
     /*background-color: #3c0a0a;*/
     /*background-color: #3a2828;*/
-    background-color: #2b2424;
+    /*background-color: #2b2424;*/
+    /*background-image: linear-gradient(#312828, #151111);*/
+    background-image: linear-gradient(#24242b, #291111, #24242b);
 }
