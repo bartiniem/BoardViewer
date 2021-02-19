@@ -50,7 +50,7 @@ body::-webkit-scrollbar-thumb {
 
 .header-bar {
     background-color: #000000a6;
-    padding: 10px;
+    padding: 15px 2px;
     line-height: 30px;
     text-align: left;
     vertical-align: middle;
@@ -61,7 +61,8 @@ body::-webkit-scrollbar-thumb {
     text-decoration: none;
     font-size: 16px;
     padding: 10px 20px;
-    margin: 10px;
+    border: 2px solid #000000a6;
+    border-radius: 20px;
 }
 
 .navbar a:hover{
@@ -381,7 +382,7 @@ input, select, textarea {
     /*background-color: #304c3c;*/
     /*background-color: #252b24;*/
     /*background-image: linear-gradient(#304c3c, #252b24);*/
-    background-image: linear-gradient(#24242b, #152b11, #24242b);
+    background-image: linear-gradient(#24242b, #1b251a 10% 90%, #24242b);
 }
 
 .board_bad {
@@ -390,5 +391,5 @@ input, select, textarea {
     /*background-color: #3a2828;*/
     /*background-color: #2b2424;*/
     /*background-image: linear-gradient(#312828, #151111);*/
-    background-image: linear-gradient(#24242b, #291111, #24242b);
+    background-image: linear-gradient(#24242b, #211616 10% 90%, #24242b);
 }

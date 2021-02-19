@@ -4,33 +4,39 @@
   icon: 🐺
   color: '#326715'
   role: user
+  passwd: 111
 - initials: BA
   name: "bartek"
   id: 2
   icon: 🐨
   color: '#671515'
   role: user
+  passwd: 222
 - initials: BB
   name: "basia"
   id: 3
   icon: 🐵
   color: '#154767'
   role: user
+  passwd: 333
 - initials: CC
   name: "cyryl"
   id: 4
   icon: 🐳
   color: '#016d6d'
   role: user
+  passwd: 444
 - initials: DD
   name: "Damian"
   id: 5
   icon: 🐦
   color: '#888888'
   role: user
+  passwd: "555"
 - initials: AD
   name: "admin"
   id: 6
   icon: 🦞
   color: '#881188'
   role: admin
+  passwd: 666

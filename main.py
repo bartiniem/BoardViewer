@@ -38,7 +38,7 @@ def index():
     votes = DataUtils().update_votes_data(votes)
     return render_template('dashboard.html', title="BoardViewer", active_user=active_user,
                            good_cards=good_cards, bad_cards=bad_cards, last_update=last_update, votes=votes,
-                           sum_cards=sum_cards, last_show_id=app.config['last_show_id'])
+                           sum_cards=sum_cards, last_show_id=app.config['last_show_id'], show_votes=True)
 
 
 @app.route('/preview', methods=['GET', 'POST'])
@@ -56,7 +56,7 @@ def preview():
     votes = DataUtils().update_votes_data(votes)
     return render_template('preview.html', title="BoardViewer", active_user=active_user,
                            good_cards=good_cards, bad_cards=bad_cards, last_update=last_update, votes=votes,
-                           sum_cards=sum_cards)
+                           sum_cards=sum_cards, show_votes=True)
 
 
 @app.route('/add_card', methods=['GET', 'POST'])
@@ -181,7 +181,10 @@ def login():
         if request.form.get("login_btn"):
             login_name = request.form.get("login_name") if request.form.get("login_name") else ""
             login_pass = request.form.get("login_pass") if request.form.get("login_pass") else ""
-            if DataUtils().get_user_by_name(login_name):
+            user = DataUtils().get_user_by_name(login_name)
+            print(user.get("passwd"))
+            print(login_pass)
+            if user and user.get("passwd") == login_pass:
                 session["username"] = login_name
     active_user = get_active_user()
     return render_template('login.html', title="Login", active_user=active_user)
