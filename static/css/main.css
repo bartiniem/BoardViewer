@@ -142,7 +142,10 @@ body::-webkit-scrollbar-thumb {
 }
 
 .card-main:hover {
-    background-color: #f9efc8;
+    background-color: # ;
+        box-shadow: -1px 1px 15px 0px #f9efc884;
+    -webkit-box-shadow: -1px 1px 15px 0px #f9efc884;
+    -moz-box-shadow: -1px 1px 15px 0px #f9efc884;
 }
 
 .card-line-text {
@@ -382,7 +385,8 @@ input, select, textarea {
     /*background-color: #304c3c;*/
     /*background-color: #252b24;*/
     /*background-image: linear-gradient(#304c3c, #252b24);*/
-    background-image: linear-gradient(#24242b, #1b251a 10% 90%, #24242b);
+    /*background-image: linear-gradient(#24242b, #1b251a 10% 90%, #24242b);*/
+    background-color: #1b251a;
 }
 
 .board_bad {
@@ -391,5 +395,6 @@ input, select, textarea {
     /*background-color: #3a2828;*/
     /*background-color: #2b2424;*/
     /*background-image: linear-gradient(#312828, #151111);*/
-    background-image: linear-gradient(#24242b, #211616 10% 90%, #24242b);
+    /*background-image: linear-gradient(#24242b, #211616 10% 90%, #24242b);*/
+    background-color: #211616;
 }

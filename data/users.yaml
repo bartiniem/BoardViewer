@@ -4,39 +4,39 @@
   icon: 🐺
   color: '#326715'
   role: user
-  passwd: 111
+  passwd: "d41d8cd98f00b204e9800998ecf8427e"
 - initials: BA
   name: "bartek"
   id: 2
   icon: 🐨
   color: '#671515'
   role: user
-  passwd: 222
+  passwd: "d41d8cd98f00b204e9800998ecf8427e"
 - initials: BB
   name: "basia"
   id: 3
   icon: 🐵
   color: '#154767'
   role: user
-  passwd: 333
+  passwd: "d41d8cd98f00b204e9800998ecf8427e"
 - initials: CC
   name: "cyryl"
   id: 4
   icon: 🐳
   color: '#016d6d'
   role: user
-  passwd: 444
+  passwd: "d41d8cd98f00b204e9800998ecf8427e"
 - initials: DD
   name: "Damian"
   id: 5
   icon: 🐦
   color: '#888888'
   role: user
-  passwd: "555"
+  passwd: "d41d8cd98f00b204e9800998ecf8427e"
 - initials: AD
   name: "admin"
   id: 6
   icon: 🦞
   color: '#881188'
   role: admin
-  passwd: 666
+  passwd: "21232f297a57a5a743894a0e4a801fc3"

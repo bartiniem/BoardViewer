@@ -5,6 +5,7 @@
 #  """
 
 # GLOBAL IMPORTS
+import hashlib
 import os
 from datetime import datetime
 from flask import Flask, session, redirect, url_for, request, render_template
@@ -182,9 +183,7 @@ def login():
             login_name = request.form.get("login_name") if request.form.get("login_name") else ""
             login_pass = request.form.get("login_pass") if request.form.get("login_pass") else ""
             user = DataUtils().get_user_by_name(login_name)
-            print(user.get("passwd"))
-            print(login_pass)
-            if user and user.get("passwd") == login_pass:
+            if user and str(hashlib.md5(login_pass.encode("utf-8")).hexdigest()) == user.get("passwd"):
                 session["username"] = login_name
     active_user = get_active_user()
     return render_template('login.html', title="Login", active_user=active_user)
