@@ -1,3 +1,3 @@
 # BoardViewer
 
-It's board to management sticky notes.
+It's board to sticky notes management.
