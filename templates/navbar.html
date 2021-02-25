@@ -7,12 +7,14 @@
         </a>
     </span>
     <span class="navbar"><a href="/user_management/configuration">Configuration</a></span>
+    <span class="navbar-info">|</span>
     {% else %}
     <span class="navbar"><a href="/login">Sign in</a></span>
     {% endif %}
-    <span class="navbar"><a href="/">Main</a></span>
+    <span class="navbar"><a href="/">Board</a></span>
     <span class="navbar"><a href="/add_card">Add Card</a></span>
     <span class="navbar"><a href="/preview">Preview</a></span>
+    <span class="navbar-info">|</span>
     {% if active_user and active_user.role == 'admin' %}
     <span class="navbar"><a href="/management/cards">Cards</a></span>
     <span class="navbar"><a href="/management/users">Users</a></span>

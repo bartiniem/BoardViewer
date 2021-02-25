@@ -20,7 +20,6 @@ app = Flask(__name__)
 app.config['SECRET_KEY'] = os.getenv('SECRET_KEY') or 'e5ac358c-f0bf-11e5-9e39-d3b532c10a28'
 app.config['next_id'] = 100
 app.config['next_vote_id'] = 100
-app.config['last_show_id'] = 2
 
 
 # ROUTES
@@ -39,7 +38,7 @@ def index():
     votes = DataUtils().update_votes_data(votes)
     return render_template('dashboard.html', title="BoardViewer", active_user=active_user,
                            good_cards=good_cards, bad_cards=bad_cards, last_update=last_update, votes=votes,
-                           sum_cards=sum_cards, last_show_id=app.config['last_show_id'], show_votes=True)
+                           sum_cards=sum_cards, show_votes=True)
 
 
 @app.route('/preview', methods=['GET', 'POST'])
