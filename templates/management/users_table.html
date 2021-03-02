@@ -16,6 +16,7 @@
                         <th>Role</th>
                         <th>Icon</th>
                         <th>Bg color</th>
+                        <th>Card color</th>
                         <th></th>
                     </tr>
                       {% for user in users %}
@@ -25,7 +26,8 @@
                             <td>{{user.name}}</td>
                             <td>{{user.role}}</td>
                             <td><span class="logo-author-small" style="background-color: {{user.color}}">{{user.icon}}</span></td>
-                            <td>{{user.color}}</td>
+                            <td><span style="background-color: {{user.color}}">{{user.color}}</span></td>
+                            <td><span style="background-color: {{user.card_color}}">{{user.card_color}}</span></td>
                             <td><a href="/management/user/{{user.id}}"><span title="Edit">✏️</span></a></td>
                         </tr>
                       {% endfor %}

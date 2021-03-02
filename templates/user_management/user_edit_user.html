@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="pl-PL">
+{% include 'head.html' %}
+<body class="body-bck">
+  {% include 'navbar.html' %}
+  <div id="main-window" class="main-window">
+      <div class="middle-cont">
+          {% if message %}
+            <span>{{message}}</span>
+          {% endif %}
+      </div>
+      <div class="middle-cont">
+          <div class="cards">
+              <form method="post" class="form-main">
+                  <div class="form-card">
+                      <span class="form-line">
+                          <label class="form-label">Initials: {{user.initials}}</label>
+                      </span>
+                      <span class="form-line">
+                          <label class="form-label">Name: {{user.name}}</label>
+                      </span>
+                      <span class="form-line">
+                          <label class="form-label">Icon:</label>
+                          <input type="text" class="form-element" name="user_icon" maxlength="40" value="{{user.icon}}"/>
+                      </span>
+                      <span class="form-line">
+                          <label class="form-label">Avatar color:</label>
+                          <input type="text" class="form-element" name="user_color" maxlength="40" value="{{user.color}}"/>
+                      </span>
+                      <span class="form-line">
+                          <label class="form-label">Card color:</label>
+                          <input type="text" class="form-element" name="user_card_color" maxlength="40" value="{{user.card_color}}"/>
+                      </span>
+                      <span class="form-line"><button type="submit" class="form-btn" name="save_user_btn" value="save_user">Save</button></span>
+                  </div>
+              </form>
+          </div>
+      </div>
+      {% include 'footer.html' %}
+  </div>
+</body>
+</html>

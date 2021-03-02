@@ -24,7 +24,7 @@ class DataUtils:
     @staticmethod
     def load_yaml_data(dict_file):
         with open(dict_file, "r", encoding="utf-8") as file:
-            yaml_data = yaml.load(file, Loader=yaml.FullLoader)
+            yaml_data = yaml.load(file, Loader=yaml.Loader)
             return yaml_data
 
     @staticmethod
@@ -33,10 +33,13 @@ class DataUtils:
         for card in cards:
             points_sum = 0
             if card.get("points"):
-                for points in card.get("points").split(","):
+                for points in card.get("points").replace(",", " ").strip().split():
                     points_sum += int(points)
             card["points_sum"] = points_sum
         return cards
+
+    def save_users(self, users):
+        self.save_data_to_yaml(users, USERS_FILENAME)
 
     def save_cards(self, cards):
         self.save_data_to_yaml(cards, CARDS_FILE)
@@ -67,6 +70,11 @@ class DataUtils:
         user = [user for user in users if user.get("name") == username]
         return user[0] if user else {}
 
+    def get_user_by_id(self, user_id):
+        users = self.load_yaml_data(USERS_FILENAME)
+        user = [user for user in users if str(user.get("id")) == str(user_id)]
+        return user[0] if user else {}
+
     def get_user_initials(self, username):
         user = self.get_user_by_name(username)
         return user.get("initials") if user else {}
@@ -88,6 +96,7 @@ class DataUtils:
             card["author_initials"] = user.get("initials") if user else card["author"][0:2]
             card["author_icon"] = user.get("icon") if user else card["author"]
             card["author_color"] = user.get("color") if user else "#333"
+            card["card_color"] = user.get("card_color") if user else "#ceb553"
         return cards
 
     def update_votes_data(self, votes):

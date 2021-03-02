@@ -126,6 +126,17 @@ def management_users():
                            users=users)
 
 
+@app.route('/management/user/<user_id>', methods=['GET', 'POST'])
+def edit_user(user_id):
+    active_user = get_active_user()
+    if not active_user or active_user.get("role") != "admin":
+        return redirect(url_for('permission_denied'))
+    message = edit_user_form(user_id)
+    user = DataUtils().get_user_by_id(user_id)
+    return render_template('/management/management_edit_user.html', title="Edit user", active_user=active_user,
+                           user=user, message=message)
+
+
 @app.route('/user_management/configuration', methods=['GET', 'POST'])
 def user_configuration():
     username = get_username()
@@ -173,6 +184,17 @@ def edit_user_card(card_id):
     card = DataUtils().get_card_by_id(card_id)
     return render_template('/user_management/user_edit_card.html', title="Edit user card", active_user=active_user,
                            card=card, message=message)
+
+
+@app.route('/user_management/user/<user_id>', methods=['GET', 'POST'])
+def user_edit_user_card(user_id):
+    active_user = get_active_user()
+    if not active_user or str(active_user.get("id")) != user_id:
+        return redirect(url_for('permission_denied'))
+    message = edit_user_form_from_user(user_id)
+    user = DataUtils().get_user_by_id(user_id)
+    return render_template('/user_management/user_edit_user.html', title="Edit user", active_user=active_user,
+                           user=user, message=message)
 
 
 @app.route('/login', methods=['GET', 'POST'])
@@ -246,15 +268,13 @@ def edit_card_form(card_id):
     message = ""
     if request.method == 'POST':
         if request.form.get("save_card_btn"):
-            active_user = get_active_user()
             card_emotions = request.form.get("card_emotions").capitalize() if request.form.get("card_emotions") else ""
             card_text = request.form.get("card_text").capitalize() if request.form.get("card_text") else ""
             card_type = request.form.get("card_type") if request.form.get("card_type") else ""
-            card_show = request.form.get("card_show") if request.form.get("card_show") else False
+            card_show = request.form.get("card_show") if request.form.get("card_show") == "True" else False
             card_points = request.form.get("card_points") if request.form.get("card_points") else ""
             cards = DataUtils().get_cards()
-            new_card = {"author": active_user.get("name"), "emotions": card_emotions, "name": card_text,
-                        "show": bool(card_show), "type": card_type}
+            new_card = {"emotions": card_emotions, "name": card_text, "show": bool(card_show), "type": card_type}
             if card_points:
                 new_card["points"] = card_points
             for card in cards:
@@ -262,6 +282,44 @@ def edit_card_form(card_id):
                     card.update(new_card)
             DataUtils().save_cards(cards)
             message = "Saved card data: {}".format(new_card)
+    return message
+
+
+def edit_user_form_from_user(user_id):
+    message = ""
+    if request.method == 'POST':
+        if request.form.get("save_user_btn"):
+            user_icon = request.form.get("user_icon") if request.form.get("user_icon") else ""
+            user_color = request.form.get("user_color") if request.form.get("user_color") else ""
+            user_card_color = request.form.get("user_card_color") if request.form.get("user_card_color") else ""
+            users = DataUtils().get_users()
+            new_user_data = {"icon": user_icon, "color": user_color, "card_color": user_card_color}
+            for user in users:
+                if str(user.get("id")) == str(user_id):
+                    user.update(new_user_data)
+            DataUtils().save_users(users)
+            message = "Saved user data: {}".format(new_user_data)
+    return message
+
+
+def edit_user_form(user_id):
+    message = ""
+    if request.method == 'POST':
+        if request.form.get("save_user_btn"):
+            user_initials = request.form.get("user_initials") if request.form.get("user_initials") else ""
+            user_name = request.form.get("user_name") if request.form.get("user_name") else ""
+            user_icon = request.form.get("user_icon") if request.form.get("user_icon") else ""
+            user_color = request.form.get("user_color") if request.form.get("user_color") else ""
+            user_card_color = request.form.get("user_card_color") if request.form.get("user_card_color") else ""
+            user_role = request.form.get("user_role") if request.form.get("user_role") else "user"
+            users = DataUtils().get_users()
+            new_user_data = {"initials": user_initials, "name": user_name, "icon": user_icon, "color": user_color,
+                             "card_color": user_card_color, "role": user_role}
+            for user in users:
+                if str(user.get("id")) == str(user_id):
+                    user.update(new_user_data)
+            DataUtils().save_users(users)
+            message = "Saved user data: {}".format(new_user_data)
     return message
 
 

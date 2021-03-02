@@ -14,13 +14,15 @@
                         <th>Name</th>
                         <th>Icon</th>
                         <th>Bg color</th>
-                    </tr>
+                        <th>Card color</th>
+                   </tr>
                     <tr>
                         <td>{{user.id}}</td>
                         <td>{{user.initials}}</td>
                         <td>{{user.name}}</td>
                         <td><span class="logo-author-small" style="background-color: {{user.color}}">{{user.icon}}</span></td>
-                        <td>{{user.color}}</td>
+                        <td><span style="background-color: {{user.color}}">{{user.color}}</span></td>
+                        <td><span style="background-color: {{user.card_color}}">{{user.card_color}}</span></td>
                     </tr>
                 </table>
               </div>

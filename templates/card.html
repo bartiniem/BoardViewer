@@ -1,6 +1,6 @@
 {% if card.show == true %}
   <div class="card{{' card-large' if card.name|length > 80}}">
-      <span class="card-main">
+      <span class="card-main" style="background-color: {{card.card_color}}">
           <span class="card-line-text{{' card-line-text-large' if card.name|length > 80}}">
               {% if card.name|length > 180 %}
                 <span title="{{card.name}}">{{card.name[0:180]}}..․</span>
@@ -13,8 +13,8 @@
               {% endif %}
           </span>
       </span>
-      {% if card.emotions|length > 28 %}
-      <span class="card-line-emotion" title="{{card.emotions}}">{{card.emotions[0:28]}}...</span>
+      {% if card.emotions|length > 15 %}
+      <span class="card-line-emotion" title="{{card.emotions}}">{{card.emotions[0:15]}}...</span>
       {% else %}
       <span class="card-line-emotion">{{card.emotions}}</span>
       {% endif %}

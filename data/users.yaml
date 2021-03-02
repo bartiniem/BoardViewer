@@ -1,42 +1,48 @@
-- initials: AA
-  name: "adam"
-  id: 1
-  icon: 🐺
+- card_color: '#ceb553'
   color: '#326715'
+  icon: "\U0001F43A"
+  id: 1
+  initials: AA
+  name: adam
+  passwd: d41d8cd98f00b204e9800998ecf8427e
   role: user
-  passwd: "d41d8cd98f00b204e9800998ecf8427e"
-- initials: BA
-  name: "bartek"
-  id: 2
-  icon: 🐨
+- card_color: '#ceb553'
   color: '#671515'
+  icon: "\U0001F428"
+  id: 2
+  initials: BA
+  name: bartek
+  passwd: d41d8cd98f00b204e9800998ecf8427e
   role: user
-  passwd: "d41d8cd98f00b204e9800998ecf8427e"
-- initials: BB
-  name: "basia"
-  id: 3
-  icon: 🐵
+- card_color: '#ceb553'
   color: '#154767'
+  icon: "\U0001F435"
+  id: 3
+  initials: BB
+  name: basia
+  passwd: d41d8cd98f00b204e9800998ecf8427e
   role: user
-  passwd: "d41d8cd98f00b204e9800998ecf8427e"
-- initials: CC
-  name: "cyryl"
-  id: 4
-  icon: 🐳
+- card_color: '#ceb553'
   color: '#016d6d'
+  icon: "\U0001F433"
+  id: 4
+  initials: CC
+  name: cyryl
+  passwd: d41d8cd98f00b204e9800998ecf8427e
   role: user
-  passwd: "d41d8cd98f00b204e9800998ecf8427e"
-- initials: DD
-  name: "Damian"
-  id: 5
-  icon: 🐦
+- card_color: '#ceb553'
   color: '#888888'
+  icon: "\U0001F426"
+  id: 5
+  initials: DD
+  name: Damian
+  passwd: d41d8cd98f00b204e9800998ecf8427e
   role: user
-  passwd: "d41d8cd98f00b204e9800998ecf8427e"
-- initials: AD
-  name: "admin"
-  id: 6
-  icon: 🦞
+- card_color: '#ceb553'
   color: '#881188'
+  icon: "\U0001F99E"
+  id: 6
+  initials: AD
+  name: admin
+  passwd: 21232f297a57a5a743894a0e4a801fc3
   role: admin
-  passwd: "21232f297a57a5a743894a0e4a801fc3"
