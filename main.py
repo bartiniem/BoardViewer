@@ -207,6 +207,8 @@ def login():
             if user and str(hashlib.md5(login_pass.encode("utf-8")).hexdigest()) == user.get("passwd"):
                 session["username"] = login_name
     active_user = get_active_user()
+    if active_user:
+        return redirect(url_for('index'))
     return render_template('login.html', title="Login", active_user=active_user)
 
 
