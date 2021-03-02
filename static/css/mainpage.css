@@ -19,3 +19,7 @@
     width: 50px;
     display: inline-block;
 }
+
+.logo-icon:hover {
+    box-shadow: 5px 5px 5px rgb(10 10 10 / 52%);
+}

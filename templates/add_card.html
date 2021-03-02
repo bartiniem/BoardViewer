@@ -15,14 +15,14 @@
                   <div class="form-card">
                       <span class="form-line">
                           <label class="form-label">Text (300-chars):</label>
-                          <textarea class="form-textarea" name="card_text" maxlength="300" rows="3" cols="50"></textarea>
+                          <textarea class="form-textarea" name="card_text" maxlength="300" rows="3" cols="50" required></textarea>
                       </span>
                       <span class="form-line">
                           <label class="form-label">Emotions (40-chars):</label>
-                          <input type="text" class="form-element" name="card_emotions" maxlength="40"/>
+                          <input type="text" class="form-element" name="card_emotions" maxlength="40" required/>
                       </span>
                       <span class="form-line"><label class="form-label">Type:</label>
-                          <select name="card_type" class="form-element">
+                          <select name="card_type" class="form-element" required>
                               <option value=""></option>
                               <option value="good">good</option>
                               <option value="bad">bad</option>
@@ -30,9 +30,11 @@
                       </span>
                       <span class="form-line"><button type="submit" class="form-btn" name="add_card_btn" value="add_card">Add card</button></span>
                   </div>
+              </form>
+              <form method="post" class="form-main">
                   <div class="form-card">
                      <span class="form-line"><label class="form-label">Vote:</label>
-                          <select name="vote_type" class="form-element">
+                          <select name="vote_type" class="form-element" required>
                               <option value=""></option>
                               <option value="+">positive</option>
                               <option value="-">negative</option>

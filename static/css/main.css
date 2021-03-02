@@ -282,6 +282,10 @@ body::-webkit-scrollbar-thumb {
     box-shadow: 10px 10px 10px rgba(0,0,0,.2);
 }
 
+.form-card:hover {
+    box-shadow: 10px 10px 10px rgba(0,0,0,.5);
+}
+
 .form-line {
     display: flex;
     text-align: right;
@@ -345,6 +349,12 @@ body::-webkit-scrollbar-thumb {
     color: #333;
     width: 100%;
     font-size: 20px;
+}
+
+.form-btn-sm:hover {
+    background-color: #e4d07b;
+    border: 1px solid #ddd;
+    cursor: pointer;
 }
 
 input, select, textarea {
