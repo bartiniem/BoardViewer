@@ -1,16 +1,16 @@
 <div class="header-bar">
     {% if active_user %}
-    <span class="navbar">
+    <span class="navbar" title="Click to logout">
         <a href="/logout">
             <span class="logo-author-small" style="background-color: {{active_user.color}}">{{active_user.icon}}</span>
             <span>{{ active_user.name }}</span>
         </a>
     </span>
-    <span class="navbar"><a href="/user_management/configuration">Configuration</a></span>
+    <span class="navbar" title="Configuration"><a href="/user_management/configuration">⚙</a></span>
     <span class="navbar-info">|</span>
     <span class="navbar"><a href="/">Board</a></span>
-    <span class="navbar"><a href="/add_card">Add Card</a></span>
     <span class="navbar"><a href="/preview">Preview</a></span>
+    <span class="navbar"><a href="/add_card">Add Card</a></span>
     {% else %}
     <span class="navbar"><a href="/login">Sign in</a></span>
     <span class="navbar"><a href="/">Board</a></span>
@@ -44,8 +44,5 @@
     {% endif %}
     {% if sum_cards %}
     <span class="navbar-info">Cards: {{sum_cards}}</span>
-    {% endif %}
-    {% if last_update %}
-    <span class="navbar-info">Last update: {{last_update}}</span>
     {% endif %}
 </div>

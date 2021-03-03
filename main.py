@@ -239,7 +239,7 @@ def add_card_form(id_to_set):
         if request.form.get("add_card_btn"):
             active_user = get_active_user()
             card_emotions = request.form.get("card_emotions").capitalize() if request.form.get("card_emotions") else ""
-            card_text = request.form.get("card_text").capitalize() if request.form.get("card_text") else ""
+            card_text = request.form.get("card_text") if request.form.get("card_text") else ""
             card_type = request.form.get("card_type") if request.form.get("card_type") else ""
             cards = DataUtils().get_cards()
             new_card = {"author": active_user.get("name"), "emotions": card_emotions, "id": int(id_to_set),
@@ -271,7 +271,7 @@ def edit_card_form(card_id):
     if request.method == 'POST':
         if request.form.get("save_card_btn"):
             card_emotions = request.form.get("card_emotions").capitalize() if request.form.get("card_emotions") else ""
-            card_text = request.form.get("card_text").capitalize() if request.form.get("card_text") else ""
+            card_text = request.form.get("card_text") if request.form.get("card_text") else ""
             card_type = request.form.get("card_type") if request.form.get("card_type") else ""
             card_show = request.form.get("card_show") if request.form.get("card_show") == "True" else False
             card_points = request.form.get("card_points") if request.form.get("card_points") else ""
