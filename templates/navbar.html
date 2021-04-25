@@ -11,10 +11,13 @@
     <span class="navbar"><a href="/">Board</a></span>
     <span class="navbar"><a href="/preview">Preview</a></span>
     <span class="navbar"><a href="/add_card">Add Card</a></span>
+    <span class="navbar"><a href="/vote">Vote</a></span>
+    <span class="navbar"><a href="/goals">Goals</a></span>
     {% else %}
     <span class="navbar"><a href="/login">Sign in</a></span>
     <span class="navbar"><a href="/">Board</a></span>
     <span class="navbar"><a href="/preview">Preview</a></span>
+    <span class="navbar"><a href="/goals">Goals</a></span>
     {% endif %}
 
     {% if active_user and active_user.role == 'admin' %}

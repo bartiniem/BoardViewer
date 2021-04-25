@@ -150,8 +150,7 @@ body::-webkit-scrollbar-thumb {
 }
 
 .card-main:hover {
-    background-color: # ;
-        box-shadow: -1px 1px 15px 0px #f9efc884;
+    box-shadow: -1px 1px 15px 0px #f9efc884;
     -webkit-box-shadow: -1px 1px 15px 0px #f9efc884;
     -moz-box-shadow: -1px 1px 15px 0px #f9efc884;
 }
@@ -327,6 +326,16 @@ body::-webkit-scrollbar-thumb {
     border-radius: 5px;
 }
 
+.form-textarea-goals {
+    width: 80%;
+    overflow-wrap: break-word;
+    font-family: "Montserrat",sans-serif;
+    font-size: 20px;
+    background-color: #afafaf;
+    border: none;
+    border-radius: 5px;
+}
+
 .form-label {
     width: 200px;
     padding: 0.2em;
@@ -415,4 +424,14 @@ input, select, textarea {
     /*background-image: linear-gradient(#312828, #151111);*/
     /*background-image: linear-gradient(#24242b, #211616 10% 90%, #24242b);*/
     background-color: #211616;
+}
+
+.highlight_card {
+    background-color: #e4dfcc;
+    box-shadow: 0px 0px 5px 5px #ffffff8f;
+}
+
+.highlight_card:hover {
+    background-color: #e4dfcc;
+    box-shadow: 0px 0px 5px 10px #ffffff8f;
 }

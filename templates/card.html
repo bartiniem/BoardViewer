@@ -1,6 +1,6 @@
 {% if card.show == true %}
   <div class="card{{' card-large' if card.name|length > 80}}">
-      <span class="card-main" style="background-color: {{card.card_color}}">
+      <span class="card-main{{' highlight_card' if card.highlight == true}}" style="background-color: {{card.card_color}}">
           <span class="card-line-text{{' card-line-text-large' if card.name|length > 80}}">
               {% if card.name|length > 180 %}
                 <span title="{{card.name}}">{{card.name[0:180]}}..․</span>

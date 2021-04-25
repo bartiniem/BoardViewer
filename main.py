@@ -205,7 +205,7 @@ def login():
             login_pass = request.form.get("login_pass") if request.form.get("login_pass") else ""
             user = DataUtils().get_user_by_name(login_name)
             if user and str(hashlib.md5(login_pass.encode("utf-8")).hexdigest()) == user.get("passwd"):
-                session["username"] = login_name
+                session["bv_username"] = login_name
     active_user = get_active_user()
     if active_user:
         return redirect(url_for('index'))
@@ -214,8 +214,8 @@ def login():
 
 @app.route('/logout', methods=['GET', 'POST'])
 def logout():
-    session.pop('username', None)
-    session.pop('passwd', None)
+    session.pop('bv_username', None)
+    session.pop('bv_passwd', None)
     return redirect(url_for('login'))
 
 
@@ -226,6 +226,44 @@ def permission_denied():
                            active_user=active_user)
 
 
+@app.route('/goals', methods=['GET', 'POST'])
+def goals():
+    active_user = get_active_user()
+    cards = DataUtils().get_cards()
+    cards.sort(key=lambda c: c.get("points_sum"), reverse=True)
+    if request.method == 'POST':
+        if request.form.get("save_goals"):
+            for card in cards:
+                if request.form.get("goals_{}".format(card.get("id"))):
+                    card["goals"] = request.form.get("goals_{}".format(card.get("id")))
+        DataUtils().save_cards(cards)
+    return render_template('/goals.html', title="Goals", cards=cards[:5], active_user=active_user)
+
+
+@app.route('/vote', methods=['GET', 'POST'])
+def vote():
+    active_user = get_active_user()
+    if not active_user:
+        return redirect(url_for('login'))
+    cards = DataUtils().get_cards()
+    cards.sort(key=lambda c: c.get("id"), reverse=False)
+    if request.method == 'POST':
+        if request.form.get("vote_btn"):
+            id_6 = int(request.form.get("points_6"))
+            id_3 = int(request.form.get("points_3"))
+            id_1 = int(request.form.get("points_1"))
+            for card in cards:
+                if card.get("id") == id_6:
+                    card["points"] += ",6" if card["points"] else "1"
+                if card.get("id") == id_3:
+                    card["points"] += ",3" if card["points"] else "1"
+                if card.get("id") == id_1:
+                    card["points"] += ",1" if card["points"] else "1"
+            DataUtils().save_cards(cards)
+    return render_template('/vote.html', title="Goals", cards=cards, active_user=active_user)
+
+
+# [ERRORS]
 @app.errorhandler(404)
 def not_found(error):
     active_user = get_active_user()
@@ -233,6 +271,7 @@ def not_found(error):
                            active_user=active_user)
 
 
+# [LOCAL]
 def add_card_form(id_to_set):
     message = ""
     if request.method == 'POST':
@@ -326,7 +365,7 @@ def edit_user_form(user_id):
 
 
 def get_username():
-    return session['username'] if 'username' in session else 'N/A'
+    return session['bv_username'] if 'bv_username' in session else 'N/A'
 
 
 def get_active_user():
