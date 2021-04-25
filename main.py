@@ -229,6 +229,7 @@ def permission_denied():
 @app.route('/goals', methods=['GET', 'POST'])
 def goals():
     active_user = get_active_user()
+    message = ""
     cards = DataUtils().get_cards()
     cards.sort(key=lambda c: c.get("points_sum"), reverse=True)
     if request.method == 'POST':
@@ -236,8 +237,9 @@ def goals():
             for card in cards:
                 if request.form.get("goals_{}".format(card.get("id"))):
                     card["goals"] = request.form.get("goals_{}".format(card.get("id")))
+                    message = "Data saved."
         DataUtils().save_cards(cards)
-    return render_template('/goals.html', title="Goals", cards=cards[:5], active_user=active_user)
+    return render_template('/goals.html', title="Goals", cards=cards[:5], active_user=active_user, message=message)
 
 
 @app.route('/vote', methods=['GET', 'POST'])
@@ -245,6 +247,7 @@ def vote():
     active_user = get_active_user()
     if not active_user:
         return redirect(url_for('login'))
+    message = ""
     cards = DataUtils().get_cards()
     cards.sort(key=lambda c: c.get("id"), reverse=False)
     if request.method == 'POST':
@@ -260,7 +263,8 @@ def vote():
                 if card.get("id") == id_1:
                     card["points"] += ",1" if card["points"] else "1"
             DataUtils().save_cards(cards)
-    return render_template('/vote.html', title="Goals", cards=cards, active_user=active_user)
+            message = "Thank you for votes. 6 -> #{} | 3 -> #{} | 1 -> #{}".format(id_6, id_3, id_1)
+    return render_template('/vote.html', title="Goals", cards=cards, active_user=active_user, message=message)
 
 
 # [ERRORS]
