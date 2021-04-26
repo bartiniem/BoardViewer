@@ -72,6 +72,20 @@
                     {% endfor %}
                 </table>
               </div>
+              <div class="form-card">
+                  <table class="table">
+                    <tr>
+                        <th>Id</th>
+                        <th>Name</th>
+                        <th>Points</th>
+                    </tr>
+                      {% for point_row in points %}
+                        <tr><td>{{point_row.points_6}}</td><td>{{point_row.name_6}}</td><td>6</td></tr>
+                        <tr><td>{{point_row.points_3}}</td><td>{{point_row.name_3}}</td><td>3</td></tr>
+                        <tr><td>{{point_row.points_1}}</td><td>{{point_row.name_1}}</td><td>1</td></tr>
+                    {% endfor %}
+                </table>
+              </div>
           </div>
       </div>
       {% include 'footer.html' %}

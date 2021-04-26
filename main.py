@@ -145,10 +145,17 @@ def user_configuration():
         return redirect(url_for('login'))
     cards = DataUtils().get_cards()
     votes = DataUtils().get_votes()
+    points = DataUtils().get_points()
     user_cards = [card for card in cards if card.get("author") == username]
     user_votes = [vote for vote in votes if vote.get("author") == username]
+    user_points = [point_row for point_row in points if point_row.get("author") == username]
+    for user_p in user_points:
+        user_p["name_6"] = DataUtils().get_card_by_id(user_p["points_6"])["name"]
+        user_p["name_3"] = DataUtils().get_card_by_id(user_p["points_3"])["name"]
+        user_p["name_1"] = DataUtils().get_card_by_id(user_p["points_1"])["name"]
     return render_template('/user_management/user_configuration.html', title="User configuration",
-                           active_user=active_user, user=active_user, cards=user_cards, votes=user_votes)
+                           active_user=active_user, user=active_user, cards=user_cards, votes=user_votes,
+                           points=user_points)
 
 
 @app.route('/user_management/showcard/<card_id>', methods=['GET', 'POST'])
@@ -248,23 +255,40 @@ def vote():
     if not active_user:
         return redirect(url_for('login'))
     message = ""
-    cards = DataUtils().get_cards()
-    cards.sort(key=lambda c: c.get("id"), reverse=False)
     if request.method == 'POST':
         if request.form.get("vote_btn"):
             id_6 = int(request.form.get("points_6"))
             id_3 = int(request.form.get("points_3"))
             id_1 = int(request.form.get("points_1"))
-            for card in cards:
-                if card.get("id") == id_6:
-                    card["points"] += ",6" if card["points"] else "1"
-                if card.get("id") == id_3:
-                    card["points"] += ",3" if card["points"] else "1"
-                if card.get("id") == id_1:
-                    card["points"] += ",1" if card["points"] else "1"
-            DataUtils().save_cards(cards)
-            message = "Thank you for votes. 6 -> #{} | 3 -> #{} | 1 -> #{}".format(id_6, id_3, id_1)
+            if len({id_6, id_3, id_1}) < len([id_6, id_3, id_1]):
+                message = "Duplicated cards. The Vote was canceled."
+            else:
+                message = add_votes(id_6, id_3, id_1, active_user)
+    cards = DataUtils().get_cards()
+    cards.sort(key=lambda c: c.get("id"), reverse=False)
     return render_template('/vote.html', title="Goals", cards=cards, active_user=active_user, message=message)
+
+
+def add_votes(id_6, id_3, id_1, active_user):
+    cards = DataUtils().get_cards()
+    points = DataUtils().get_points()
+    users_voted = [elem.get("author") for elem in points]
+    if active_user.get("name") in users_voted:
+        message = "You already voted. New votes will not be added."
+    else:
+        for card in cards:
+            if card.get("id") == id_6:
+                card["points"] += ",6" if card["points"] else "1"
+            if card.get("id") == id_3:
+                card["points"] += ",3" if card["points"] else "1"
+            if card.get("id") == id_1:
+                card["points"] += ",1" if card["points"] else "1"
+        new_points = {"author": active_user.get("name"), "points_6": id_6, "points_3": id_3, "points_1": id_1}
+        points.append(new_points)
+        DataUtils().save_points(points)
+        DataUtils().save_cards(cards)
+        message = "Thank you for votes. 6 -> #{} | 3 -> #{} | 1 -> #{}".format(id_6, id_3, id_1)
+    return message
 
 
 # [ERRORS]

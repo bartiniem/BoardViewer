@@ -9,6 +9,7 @@ import yaml
 USERS_FILENAME = "data/users.yaml"
 CARDS_FILE = "data/cards.yaml"
 VOTES_FILE = "data/votes.yaml"
+POINTS_FILE = "data/points.yaml"
 
 
 class DataUtils:
@@ -47,6 +48,9 @@ class DataUtils:
     def save_votes(self, votes):
         self.save_data_to_yaml(votes, VOTES_FILE)
 
+    def save_points(self, votes):
+        self.save_data_to_yaml(votes, POINTS_FILE)
+
     @staticmethod
     def get_card_by_id(card_id):
         cards = DataUtils().load_yaml_data(CARDS_FILE)
@@ -79,7 +83,8 @@ class DataUtils:
         user = self.get_user_by_name(username)
         return user.get("initials") if user else {}
 
-    def update_points_emoji(self, cards):
+    @staticmethod
+    def update_points_emoji(cards):
         sorted_points = sorted([card.get("points_sum") for card in cards], reverse=True)
         for card in cards:
             if len(sorted_points) > 0 and card["points_sum"] == sorted_points[0]:
@@ -107,8 +112,12 @@ class DataUtils:
             vote["author_color"] = user.get("color") if user else "#333"
         return votes
 
-    def get_votes(self):
+    @staticmethod
+    def get_votes():
         votes = DataUtils().load_yaml_data(VOTES_FILE)
         return votes
 
-
+    @staticmethod
+    def get_points():
+        votes = DataUtils().load_yaml_data(POINTS_FILE)
+        return votes
