@@ -11,6 +11,7 @@ from datetime import datetime
 from flask import Flask, session, redirect, url_for, request, render_template
 
 # LOCAL IMPORTS
+from Settings import Settings
 from datautils import DataUtils
 
 # DEFINITIONS
@@ -27,6 +28,8 @@ app.config['next_vote_id'] = 100
 def index():
     active_user = get_active_user()
     last_update = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+    settings = Settings().get_settings()
+    show_points = settings.get("show_points")
     cards = DataUtils().get_cards()
     cards = DataUtils().update_points_emoji(cards)
     good_cards = [card for card in cards if card.get("type") in "good"]
@@ -38,13 +41,15 @@ def index():
     votes = DataUtils().update_votes_data(votes)
     return render_template('dashboard.html', title="BoardViewer", active_user=active_user,
                            good_cards=good_cards, bad_cards=bad_cards, last_update=last_update, votes=votes,
-                           sum_cards=sum_cards, show_votes=True)
+                           sum_cards=sum_cards, show_votes=True, show_points=show_points)
 
 
 @app.route('/preview', methods=['GET', 'POST'])
 def preview():
     active_user = get_active_user()
     last_update = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+    settings = Settings().get_settings()
+    show_points = settings.get("show_points")
     cards = DataUtils().get_cards()
     cards = DataUtils().update_points_emoji(cards)
     good_cards = [card for card in cards if card.get("type") in "good"]
@@ -56,7 +61,7 @@ def preview():
     votes = DataUtils().update_votes_data(votes)
     return render_template('preview.html', title="BoardViewer", active_user=active_user,
                            good_cards=good_cards, bad_cards=bad_cards, last_update=last_update, votes=votes,
-                           sum_cards=sum_cards, show_votes=True)
+                           sum_cards=sum_cards, show_votes=True, show_points=show_points)
 
 
 @app.route('/add_card', methods=['GET', 'POST'])
