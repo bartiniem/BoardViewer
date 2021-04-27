@@ -435,3 +435,8 @@ input, select, textarea {
     background-color: #e4dfcc;
     box-shadow: 0px 0px 5px 10px #ffffff8f;
 }
+
+.goals {
+    color: #aaa;
+    background-color: #555;
+}
