@@ -141,7 +141,7 @@ def management_users():
 @app.route('/management/user/<user_id>', methods=['GET', 'POST'])
 def edit_user(user_id):
     active_user = get_active_user()
-    if not active_user or active_user.get("role") != "admin":
+    if not active_user or active_user.get("role") not in ["admin"]:
         return redirect(url_for('permission_denied'))
     message = edit_user_form(user_id)
     user = DataUtils().get_user_by_id(user_id)
@@ -395,7 +395,11 @@ def edit_user_form(user_id):
             user_icon = request.form.get("user_icon") if request.form.get("user_icon") else ""
             user_color = request.form.get("user_color") if request.form.get("user_color") else ""
             user_card_color = request.form.get("user_card_color") if request.form.get("user_card_color") else ""
-            user_role = request.form.get("user_role") if request.form.get("user_role") else "user"
+            active_user = get_active_user()
+            if active_user.get("role") in ["admin"]:
+                user_role = request.form.get("user_role") if request.form.get("user_role") else "user"
+            else:
+                user_role = active_user.get("role")
             users = DataUtils().get_users()
             new_user_data = {"initials": user_initials, "name": user_name, "icon": user_icon, "color": user_color,
                              "card_color": user_card_color, "role": user_role}
