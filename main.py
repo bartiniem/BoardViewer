@@ -283,9 +283,9 @@ def add_votes(id_6, id_3, id_1, active_user):
     else:
         for card in cards:
             if card.get("id") == id_6:
-                card["points"] += ",6" if card["points"] else "1"
+                card["points"] += ",6" if card["points"] else "6"
             if card.get("id") == id_3:
-                card["points"] += ",3" if card["points"] else "1"
+                card["points"] += ",3" if card["points"] else "3"
             if card.get("id") == id_1:
                 card["points"] += ",1" if card["points"] else "1"
         new_points = {"author": active_user.get("name"), "points_6": id_6, "points_3": id_3, "points_1": id_1}
