@@ -5,6 +5,7 @@
 #  """
 
 # GLOBAL IMPORTS
+import argparse
 import hashlib
 import os
 from datetime import datetime
@@ -288,7 +289,7 @@ def add_votes(id_6, id_3, id_1, active_user):
     points = DataUtils().get_points()
     users_voted = [elem.get("author") for elem in points]
     if active_user.get("name") in users_voted:
-        message = "You already voted. New votes will not be added."
+        message = "You have already voted. New votes will not be added."
     else:
         for card in cards:
             if card.get("id") == id_6:
@@ -421,4 +422,11 @@ def get_active_user():
 
 
 if __name__ == '__main__':
-    app.run(debug=False, port=5002)
+    parser = argparse.ArgumentParser()
+    parser.add_argument('-l', '--local', action='store_true', help="shows output")
+    args = parser.parse_args()
+    if args.local:
+        app.run(debug=False, port=5002)
+    else:
+        app.run(debug=False, port=5002, host="0.0.0.0")
+
