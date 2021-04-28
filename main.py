@@ -36,12 +36,16 @@ def index():
     bad_cards = [card for card in cards if card.get("type") in "bad"]
     votes = DataUtils().get_votes()
     sum_cards = len(cards)
+    sum_points = DataUtils().get_points_for_cards()
     good_cards = DataUtils().update_user_data(good_cards)
     bad_cards = DataUtils().update_user_data(bad_cards)
     votes = DataUtils().update_votes_data(votes)
+    good_cards.sort(key=lambda c: c.get("last_edit"), reverse=False)
+    bad_cards.sort(key=lambda c: c.get("last_edit"), reverse=False)
+    votes.sort(key=lambda c: c.get("last_edit"), reverse=False)
     return render_template('dashboard.html', title="BoardViewer", active_user=active_user,
                            good_cards=good_cards, bad_cards=bad_cards, last_update=last_update, votes=votes,
-                           sum_cards=sum_cards, show_votes=True, show_points=show_points)
+                           sum_cards=sum_cards, sum_points=sum_points, show_votes=True, show_points=show_points)
 
 
 @app.route('/preview', methods=['GET', 'POST'])
@@ -56,12 +60,13 @@ def preview():
     bad_cards = [card for card in cards if card.get("type") in "bad"]
     votes = DataUtils().get_votes()
     sum_cards = len(cards)
+    sum_points = DataUtils().get_points_for_cards()
     good_cards = DataUtils().update_user_data(good_cards)
     bad_cards = DataUtils().update_user_data(bad_cards)
     votes = DataUtils().update_votes_data(votes)
     return render_template('preview.html', title="BoardViewer", active_user=active_user,
                            good_cards=good_cards, bad_cards=bad_cards, last_update=last_update, votes=votes,
-                           sum_cards=sum_cards, show_votes=True, show_points=show_points)
+                           sum_cards=sum_cards, sum_points=sum_points, show_votes=True, show_points=show_points)
 
 
 @app.route('/add_card', methods=['GET', 'POST'])
@@ -104,6 +109,7 @@ def show_card(card_id):
     for card in cards:
         if str(card.get("id")) == str(card_id):
             card["show"] = False if card.get("show") in [True] else True
+            card["last_edit"] = datetime.now().timestamp()
     DataUtils().save_cards(cards)
     return redirect(url_for('management_cards'))
 
@@ -117,6 +123,7 @@ def show_vote(vote_id):
     for vote in votes:
         if str(vote.get("id")) == str(vote_id):
             vote["show"] = False if vote.get("show") in [True] else True
+            vote["last_edit"] = datetime.now().timestamp()
     DataUtils().save_votes(votes)
     return redirect(url_for('management_cards'))
 
@@ -171,6 +178,7 @@ def show_user_card(card_id):
     for card in cards:
         if str(card.get("id")) == str(card_id):
             card["show"] = False if card.get("show") in [True] else True
+            card["last_edit"] = datetime.now().timestamp()
     DataUtils().save_cards(cards)
     return redirect(url_for('user_configuration'))
 
@@ -183,6 +191,7 @@ def show_user_vote(vote_id):
     for vote in votes:
         if str(vote.get("id")) == str(vote_id):
             vote["show"] = False if vote.get("show") in [True] else True
+            vote["last_edit"] = datetime.now().timestamp()
     DataUtils().save_votes(votes)
     return redirect(url_for('user_configuration'))
 
@@ -315,7 +324,7 @@ def add_card_form(id_to_set):
             card_type = request.form.get("card_type") if request.form.get("card_type") else ""
             cards = DataUtils().get_cards()
             new_card = {"author": active_user.get("name"), "emotions": card_emotions, "id": int(id_to_set),
-                        "name": card_text, "points": "", "show": False, "type": card_type}
+                        "name": card_text, "points": "", "show": False, "type": card_type, "last_edit": 0}
             cards.append(new_card)
             DataUtils().save_cards(cards)
             message = "New card added: {}".format(new_card)
@@ -330,7 +339,8 @@ def vote_form(id_to_set):
             active_user = get_active_user()
             vote_type = request.form.get("vote_type").upper() if request.form.get("vote_type") else ""
             votes = DataUtils().get_votes()
-            new_vote = {"author": active_user.get("name"), "id": int(id_to_set), "value": vote_type, "show": False}
+            new_vote = {"author": active_user.get("name"), "id": int(id_to_set), "value": vote_type, "show": False,
+                        "last_edit": 0}
             votes.append(new_vote)
             DataUtils().save_votes(votes)
             message = "New vote added: {}".format(new_vote)

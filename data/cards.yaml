@@ -1,54 +1,61 @@
 - author: adam
   emotions: Ulga
   id: 1
+  last_edit: 1619634774.555081
   name: "\u201Emy poeci kontra hipokryci nowoczesno\u015Bci\u201D"
-  points: 1,2,3,
-  points_sum: 6
+  points: 1,2,3,,6,6,6,6,6,6,6
+  points_sum: 48
   show: true
   type: good
 - author: basia
   emotions: "Szcze\u015Bcie"
   id: 2
+  last_edit: 1619634776.035431
   name: "Cofnijmy si\u0119 do dzieci\u0144stwa"
-  points: 2,3,4,5
-  points_sum: 9
+  points: 2,3,4,5,3,3,3,3,3,3
+  points_sum: 32
   show: true
   type: good
 - author: cyryl
   emotions: "Rado\u015B\u0107"
   id: 3
+  last_edit: 1619634777.403109
   name: "Mo\u017Ce znowu pupa, \u0142ydka, g\u0119ba"
-  points: ''
-  points_sum: 0
+  points: 1,1,3
+  points_sum: 5
   show: true
   type: good
 - author: Damian
   emotions: "Szcz\u0119\u015Bcie ogromne"
   id: 4
+  last_edit: 1619634791.072432
   name: "Infantylno\u015B\u0107 zachowam w s\u0142owie"
-  points: ''
-  points_sum: 0
+  points: 1,1,6
+  points_sum: 8
   show: true
   type: good
 - author: adam
   emotions: Znudzenie
   id: 5
+  last_edit: 1619634794.300232
   name: "Czy zbudowa\u0107 sobie form\u0119"
-  points: 2,3,4,5
-  points_sum: 14
+  points: 2,3,4,5,3
+  points_sum: 17
   show: true
   type: good
 - author: Damian
   emotions: Ekscytacja
   id: 6
+  last_edit: 1619634798.31847
   name: "Wydr\u0105\u017Con\u0105 od \u015Brodka"
-  points: 1,2
-  points_sum: 3
+  points: 1,2,1,6
+  points_sum: 10
   show: true
   type: good
 - author: cyryl
   emotions: Zlosc
   id: 7
+  last_edit: 1619634881.111384
   name: "Gdy\u017C czym s\u0105 teraz s\u0142owa?"
   points: ''
   points_sum: 0
@@ -57,22 +64,25 @@
 - author: basia
   emotions: Skrajne emocje
   id: 8
+  last_edit: 1619634882.251745
   name: "Mo\u017Ce zajrz\u0119 do biologii"
-  points: ''
-  points_sum: 0
+  points: '1'
+  points_sum: 1
   show: true
   type: good
 - author: adam
   emotions: Pewnosc
   id: 9
+  last_edit: 1619634882.980912
   name: "Mo\u017Ce ma wyt\u0142umaczenie"
-  points: ''
-  points_sum: 0
+  points: '1'
+  points_sum: 1
   show: true
   type: good
 - author: basia
   emotions: Niepewnosc
   id: 10
+  last_edit: 1619634883.735219
   name: Czemu gdy suka szuka
   points: ''
   points_sum: 0
@@ -81,6 +91,7 @@
 - author: Damian
   emotions: Irytacja
   id: 11
+  last_edit: 1619634891.379545
   name: "Pi\u0119knego psa \u2013 rodz\u0105 si\u0119 kundle?"
   points: ''
   points_sum: 0
@@ -89,16 +100,18 @@
 - author: cyryl
   emotions: Zazdrosc
   id: 12
+  last_edit: 1619634885.08135
   name: "Mo\u017Ce jemio\u0142a mi to powie\r\njak pod ni\u0105 si\u0119 ca\u0142\
     uj\u0105\r\nmi\u0142o\u015B\u0107 pod ni\u0105 ro\u015Bnie\r\na ona \u017Cy\u0107\
     \ bez drzewa nie mo\u017Ce."
-  points: ''
-  points_sum: 0
+  points: '1'
+  points_sum: 1
   show: true
   type: good
 - author: adam
   emotions: Wdziecznosc
   id: 13
+  last_edit: 1619634885.913399
   name: "To ta hipokryzja nowoczesno\u015Bci"
   points: ''
   points_sum: 0
@@ -107,6 +120,7 @@
 - author: adam
   emotions: Wkurzenie
   id: 14
+  last_edit: 1619634886.582499
   name: "Ona temu winna \u017Ce jak jemio\u0142a"
   points: ''
   points_sum: 0
@@ -115,6 +129,7 @@
 - author: Damian
   emotions: "Zlo\u015B\u0107"
   id: 15
+  last_edit: 1619634887.327238
   name: "Korzeni mie\u0107 nie mog\u0119"
   points: ''
   points_sum: 0
@@ -123,14 +138,16 @@
 - author: adam
   emotions: Napiecie
   id: 16
+  last_edit: 1619634888.054108
   name: "I uschn\u0105\u0107 jeszcze za m\u0142odu"
-  points: ''
-  points_sum: 0
+  points: '1'
+  points_sum: 1
   show: true
   type: good
 - author: basia
   emotions: Relaks
   id: 17
+  last_edit: 1619634889.751515
   name: "To oni jak ta suka szukaj\u0105"
   points: ''
   points_sum: 0
@@ -139,6 +156,7 @@
 - author: adam
   emotions: Chill
   id: 18
+  last_edit: 1619634895.423037
   name: "Szcz\u0119\u015Bcia w kr\xF3lewskim psie"
   points: ''
   points_sum: 0
@@ -147,6 +165,7 @@
 - author: basia
   emotions: "Rado\u015B\u0107, zal, smutek, wszystko rozne"
   id: 19
+  last_edit: 1619634893.102888
   name: A to co wychodzi
   points: ''
   points_sum: 0
@@ -155,6 +174,7 @@
 - author: Damian
   emotions: Strach
   id: 20
+  last_edit: 1619634896.993065
   name: "To wsp\xF3\u0142czesne kundle\u2026"
   points: ''
   points_sum: 0
@@ -163,6 +183,7 @@
 - author: basia
   emotions: Wspolnota
   id: 21
+  last_edit: 1619634898.42241
   name: "Je\u015Bli w \u017Cyciu brakuje miejsca na odwag\u0119, to inne cnoty s\u0105\
     \ bez znaczenia."
   points: ''
@@ -172,6 +193,7 @@
 - author: bartek
   emotions: Niepewnosc
   id: 22
+  last_edit: 1619634899.236473
   name: "Je\u017Celi uwa\u017Casz, \u017Ce mo\u017Cesz czego\u015B dokona\u0107 albo\
     \ przeciwnie, \u017Ce nie dasz rady - w obu przypadkach masz racj\u0119."
   points: ''
@@ -181,6 +203,7 @@
 - author: bartek
   emotions: Niezrozumienie
   id: 23
+  last_edit: 1619634900.12826
   name: "Ludzie sukcesu wiedz\u0105, \u017Ce sami tworz\u0105 swoje szcz\u0119\u015B\
     cie."
   points: ''
@@ -190,6 +213,7 @@
 - author: adam
   emotions: Przerazenie
   id: 24
+  last_edit: 1619634900.928719
   name: "Cz\u0142owiek staje si\u0119 tym, o czym my\u015Bli."
   points: ''
   points_sum: 0
@@ -198,6 +222,7 @@
 - author: cyryl
   emotions: Chaos
   id: 25
+  last_edit: 1619634902.533737
   name: "Prawdziwe szcz\u0119\u015Bcie jest rzecz\u0105 wysi\u0142ku, odwagi i pracy."
   points: ''
   points_sum: 0
@@ -206,6 +231,7 @@
 - author: bartek
   emotions: Samotnosc
   id: 26
+  last_edit: 1619634904.569389
   name: "Musisz sam sobie zaufa\u0107, aby mogli zaufa\u0107 ci inni."
   points: ''
   points_sum: 0
@@ -214,6 +240,7 @@
 - author: adam
   emotions: Sila
   id: 27
+  last_edit: 1619634906.558685
   name: "M\u0105dro\u015B\u0107 to c\xF3rka do\u015Bwiadczenia."
   points: ''
   points_sum: 0
@@ -222,6 +249,7 @@
 - author: cyryl
   emotions: Zjednoczenie
   id: 28
+  last_edit: 1619634910.116477
   name: "Ka\u017Cdy ma taki \u015Bwiat, jaki widz\u0105 jego oczy."
   points: ''
   points_sum: 0
@@ -230,6 +258,7 @@
 - author: Damian
   emotions: Emocje
   id: 29
+  last_edit: 1619634911.851265
   name: "Pocz\u0105tek jest najwa\u017Cniejsz\u0105 cz\u0119\u015Bci\u0105 pracy."
   points: ''
   points_sum: 0
@@ -238,6 +267,7 @@
 - author: bartek
   emotions: Slabosc
   id: 30
+  last_edit: 1619634913.784093
   name: "Kto \u017Cycia nie ceni, nie wart go."
   points: ''
   points_sum: 0
@@ -245,7 +275,9 @@
   type: bad
 - author: Damian
   emotions: Spokoj
+  goals: "1.\r\n2.\r\n3.\r\n  - a."
   id: 31
+  last_edit: 1619634916.150254
   name: "Jeste\u015B tym, czym wierzysz, \u017Ce jeste\u015B."
   points: 6,6,6,6,6,6,3,1,1,1,1
   points_sum: 43
@@ -254,6 +286,7 @@
 - author: Damian
   emotions: Rozdraznienie
   id: 32
+  last_edit: 1619634918.185607
   name: "W milczeniu nawet s\u0142aby krzyk robi wiele ha\u0142asu."
   points: ''
   points_sum: 0
@@ -262,16 +295,18 @@
 - author: adam
   emotions: Zle, bardzo zle
   id: 101
+  last_edit: 1619634920.257492
   name: Moje wydarzenie
   points: ''
   points_sum: 0
-  show: false
+  show: true
   type: bad
 - author: FF
   emotions: Ciekawosc
   id: 102
+  last_edit: 1619634922.481754
   name: A taka testowa czy dziala dodawanie.
   points: ''
   points_sum: 0
-  show: false
+  show: true
   type: good

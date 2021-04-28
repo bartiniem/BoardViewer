@@ -121,3 +121,16 @@ class DataUtils:
     def get_points():
         votes = DataUtils().load_yaml_data(POINTS_FILE)
         return votes
+
+    @staticmethod
+    def get_points_for_cards():
+        sum_points = 0
+        cards = DataUtils().load_yaml_data(CARDS_FILE)
+        for card in cards:
+            points_sum = 0
+            if card.get("points"):
+                for points in card.get("points").replace(",", " ").strip().split():
+                    points_sum += int(points)
+            card["points_sum"] = points_sum
+            sum_points += points_sum
+        return sum_points
