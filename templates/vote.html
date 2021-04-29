@@ -9,6 +9,7 @@
             <span>{{message}}</span>
           {% endif %}
       </div>
+        {% if already_voted != true %}
       <div class="middle-cont">
           <div class="cards">
           <form method="post" class="form-main">
@@ -42,6 +43,7 @@
           </form>
       </div>
       </div>
+        {% endif %}
       {% include 'footer.html' %}
     </div>
 </body>

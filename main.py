@@ -65,6 +65,9 @@ def preview():
     good_cards = DataUtils().update_user_data(good_cards)
     bad_cards = DataUtils().update_user_data(bad_cards)
     votes = DataUtils().update_votes_data(votes)
+    good_cards.sort(key=lambda c: c.get("last_edit"), reverse=False)
+    bad_cards.sort(key=lambda c: c.get("last_edit"), reverse=False)
+    votes.sort(key=lambda c: c.get("last_edit"), reverse=False)
     return render_template('preview.html', title="BoardViewer", active_user=active_user,
                            good_cards=good_cards, bad_cards=bad_cards, last_update=last_update, votes=votes,
                            sum_cards=sum_cards, sum_points=sum_points, show_votes=True, show_points=show_points)
@@ -252,16 +255,20 @@ def permission_denied():
 def goals():
     active_user = get_active_user()
     message = ""
+    settings = Settings().get_settings()
+    show_goals = settings.get("show_goals")
     cards = DataUtils().get_cards()
-    cards.sort(key=lambda c: c.get("points_sum"), reverse=True)
+    filtered_cards = DataUtils().get_visible_cards()
+    filtered_cards.sort(key=lambda c: c.get("points_sum"), reverse=True)
     if request.method == 'POST':
         if request.form.get("save_goals"):
-            for card in cards:
+            for card in filtered_cards:
                 if request.form.get("goals_{}".format(card.get("id"))):
                     card["goals"] = request.form.get("goals_{}".format(card.get("id")))
                     message = "Data saved."
         DataUtils().save_cards(cards)
-    return render_template('/goals.html', title="Goals", cards=cards[:5], active_user=active_user, message=message)
+    return render_template('/goals.html', title="Goals", cards=filtered_cards[:5], active_user=active_user,
+                           message=message, show_goals=show_goals)
 
 
 @app.route('/vote', methods=['GET', 'POST'])
@@ -270,39 +277,45 @@ def vote():
     if not active_user:
         return redirect(url_for('login'))
     message = ""
-    if request.method == 'POST':
-        if request.form.get("vote_btn"):
-            id_6 = int(request.form.get("points_6"))
-            id_3 = int(request.form.get("points_3"))
-            id_1 = int(request.form.get("points_1"))
-            if len({id_6, id_3, id_1}) < len([id_6, id_3, id_1]):
-                message = "Duplicated cards. The Vote was canceled."
-            else:
-                message = add_votes(id_6, id_3, id_1, active_user)
-    cards = DataUtils().get_cards()
-    cards.sort(key=lambda c: c.get("id"), reverse=False)
-    return render_template('/vote.html', title="Goals", cards=cards, active_user=active_user, message=message)
+    filtered_cards = []
+    already_voted = False
+    points = DataUtils().get_points()
+    users_voted = [elem.get("author") for elem in points]
+    if active_user.get("name") in users_voted:
+        message = "You have already voted."
+        already_voted = True
+    else:
+        if request.method == 'POST':
+            if request.form.get("vote_btn"):
+                id_6 = int(request.form.get("points_6"))
+                id_3 = int(request.form.get("points_3"))
+                id_1 = int(request.form.get("points_1"))
+                if len({id_6, id_3, id_1}) < len([id_6, id_3, id_1]):
+                    message = "Duplicated cards. The Vote was canceled."
+                else:
+                    message = add_votes(id_6, id_3, id_1, active_user)
+                    already_voted = True
+        filtered_cards = DataUtils().get_visible_cards()
+        filtered_cards.sort(key=lambda c: c.get("id"), reverse=False)
+    return render_template('/vote.html', title="Vote", cards=filtered_cards, active_user=active_user, message=message,
+                           already_voted=already_voted)
 
 
 def add_votes(id_6, id_3, id_1, active_user):
     cards = DataUtils().get_cards()
     points = DataUtils().get_points()
-    users_voted = [elem.get("author") for elem in points]
-    if active_user.get("name") in users_voted:
-        message = "You have already voted. New votes will not be added."
-    else:
-        for card in cards:
-            if card.get("id") == id_6:
-                card["points"] += ",6" if card["points"] else "6"
-            if card.get("id") == id_3:
-                card["points"] += ",3" if card["points"] else "3"
-            if card.get("id") == id_1:
-                card["points"] += ",1" if card["points"] else "1"
-        new_points = {"author": active_user.get("name"), "points_6": id_6, "points_3": id_3, "points_1": id_1}
-        points.append(new_points)
-        DataUtils().save_points(points)
-        DataUtils().save_cards(cards)
-        message = "Thank you for votes. 6 -> #{} | 3 -> #{} | 1 -> #{}".format(id_6, id_3, id_1)
+    for card in cards:
+        if card.get("id") == id_6:
+            card["points"] += ",6" if card["points"] else "6"
+        if card.get("id") == id_3:
+            card["points"] += ",3" if card["points"] else "3"
+        if card.get("id") == id_1:
+            card["points"] += ",1" if card["points"] else "1"
+    new_points = {"author": active_user.get("name"), "points_6": id_6, "points_3": id_3, "points_1": id_1}
+    points.append(new_points)
+    DataUtils().save_points(points)
+    DataUtils().save_cards(cards)
+    message = "Thank you for votes. 6 -> #{} | 3 -> #{} | 1 -> #{}".format(id_6, id_3, id_1)
     return message
 
 

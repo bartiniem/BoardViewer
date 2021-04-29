@@ -21,15 +21,40 @@
                       </span>
                       <span class="form-line">
                           <label class="form-label">Icon:</label>
-                          <input type="text" class="form-element" name="user_icon" maxlength="40" value="{{user.icon}}"/>
+                          <select name="user_icon" class="form-element">
+                              <option value="{{user.icon}}">{{user.icon}}</option>
+                              <option value="🐳">🐳</option>
+                              <option value="🐦">🐦</option>
+                              <option value="🐵">🐵</option>
+                              <option value="🐴">🐴</option>
+                              <option value="🐨">🐨</option>
+                              <option value="🐺">🐺</option>
+                              <option value="🐙">🐙</option>
+                              <option value="🦇">🦇</option>
+                              <option value="🦅">🦅</option>
+                              <option value="🐘">🐘</option>
+                              <option value="🐘">🐘</option>
+                              <option value="🦧">🦧</option>
+                              <option value="🦗">🦗</option>
+                              <option value="🦟">🦟</option>
+                              <option value="🐓">🐓</option>
+                              <option value="🐠">🐠</option>
+                              <option value="🦙">🦙</option>
+                              <option value="🦓">🦓</option>
+                              <option value="🦝">🦝</option>
+                              <option value="🦉">🦉</option>
+                              <option value="🦊">🦊</option>
+                              <option value="🦘">🦘</option>
+                              <option value="🐝">🐝</option>
+                          </select>
                       </span>
                       <span class="form-line">
                           <label class="form-label">Avatar color:</label>
-                          <input type="text" class="form-element" name="user_color" maxlength="40" value="{{user.color}}"/>
+                          <input type="color" class="form-element" name="user_color" maxlength="40" value="{{user.color}}"/>
                       </span>
                       <span class="form-line">
                           <label class="form-label">Card color:</label>
-                          <input type="text" class="form-element" name="user_card_color" maxlength="40" value="{{user.card_color}}"/>
+                          <input type="color" class="form-element" name="user_card_color" maxlength="40" value="{{user.card_color}}"/>
                       </span>
                       <span class="form-line"><button type="submit" class="form-btn" name="save_user_btn" value="save_user">Save</button></span>
                   </div>

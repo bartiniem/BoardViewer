@@ -9,35 +9,37 @@
             <span>{{message}}</span>
           {% endif %}
       </div>
-      {% if active_user and active_user.role == 'admin' %}
-      <div class="middle-cont">
-          <form method="post" class="form-main">
-              <button type="submit" class="form-btn" name="save_goals" value="save_goals">Save goals</button>
-              {% for card in cards %}
-                <div class="form-card">
-                  <div>
-                      <span> {{ card.author }}</span>
-                      <span> | {{ card.name }}</span>
-                      <span> | {{ card.emotions }}</span>
-                      <span> | {{ card.points_sum }}</span>
-                  </div>
-                  <textarea class="form-textarea-goals" id="goals_{{card.id}}" name="goals_{{card.id}}" rows="7">{{card.goals}}</textarea>
-                </div>
-              {% endfor %}
-          </form>
-      </div>
-        {% else %}
-              {% for card in cards %}
-                <div class="form-card goals">
-                  <div>
-                      <span> {{ card.author }}</span>
-                      <span> | {{ card.name }}</span>
-                      <span> | {{ card.emotions }}</span>
-                      <span> | {{ card.points_sum }}</span>
-                  </div>
-                  <div>{% autoescape false %}{{ card.goals | replace("\n", "<br/>") }}{% endautoescape %}</div>
-                </div>
-              {% endfor %}
+      {% if show_goals == true %}
+          {% if active_user and active_user.role == 'admin' %}
+          <div class="middle-cont">
+              <form method="post" class="form-main">
+                  <button type="submit" class="form-btn" name="save_goals" value="save_goals">Save goals</button>
+                  {% for card in cards %}
+                    <div class="form-card">
+                      <div>
+                          <span> {{ card.author }}</span>
+                          <span> | {{ card.name }}</span>
+                          <span> | {{ card.emotions }}</span>
+                          <span> | {{ card.points_sum }}</span>
+                      </div>
+                      <textarea class="form-textarea-goals" id="goals_{{card.id}}" name="goals_{{card.id}}" rows="7">{{card.goals}}</textarea>
+                    </div>
+                  {% endfor %}
+              </form>
+          </div>
+            {% else %}
+                  {% for card in cards %}
+                    <div class="form-card goals">
+                      <div>
+                          <span> {{ card.author }}</span>
+                          <span> | {{ card.name }}</span>
+                          <span> | {{ card.emotions }}</span>
+                          <span> | {{ card.points_sum }}</span>
+                      </div>
+                      <div>{% autoescape false %}{{ card.goals | replace("\n", "<br/>") }}{% endautoescape %}</div>
+                    </div>
+                  {% endfor %}
+            {% endif %}
         {% endif %}
       {% include 'footer.html' %}
     </div>

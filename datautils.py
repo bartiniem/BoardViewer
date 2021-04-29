@@ -134,3 +134,7 @@ class DataUtils:
             card["points_sum"] = points_sum
             sum_points += points_sum
         return sum_points
+
+    def get_visible_cards(self):
+        cards = self.get_cards()
+        return [card for card in cards if bool(card.get("show"))]
