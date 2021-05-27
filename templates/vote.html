@@ -9,6 +9,7 @@
             <span>{{message}}</span>
           {% endif %}
       </div>
+        {% if show_voting == true %}
         {% if already_voted != true %}
       <div class="middle-cont">
           <div class="cards">
@@ -18,7 +19,7 @@
                       <select name="points_6" class="form-element" required>
                           <option value=""></option>
                           {% for card in cards %}
-                            <option value={{card.id}} >#{{card.id}} {{card.name}}</option>
+                            <option value={{card.id}} >#{{card.id}} {{card.type}} - {{card.name}}</option>
                           {% endfor %}
                       </select>
                   </span>
@@ -26,7 +27,7 @@
                       <select name="points_3" class="form-element" required>
                           <option value=""></option>
                           {% for card in cards %}
-                            <option value={{card.id}} >#{{card.id}} {{card.name}}</option>
+                            <option value={{card.id}} >#{{card.id}} {{card.type}} - {{card.name}}</option>
                           {% endfor %}
                       </select>
                   </span>
@@ -34,7 +35,7 @@
                       <select name="points_1" class="form-element" required>
                           <option value=""></option>
                           {% for card in cards %}
-                            <option value={{card.id}} >#{{card.id}} {{card.name}}</option>
+                            <option value={{card.id}} >#{{card.id}} {{card.type}} - {{card.name}}</option>
                           {% endfor %}
                       </select>
                   </span>
@@ -43,6 +44,7 @@
           </form>
       </div>
       </div>
+        {% endif %}
         {% endif %}
       {% include 'footer.html' %}
     </div>

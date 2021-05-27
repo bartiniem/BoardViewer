@@ -277,6 +277,8 @@ def vote():
     if not active_user:
         return redirect(url_for('login'))
     message = ""
+    settings = Settings().get_settings()
+    show_voting = settings.get("show_voting")
     filtered_cards = []
     already_voted = False
     points = DataUtils().get_points()
@@ -298,7 +300,7 @@ def vote():
         filtered_cards = DataUtils().get_visible_cards()
         filtered_cards.sort(key=lambda c: c.get("id"), reverse=False)
     return render_template('/vote.html', title="Vote", cards=filtered_cards, active_user=active_user, message=message,
-                           already_voted=already_voted)
+                           already_voted=already_voted, show_voting=show_voting)
 
 
 def add_votes(id_6, id_3, id_1, active_user):
