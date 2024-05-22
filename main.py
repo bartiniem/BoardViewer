@@ -108,9 +108,10 @@ def management_cards():
     active_user = get_active_user()
     if not active_user or active_user.get("role") != "admin":
         return redirect(url_for('permission_denied'))
+
     cards = DataUtils().get_cards()
-    return render_template('/management/management_cards.html', title="Management cards", active_user=active_user,
-                           cards=cards)
+    return render_template('/management/management_cards.html', title="Management cards",
+                           active_user=active_user, cards=cards)
 
 
 @app.route('/management/card/<card_id>', methods=['GET', 'POST'])
@@ -118,6 +119,7 @@ def edit_card(card_id):
     active_user = get_active_user()
     if not active_user or active_user.get("role") != "admin":
         return redirect(url_for('permission_denied'))
+
     message = edit_card_form(card_id)
     card = DataUtils().get_card_by_id(card_id)
     return render_template('/management/management_edit_card.html', title="Edit card", active_user=active_user,

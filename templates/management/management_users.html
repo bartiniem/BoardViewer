@@ -2,6 +2,41 @@
 <html lang="pl-PL">
 {% include 'head.html' %}
 <body>
-    {% include '/management/users_table.html' %}
+{% include 'navbar.html' %}
+<br>
+<div class="ui centered grid">
+    <div class="ui inverted segment">
+        <h2 class="ui header">Users</h2>
+        <table class="ui selectable striped inverted table">
+            <thead>
+            <tr>
+                <th>Id</th>
+                <th>Initials</th>
+                <th>Name</th>
+                <th>Role</th>
+                <th>Icon</th>
+                <th>Bg color</th>
+                <th>Card color</th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for user in users %}
+            <tr>
+                <td>{{user.id}}</td>
+                <td>{{user.initials}}</td>
+                <td>{{user.name}}</td>
+                <td>{{user.role}}</td>
+                <td><span class="logo-author-small" style="background-color: {{user.color}}">{{user.icon}}</span></td>
+                <td><span style="background-color: {{user.color}}">{{user.color}}</span></td>
+                <td><span style="background-color: {{user.card_color}}">{{user.card_color}}</span></td>
+                <td><a href="/management/user/{{user.id}}"><span title="Edit">✏️</span></a></td>
+            </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% include 'footer.html' %}
 </body>
 </html>

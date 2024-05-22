@@ -407,22 +407,10 @@ input, select, textarea {
 }
 
 .board_good {
-    /*background-color: #5e7769;*/
-    /*background-color: #183123;*/
-    /*background-color: #304c3c;*/
-    /*background-color: #252b24;*/
-    /*background-image: linear-gradient(#304c3c, #252b24);*/
-    /*background-image: linear-gradient(#24242b, #1b251a 10% 90%, #24242b);*/
     background-color: #1b251a;
 }
 
 .board_bad {
-    /*background-color: #775e5e;*/
-    /*background-color: #3c0a0a;*/
-    /*background-color: #3a2828;*/
-    /*background-color: #2b2424;*/
-    /*background-image: linear-gradient(#312828, #151111);*/
-    /*background-image: linear-gradient(#24242b, #211616 10% 90%, #24242b);*/
     background-color: #211616;
 }
 
@@ -441,3 +429,4 @@ input, select, textarea {
     background-color: #555;
 }
 .ui.button.yellow2 {background-color: #fbbd08; color: black !important;}
+.ui.table.yellow2 {background-color: #fbbd08; color: black !important;}

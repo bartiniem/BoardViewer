@@ -2,95 +2,131 @@
 <html lang="pl-PL">
 {% include 'head.html' %}
 <body>
-  {% include 'navbar.html' %}
-  <div id="main-window" class="main-window">
-      <div class="middle-cont">
-          <div class="cards">
-              <div class="form-card">
-                  <table class="table">
-                    <tr>
-                        <th>Id</th>
-                        <th>Initials</th>
-                        <th>Name</th>
-                        <th>Icon</th>
-                        <th>Bg color</th>
-                        <th>Card color</th>
-                        <th></th>
-                   </tr>
-                    <tr>
-                        <td>{{user.id}}</td>
-                        <td>{{user.initials}}</td>
-                        <td>{{user.name}}</td>
-                        <td><span class="logo-author-small" style="background-color: {{user.color}}">{{user.icon}}</span></td>
-                        <td><span style="background-color: {{user.color}}">{{user.color}}</span></td>
-                        <td><span style="background-color: {{user.card_color}}">{{user.card_color}}</span></td>
-                        <td><a href="/user_management/user/{{user.id}}"><span title="Edit">✏️</span></a></td>
-                    </tr>
-                </table>
-              </div>
-              <div class="form-card">
-                  <table class="table">
-                    <tr>
-                        <th>Id</th>
-                        <th>Name</th>
-                        <th>Emotions</th>
-                        <th>Author</th>
-                        <th>Type</th>
-                        <th>Points</th>
-                        <th>Sum</th>
-                        <th>Show</th>
-                        <th></th>
-                    </tr>
-                      {% for card in cards %}
-                        <tr>
-                            <td>{{card.id}}</td>
-                            <td>{{card.name}}</td>
-                            <td>{{card.emotions}}</td>
-                            <td>{{card.author}}</td>
-                            <td>{{card.type}}</td>
-                            <td>{{card.points}}</td>
-                            <td>{{card.points_sum}}</td>
-                            <td><a href="/user_management/showcard/{{card.id}}"><span title="{{card.show}}">{{'✔️' if card.show == True else '✖️' }}</span></a></td>
-                            <td><a href="/user_management/card/{{card.id}}"><span title="Edit">✏️</span></a></td>
-                        </tr>
-                    {% endfor %}
-                </table>
-              </div>
-              <div class="form-card">
-                  <table class="table">
-                    <tr>
-                        <th>Id</th>
-                        <th>Author</th>
-                        <th>Value</th>
-                        <th>Show</th>
-                    </tr>
-                      {% for vote in votes %}
-                        <tr>
-                            <td>{{vote.id}}</td>
-                            <td>{{vote.author}}</td>
-                            <td>{{vote.value}}</td>
-                            <td><a href="/user_management/show_vote/{{vote.id}}"><span title="{{vote.show}}">{{'✔️' if vote.show == True else '✖️' }}</span></a></td>
-                        </tr>
-                    {% endfor %}
-                </table>
-              </div>
-              <div class="form-card">
-                  <table class="table">
-                    <tr>
-                        <th>Id</th>
-                        <th>Name</th>
-                        <th>Points</th>
-                    </tr>
-                      {% for point_row in points %}
-                        <tr><td>{{point_row.points_6}}</td><td>{{point_row.name_6}}</td><td>6</td></tr>
-                        <tr><td>{{point_row.points_3}}</td><td>{{point_row.name_3}}</td><td>3</td></tr>
-                        <tr><td>{{point_row.points_1}}</td><td>{{point_row.name_1}}</td><td>1</td></tr>
-                    {% endfor %}
-                </table>
-              </div>
-          </div>
-      </div>
-      {% include 'footer.html' %}
-  </div>
+{% include 'navbar.html' %}
+<br>
+<div class="ui centered grid">
+    <div class="ui row">
+        <div class="ui inverted segment">
+            <table class="ui selectable striped inverted table">
+                <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Initials</th>
+                    <th>Name</th>
+                    <th>Icon</th>
+                    <th>Bg color</th>
+                    <th>Card color</th>
+                    <th></th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>{{user.id}}</td>
+                    <td>{{user.initials}}</td>
+                    <td>{{user.name}}</td>
+                    <td><span class="logo-author-small"
+                              style="background-color: {{user.color}}">{{user.icon}}</span></td>
+                    <td><span style="background-color: {{user.color}}">{{user.color}}</span></td>
+                    <td><span style="background-color: {{user.card_color}}">{{user.card_color}}</span></td>
+                    <td><a href="/user_management/user/{{user.id}}"><span title="Edit">✏️</span></a></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="ui row">
+        <div class="ui inverted segment">
+            <table class="ui selectable striped inverted table">
+                <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Name</th>
+                    <th>Emotions</th>
+                    <th>Author</th>
+                    <th>Type</th>
+                    <th>Points</th>
+                    <th>Sum</th>
+                    <th>Show</th>
+                    <th></th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for card in cards %}
+                <tr>
+                    <td>{{card.id}}</td>
+                    <td>{{card.name}}</td>
+                    <td>{{card.emotions}}</td>
+                    <td>{{card.author}}</td>
+                    <td>{{card.type}}</td>
+                    <td>{{card.points}}</td>
+                    <td>{{card.points_sum}}</td>
+                    <td><a href="/user_management/showcard/{{card.id}}"><span title="{{card.show}}">{{'✔️' if card.show == True else '✖️' }}</span></a>
+                    </td>
+                    <td><a href="/user_management/card/{{card.id}}"><span title="Edit">✏️</span></a></td>
+                </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="ui row">
+        <div class="ui inverted segment">
+            <table class="ui selectable striped inverted table">
+                <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Author</th>
+                    <th>Value</th>
+                    <th>Show</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for vote in votes %}
+                <tr>
+                    <td>{{vote.id}}</td>
+                    <td>{{vote.author}}</td>
+                    <td>{{vote.value}}</td>
+                    <td><a href="/user_management/show_vote/{{vote.id}}"><span title="{{vote.show}}">{{'✔️' if vote.show == True else '✖️' }}</span></a>
+                    </td>
+                </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="ui row">
+        <div class="ui inverted segment">
+            <table class="ui selectable striped inverted table">
+                <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Name</th>
+                    <th>Points</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for point_row in points %}
+                <tr>
+                    <td>{{point_row.points_6}}</td>
+                    <td>{{point_row.name_6}}</td>
+                    <td>6</td>
+                </tr>
+                <tr>
+                    <td>{{point_row.points_3}}</td>
+                    <td>{{point_row.name_3}}</td>
+                    <td>3</td>
+                </tr>
+                <tr>
+                    <td>{{point_row.points_1}}</td>
+                    <td>{{point_row.name_1}}</td>
+                    <td>1</td>
+                </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% include 'footer.html' %}
 </body>
 </html>
