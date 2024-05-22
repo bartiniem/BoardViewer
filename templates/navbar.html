@@ -22,6 +22,7 @@
 
     {% if active_user and active_user.role == 'admin' %}
     <span class="navbar-info">|</span>
+    <span class="navbar"><a href="/management/settings">Settings</a></span>
     <span class="navbar"><a href="/management/cards">Cards</a></span>
     <span class="navbar"><a href="/management/users">Users</a></span>
     {% endif %}

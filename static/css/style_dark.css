@@ -1,0 +1,54 @@
+.main-window {
+    margin-right: 0;
+    width: 100%;
+}
+
+body {
+  font-family:  'Source Sans Pro', sans-serif;
+  background-color: #24242b;
+  color: #aaa;
+}
+
+.huge-button {
+    width: 300px;
+    height: 200px;
+    font-size: 20pt;
+    border: 2px solid #ffffff11;
+    border-radius: 10px;
+    align-items: center;
+    justify-content: center;
+    text-align: left;
+    vertical-align: middle;
+    display: inline-grid;
+    background-color: #0c07075c;
+    box-shadow: -1px 24px 39px 0px rgba(0,0,0,0.5);
+    -webkit-box-shadow: -1px 24px 39px 0px rgba(0,0,0,0.5);
+    -moz-box-shadow: -1px 24px 39px 0px rgba(0,0,0,0.5);
+}
+
+.huge-button:hover {
+    border: 2px solid #ffffff5d;
+    box-shadow: -1px 24px 39px 0px rgba(0,0,0,0.64);
+    -webkit-box-shadow: -1px 24px 39px 0px rgba(0,0,0,0.64);
+    -moz-box-shadow: -1px 24px 39px 0px rgba(0,0,0,0.64);
+}
+
+.modules {
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    vertical-align: middle;
+    display: block;
+    margin: 1em;
+}
+.module {display: inline-block; margin: 0.5em;}
+.header {text-align: center; border-bottom: 1px solid #aaa; margin: 0 40px;}
+.footer {width: 100%; text-align: center;}
+.daily-helper {background-color: #00235e;}
+.schedule-generator {background-color: #004a5e;}
+.random-world {background-color: #22005e;}
+.plants-manager {background-color: #366c00;}
+.items-manager {background-color: #6c5300;}
+.food-ideas {background-color: #93521f;}
+.tests-manager {background-color: #1e3201;}
+.duty-planner {background-color: #3d0606;}

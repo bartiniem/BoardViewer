@@ -1,3 +1,4 @@
+{% for card in cards %}
 {% if card.show == true %}
   <div class="card{{' card-large' if card.name|length > 80}}">
       <span class="card-main{{' highlight_card' if card.highlight == true}}" style="background-color: {{card.card_color}}">
@@ -21,3 +22,4 @@
       <span class="card-line-author author-{{card.author}}" title="{{card.author}}" style="background-color: {{card.author_color}}">{{card.author_icon}}</span>
   </div>
 {% endif %}
+{% endfor %}

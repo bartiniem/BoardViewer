@@ -1,15 +1,24 @@
 <!DOCTYPE html>
 <html lang="pl-PL">
 {% include 'head.html' %}
-<body class="body-bck" onload = "JavaScript:AutoRefresh(5000);">
-    {% include 'navbar.html' %}
-    {% include 'board_cards.html' %}
-    <script type = "text/JavaScript">
-     <!--
-        function AutoRefresh( t ) {
-           setTimeout("location.reload(true);", t);
-        }
-     //-->
-    </script>
+<body class="body-bck">
+{% include 'navbar.html' %}
+<div id="main-window" class="main-window">
+    <div class="middle-cont board_good">
+        <div class="cards">
+            <div hx-trigger="load, every 10s" hx-get="/cards/good/load">
+            </div>
+        </div>
+    </div>
+    <hr>
+    <div class="middle-cont board_bad">
+        <div class="cards">
+            <div hx-trigger="load, every 10s" hx-get="/cards/bad/load">
+            </div>
+        </div>
+    </div>
+    {% include 'footer.html' %}
+</div>
+<script type="text/javascript" src="/static/js/htmx.min.js"></script>
 </body>
 </html>

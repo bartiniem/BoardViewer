@@ -49,6 +49,26 @@ def index():
                            sum_cards=sum_cards, sum_points=sum_points, show_votes=True, show_points=show_points)
 
 
+@app.route('/cards/good/load', methods=['GET', 'POST'])
+def cards_good_load():
+    cards = DataUtils().get_cards()
+    cards = DataUtils().update_points_emoji(cards)
+    good_cards = [card for card in cards if card.get("type") in "good"]
+    good_cards = DataUtils().update_user_data(good_cards)
+    good_cards.sort(key=lambda c: c.get("last_edit"), reverse=False)
+    return render_template('components/cards_box.html', cards=good_cards)
+
+
+@app.route('/cards/bad/load', methods=['GET', 'POST'])
+def cards_bad_load():
+    cards = DataUtils().get_cards()
+    cards = DataUtils().update_points_emoji(cards)
+    bad_cards = [card for card in cards if card.get("type") in "bad"]
+    bad_cards = DataUtils().update_user_data(bad_cards)
+    bad_cards.sort(key=lambda c: c.get("last_edit"), reverse=False)
+    return render_template('components/cards_box.html', cards=bad_cards)
+
+
 @app.route('/preview', methods=['GET', 'POST'])
 def preview():
     active_user = get_active_user()
