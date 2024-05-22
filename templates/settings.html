@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="pl-PL">
+{% include 'head.html' %}
+<body>
+{% include 'navbar.html' %}
+<div class="ui centered grid">
+    <div class="ui inverted segment">
+        {% for setting, value in settings.items() %}
+        <a class="big ui yellow2 icon button" href="/management/settings/set/{{setting}}">
+            {% if value == True %}
+            {{setting}} <i class="green check circle outline icon"></i>
+            {% else %}
+            {{setting}} <i class="red times circle icon"></i>
+            {% endif %}
+        </a>
+        {% endfor %}
+    </div>
+    {% include 'footer.html' %}
+</div>
+</body>
+</html>

@@ -6,13 +6,13 @@
             <span>{{ active_user.name }}</span>
         </a>
     </span>
-    <span class="navbar" title="Configuration"><a href="/user_management/configuration">⚙</a></span>
+    <span class="navbar" title="Configuration"><a href="/user_management/configuration"><i class="cog icon"></i></a></span>
     <span class="navbar-info">|</span>
-    <span class="navbar"><a href="/">Board</a></span>
-    <span class="navbar"><a href="/preview">Preview</a></span>
-    <span class="navbar"><a href="/add_card">Add Card</a></span>
-    <span class="navbar"><a href="/vote">Vote</a></span>
-    <span class="navbar"><a href="/goals">Goals</a></span>
+    <span class="navbar"><a href="/"><i class="home icon"></i> Board</a></span>
+    <span class="navbar"><a href="/preview"><i class="film icon"></i> Preview</a></span>
+    <span class="navbar"><a href="/add_card"><i class="plus square icon"></i> Add Card</a></span>
+    <span class="navbar"><a href="/vote"><i class="vote yea icon"></i> Vote</a></span>
+    <span class="navbar"><a href="/goals"><i class="bullseye icon"></i> Goals</a></span>
     {% else %}
     <span class="navbar"><a href="/login">Sign in</a></span>
     <span class="navbar"><a href="/">Board</a></span>
@@ -22,34 +22,9 @@
 
     {% if active_user and active_user.role == 'admin' %}
     <span class="navbar-info">|</span>
-    <span class="navbar"><a href="/management/settings">Settings</a></span>
-    <span class="navbar"><a href="/management/cards">Cards</a></span>
-    <span class="navbar"><a href="/management/users">Users</a></span>
+    <span class="navbar"><a href="/management/settings"><i class="cogs icon"></i> Settings</a></span>
+    <span class="navbar"><a href="/management/cards"><i class="tasks icon"></i> Cards</a></span>
+    <span class="navbar"><a href="/management/users"><i class="users icon"></i> Users</a></span>
     {% endif %}
 </div>
-<div class="sub-header-bar">
-    {% if show_votes %}
-        <span class="navbar-info">
-        {% for vote in votes %}
-            {% if vote.show == true %}
-                <span class="vote-label">
-                    <span class="logo-author-small" title="{{vote.author}}" style="background-color: {{vote.author_color}}">{{vote.author_icon}}</span>
-                    {% if vote.value == "+" %}
-                    <span>👍</span>
-                    {% elif vote.value == "-" %}
-                    <span>👎</span>
-                    {% else %}
-                    <span>{{vote.value}}</span>
-                    {% endif %}
-                </span>
-            {% endif %}
-        {% endfor %}
-        </span>
-    {% endif %}
-    {% if sum_cards %}
-    <span class="navbar-info">Cards: {{sum_cards}}</span>
-    {% endif %}
-    {% if sum_points %}
-    <span class="navbar-info">Points: {{sum_points}}</span>
-    {% endif %}
-</div>
+<br>

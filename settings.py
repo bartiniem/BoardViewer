@@ -29,5 +29,10 @@ class Settings:
         settings = self.load_yaml_data(SETTINGS_FILENAME)
         return settings
 
-    def save_settings(self, votes):
-        self.save_data_to_yaml(votes, SETTINGS_FILENAME)
+    def set_new_value(self, name: str):
+        settings = self.get_settings()
+        settings[name] = not settings[name]
+        self.save_settings(settings)
+
+    def save_settings(self, settings_data):
+        self.save_data_to_yaml(settings_data, SETTINGS_FILENAME)

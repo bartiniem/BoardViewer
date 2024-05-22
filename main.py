@@ -12,7 +12,7 @@ from datetime import datetime
 from flask import Flask, session, redirect, url_for, request, render_template
 
 # LOCAL IMPORTS
-from Settings import Settings
+from settings import Settings
 from datautils import DataUtils
 
 # DEFINITIONS
@@ -321,6 +321,27 @@ def vote():
         filtered_cards.sort(key=lambda c: c.get("id"), reverse=False)
     return render_template('/vote.html', title="Vote", cards=filtered_cards, active_user=active_user, message=message,
                            already_voted=already_voted, show_voting=show_voting)
+
+
+@app.route('/management/settings', methods=['GET', 'POST'])
+def settings():
+    active_user = get_active_user()
+    if not active_user:
+        return redirect(url_for('login'))
+
+    settings_data = Settings().get_settings()
+    return render_template('settings.html', title="settings", active_user=active_user,
+                           settings=settings_data)
+
+
+@app.route('/management/settings/set/<name>', methods=['GET', 'POST'])
+def settings_set(name):
+    active_user = get_active_user()
+    if not active_user:
+        return redirect(url_for('login'))
+
+    Settings().set_new_value(name)
+    return redirect(url_for('settings'))
 
 
 def add_votes(id_6, id_3, id_1, active_user):

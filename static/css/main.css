@@ -440,3 +440,4 @@ input, select, textarea {
     color: #aaa;
     background-color: #555;
 }
+.ui.button.yellow2 {background-color: #fbbd08; color: black !important;}

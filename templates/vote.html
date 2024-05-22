@@ -1,52 +1,53 @@
 <!DOCTYPE html>
 <html lang="pl-PL">
 {% include 'head.html' %}
-<body class="body-bck">
-    {% include 'navbar.html' %}
-    <div id="main-window" class="main-window">
-      <div class="middle-cont">
-          {% if message %}
-            <span>{{message}}</span>
-          {% endif %}
-      </div>
-        {% if show_voting == true %}
-        {% if already_voted != true %}
-      <div class="middle-cont">
-          <div class="cards">
-          <form method="post" class="form-main">
-              <div class="form-card">
+<body>
+{% include 'navbar.html' %}
+<div id="main-window" class="main-window">
+    <div class="middle-cont">
+        {% if message %}
+        <span>{{message}}</span>
+        {% endif %}
+    </div>
+    {% if show_voting == true %}
+    {% if already_voted != true %}
+    <div class="middle-cont">
+        <div class="cards">
+            <form method="post" class="form-main">
+                <div class="form-card">
                   <span class="form-line"><label class="form-label">6 points: </label>
                       <select name="points_6" class="form-element" required>
                           <option value=""></option>
                           {% for card in cards %}
-                            <option value={{card.id}} >#{{card.id}} {{card.type}} - {{card.name}}</option>
+                            <option value={{card.id}}>#{{card.id}} {{card.type}} - {{card.name}}</option>
                           {% endfor %}
                       </select>
                   </span>
-                  <span class="form-line"><label class="form-label">3 points: </label>
+                    <span class="form-line"><label class="form-label">3 points: </label>
                       <select name="points_3" class="form-element" required>
                           <option value=""></option>
                           {% for card in cards %}
-                            <option value={{card.id}} >#{{card.id}} {{card.type}} - {{card.name}}</option>
+                            <option value={{card.id}}>#{{card.id}} {{card.type}} - {{card.name}}</option>
                           {% endfor %}
                       </select>
                   </span>
-                  <span class="form-line"><label class="form-label">1 points: </label>
+                    <span class="form-line"><label class="form-label">1 points: </label>
                       <select name="points_1" class="form-element" required>
                           <option value=""></option>
                           {% for card in cards %}
-                            <option value={{card.id}} >#{{card.id}} {{card.type}} - {{card.name}}</option>
+                            <option value={{card.id}}>#{{card.id}} {{card.type}} - {{card.name}}</option>
                           {% endfor %}
                       </select>
                   </span>
-                  <span class="form-line"><button type="submit" class="form-btn" name="vote_btn" value="vote_btn">Vote</button></span>
-              </div>
-          </form>
-      </div>
-      </div>
-        {% endif %}
-        {% endif %}
-      {% include 'footer.html' %}
+                    <span class="form-line"><button type="submit" class="form-btn" name="vote_btn"
+                                                    value="vote_btn">Vote</button></span>
+                </div>
+            </form>
+        </div>
     </div>
+    {% endif %}
+    {% endif %}
+    {% include 'footer.html' %}
+</div>
 </body>
 </html>
