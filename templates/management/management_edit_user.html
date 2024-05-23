@@ -5,71 +5,78 @@
 {% include 'navbar.html' %}
 <br>
 <div class="ui centered grid">
-    <div id="message_output">
-        {% if message %}
-        <span>{{message}}</span>
-        {% endif %}
+    <div class="six wide column">
+        <div class="ui inverted segment">
+            <form method="post" class="ui inverted form">
+                <div class="fields">
+                    <div class="field">
+                        <label>Initials:</label>
+                        <input type="text" name="user_initials" maxlength="40" value="{{user.initials}}"/>
+                    </div>
+                    <div class="field">
+                        <label>Name:</label>
+                        <input type="text" name="user_name" maxlength="40" value="{{user.name}}"/>
+                    </div>
+                    <div class="field">
+                        <label>Icon:</label>
+                        <select name="user_icon">
+                            <option value="{{user.icon}}">{{user.icon}}</option>
+                            <option value="🐳">🐳</option>
+                            <option value="🐦">🐦</option>
+                            <option value="🐵">🐵</option>
+                            <option value="🐴">🐴</option>
+                            <option value="🐨">🐨</option>
+                            <option value="🐺">🐺</option>
+                            <option value="🐙">🐙</option>
+                            <option value="🦇">🦇</option>
+                            <option value="🦅">🦅</option>
+                            <option value="🐘">🐘</option>
+                            <option value="🐘">🐘</option>
+                            <option value="🦧">🦧</option>
+                            <option value="🦗">🦗</option>
+                            <option value="🦟">🦟</option>
+                            <option value="🐓">🐓</option>
+                            <option value="🐠">🐠</option>
+                            <option value="🦙">🦙</option>
+                            <option value="🦓">🦓</option>
+                            <option value="🦝">🦝</option>
+                            <option value="🦉">🦉</option>
+                            <option value="🦊">🦊</option>
+                            <option value="🦘">🦘</option>
+                            <option value="🐝">🐝</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="fields">
+                    <div class="field">
+                        <label>User role:</label>
+                        <input type="text" name="user_role" value="{{user.role}}"/>
+                    </div>
+                    <div class="field">
+                        <label>Avatar color:</label>
+                        <input type="color" name="user_color" value="{{user.color}}"/>
+                    </div>
+                    <div class="field">
+                        <label>Card color:</label>
+                        <input type="color" name="user_card_color" value="{{user.card_color}}"/>
+                    </div>
+                </div>
+                <button type="submit" class="fluid big ui yellow2 button" name="save_user_btn" value="save_user">
+                    Save
+                </button>
+            </form>
+        </div>
     </div>
-    <div class="ui inverted grey segment">
-        <form method="post" class="ui form">
-            <div class="fields">
-                <div class="field">
-                    <label>Initials:</label>
-                    <input type="text" name="user_initials" maxlength="40" value="{{user.initials}}"/>
-                </div>
-                <div class="field">
-                    <label>Name:</label>
-                    <input type="text" class="form-element" name="user_name" maxlength="40" value="{{user.name}}"/>
-                </div>
-                <div class="field">
-                    <label>Icon:</label>
-                    <select name="user_icon">
-                        <option value="{{user.icon}}">{{user.icon}}</option>
-                        <option value="🐳">🐳</option>
-                        <option value="🐦">🐦</option>
-                        <option value="🐵">🐵</option>
-                        <option value="🐴">🐴</option>
-                        <option value="🐨">🐨</option>
-                        <option value="🐺">🐺</option>
-                        <option value="🐙">🐙</option>
-                        <option value="🦇">🦇</option>
-                        <option value="🦅">🦅</option>
-                        <option value="🐘">🐘</option>
-                        <option value="🐘">🐘</option>
-                        <option value="🦧">🦧</option>
-                        <option value="🦗">🦗</option>
-                        <option value="🦟">🦟</option>
-                        <option value="🐓">🐓</option>
-                        <option value="🐠">🐠</option>
-                        <option value="🦙">🦙</option>
-                        <option value="🦓">🦓</option>
-                        <option value="🦝">🦝</option>
-                        <option value="🦉">🦉</option>
-                        <option value="🦊">🦊</option>
-                        <option value="🦘">🦘</option>
-                        <option value="🐝">🐝</option>
-                    </select>
-                </div>
+    <div class="six wide column">
+        <div id="ui inverted segment">
+            <div id="message_output">
+                {% if message %}
+                <span>{{message}}</span>
+                {% endif %}
             </div>
-            <div class="fields">
-                <div class="field">
-                    <label>User role:</label>
-                    <input type="text" name="user_role" maxlength="40" value="{{user.role}}"/>
-                </div>
-                <div class="field">
-                    <label>Avatar color:</label>
-                    <input type="color" name="user_color" maxlength="40" value="{{user.color}}"/>
-                </div>
-                <div class="field">
-                    <label>Card color:</label>
-                    <input type="color" name="user_card_color" maxlength="40" value="{{user.card_color}}"/>
-                </div>
-            </div>
-            <button type="submit" class="fluid big ui yellow2 button" name="save_user_btn" value="save_user">Save
-            </button>
-        </form>
+        </div>
     </div>
+    {% include 'footer.html' %}
 </div>
-{% include 'footer.html' %}
 </body>
 </html>

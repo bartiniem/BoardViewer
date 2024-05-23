@@ -3,19 +3,17 @@
 {% include 'head.html' %}
 <body>
 {% include 'navbar.html' %}
-{% include 'components/dashboard_points.html' %}
-<div id="main-window" class="main-window">
-    <div class="middle-cont board_good">
+<br>
+<div class="ui centered grid">
+    {% include 'components/dashboard_points.html' %}
+    <div class="ui inverted segment board_good">
         <div class="cards">
-            <div hx-trigger="load" hx-get="/cards/good/load">
-            </div>
+            <div hx-trigger="load" hx-get="/cards/good/load"></div>
         </div>
     </div>
-    <hr>
-    <div class="middle-cont board_bad">
+    <div class="ui inverted segment board_bad">
         <div class="cards">
-            <div hx-trigger="load" hx-get="/cards/bad/load">
-            </div>
+            <div hx-trigger="load" hx-get="/cards/bad/load"></div>
         </div>
     </div>
     {% include 'footer.html' %}

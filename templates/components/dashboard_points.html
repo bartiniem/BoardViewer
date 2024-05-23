@@ -1,27 +1,25 @@
 <div class="sub-header-bar">
     {% if show_votes %}
-    <span class="navbar-info">
-        {% for vote in votes %}
-            {% if vote.show == true %}
-                <span class="vote-label">
-                    <span class="logo-author-small" title="{{vote.author}}"
-                          style="background-color: {{vote.author_color}}">{{vote.author_icon}}</span>
-                    {% if vote.value == "+" %}
-                    <span>👍</span>
-                    {% elif vote.value == "-" %}
-                    <span>👎</span>
-                    {% else %}
-                    <span>{{vote.value}}</span>
-                    {% endif %}
-                </span>
-            {% endif %}
-        {% endfor %}
-        </span>
+    {% for vote in votes %}
+    {% if vote.show == true %}
+    <div class="big ui grey icon label" style="background-color: {{vote.author_color}}"
+         data-tooltip="{{vote.author}}" data-inverted="">
+        {{vote.author_icon}}
+        {% if vote.value == "+" %}
+        <i class="yellow thumbs up icon"></i>
+        {% elif vote.value == "-" %}
+        <i class="red thumbs down icon"></i>
+        {% else %}
+        <span>{{vote.value}}</span>
+        {% endif %}
+    </div>
+    {% endif %}
+    {% endfor %}
     {% endif %}
     {% if sum_cards %}
-    <span class="navbar-info">Cards: {{sum_cards}}</span>
+    <div class="big ui grey label">Cards: {{sum_cards}}</div>
     {% endif %}
     {% if sum_points %}
-    <span class="navbar-info">Points: {{sum_points}}</span>
+    <div class="big ui grey label">Points: {{sum_points}}</div>
     {% endif %}
 </div>

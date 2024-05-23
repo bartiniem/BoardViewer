@@ -3,33 +3,35 @@
 {% include 'head.html' %}
 <body>
 {% include 'navbar.html' %}
-<div id="main-window" class="main-window">
-  <div class="middle-cont">
-      {% include 'main_icons.html' %}
-  </div>
-  <div class="middle-cont">
-      <div class="cards">
-          {% if active_user.name is undefined %}
-          <form method="post" class="form-main">
-              <div class="form-card">
-                  <span class="form-line">
-                      <label class="form-label-sm">Username:</label>
-                      <input class="form-element-sm" type="text" id="login_name" name="login_name">
-                  </span>
-                  <span class="form-line">
-                      <label class="form-label-sm">Pin:</label>
-                      <input class="form-element-sm" type="password" name="login_pass">
-                  </span>
-                  <span class="form-line">
-                      <button class="form-btn-sm" type="submit" name="login_btn" value="login_btn">Go!</button>
-                  </span>
-              </div>
-          </form>
-          {% else %}
-          <span>Logged as {{active_user.name}}</span>
-          {% endif %}
-      </div>
-  </div>
+<div class="ui centered grid">
+    <div class="ui row">
+        <div class="ui inverted segment">
+            {% include 'main_icons.html' %}
+        </div>
+    </div>
+    <div class="ui row">
+        <div class="ui inverted segment">
+            {% if active_user.name is undefined %}
+            <form method="post" class="ui inverted form">
+                <div class="field">
+                    <label>Username:</label>
+                    <input type="text" id="login_name" name="login_name">
+                </div>
+                <div class="field">
+                    <label>Pin:</label>
+                    <input type="password" name="login_pass">
+                </div>
+                <div class="field">
+                    <button class="big fluid ui yellow2 button" type="submit" name="login_btn" value="login_btn">
+                        Go!
+                    </button>
+                </div>
+            </form>
+            {% else %}
+            <div>Logged as {{active_user.name}}</div>
+            {% endif %}
+        </div>
+    </div>
 </div>
 </body>
 </html>

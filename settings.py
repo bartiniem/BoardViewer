@@ -29,6 +29,10 @@ class Settings:
         settings = self.load_yaml_data(SETTINGS_FILENAME)
         return settings
 
+    def get_specific_setting(self, name: str):
+        settings = self.get_settings()
+        return settings.get(name, '')
+
     def set_new_value(self, name: str):
         settings = self.get_settings()
         settings[name] = not settings[name]

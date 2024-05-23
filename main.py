@@ -29,8 +29,7 @@ app.config['next_vote_id'] = 100
 def index():
     active_user = get_active_user()
     last_update = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
-    settings = Settings().get_settings()
-    show_points = settings.get("show_points")
+    show_points = Settings().get_specific_setting("show_points")
     cards = DataUtils().get_cards()
     cards = DataUtils().update_points_emoji(cards)
     good_cards = [card for card in cards if card.get("type") in "good"]
@@ -73,8 +72,7 @@ def cards_bad_load():
 def preview():
     active_user = get_active_user()
     last_update = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
-    settings = Settings().get_settings()
-    show_points = settings.get("show_points")
+    show_points = Settings().get_specific_setting("show_points")
     cards = DataUtils().get_cards()
     cards = DataUtils().update_points_emoji(cards)
     good_cards = [card for card in cards if card.get("type") in "good"]
@@ -277,30 +275,35 @@ def permission_denied():
 def goals():
     active_user = get_active_user()
     message = ""
-    settings = Settings().get_settings()
-    show_goals = settings.get("show_goals")
-    cards = DataUtils().get_cards()
+    show_goals = Settings().get_specific_setting("show_goals")
     filtered_cards = DataUtils().get_visible_cards()
     filtered_cards.sort(key=lambda c: c.get("points_sum"), reverse=True)
-    if request.method == 'POST':
-        if request.form.get("save_goals"):
-            for card in filtered_cards:
-                if request.form.get("goals_{}".format(card.get("id"))):
-                    card["goals"] = request.form.get("goals_{}".format(card.get("id")))
-                    message = "Data saved."
-        DataUtils().save_cards(cards)
     return render_template('/goals.html', title="Goals", cards=filtered_cards[:5], active_user=active_user,
                            message=message, show_goals=show_goals)
 
 
+@app.route('/goals/save/<card_id>', methods=['GET', 'POST'])
+def goals_save_goals(card_id):
+    filtered_cards = DataUtils().get_visible_cards()
+    filtered_cards.sort(key=lambda c: c.get("points_sum"), reverse=True)
+    last_update = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+    message = "n/a"
+    for card in filtered_cards:
+        if str(card['id']) == str(card_id):
+            card["goals"] = request.args.get(f"goals_{card_id}")
+            message = f"{last_update} Data saved."
+
+    DataUtils().save_cards(filtered_cards)
+    return message
+
+
 @app.route('/vote', methods=['GET', 'POST'])
-def vote():
+def vote_page():
     active_user = get_active_user()
     if not active_user:
         return redirect(url_for('login'))
     message = ""
-    settings = Settings().get_settings()
-    show_voting = settings.get("show_voting")
+    show_voting = Settings().get_specific_setting("show_voting")
     filtered_cards = []
     already_voted = False
     points = DataUtils().get_points()
@@ -368,8 +371,8 @@ def add_votes(id_6, id_3, id_1, active_user):
 @app.errorhandler(404)
 def not_found(error):
     active_user = get_active_user()
-    return render_template('message_page.html', title="Page not found.", message="Something went wrong. 😢",
-                           active_user=active_user)
+    return render_template('message_page.html', title="Page not found.",
+                           message=f"Something went wrong. 😢. <br>Error: {error}", active_user=active_user)
 
 
 # [LOCAL]
@@ -487,4 +490,3 @@ if __name__ == '__main__':
         app.run(debug=False, port=5002)
     else:
         app.run(debug=False, port=5002, host="0.0.0.0")
-

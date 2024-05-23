@@ -3,42 +3,41 @@
 {% include 'head.html' %}
 <body>
 {% include 'navbar.html' %}
-<div id="main-window" class="main-window">
-    <div class="middle-cont">
-        {% if message %}
-        <span>{{message}}</span>
-        {% endif %}
-    </div>
-    <div class="middle-cont">
-        <div class="cards">
-            <form method="post" class="form-main">
-                <div class="form-card">
-                      <span class="form-line">
-                          <label class="form-label">Text:</label>
-                          <textarea class="form-textarea" name="card_text" maxlength="300" rows="3" cols="50">{{card.name}}</textarea>
-                      </span>
-                    <span class="form-line">
-                          <label class="form-label">Emotions:</label>
-                          <input type="text" class="form-element" name="card_emotions" maxlength="40"
-                                 value="{{card.emotions}}"/>
-                      </span>
-                    <span class="form-line">
-                          <label class="form-label">Show:</label>
-                          <input type="text" class="form-element" name="card_show" maxlength="40"
-                                 value="{{card.show}}"/>
-                      </span>
-                    <span class="form-line">
-                          <label class="form-label">Type:</label>
-                          <select name="card_type" class="form-element">
-                              <option value="{{card.type}}">{{card.type}}</option>
-                              <option value="good">good</option>
-                              <option value="bad">bad</option>
-                          </select>
-                      </span>
-                    <span class="form-line"><button type="submit" class="form-btn" name="save_card_btn"
-                                                    value="save_card">Save</button></span>
+<div class="ui centered grid">
+    <div class="ui six wide column">
+        <div class="ui inverted segment">
+            <form method="post" class="ui inverted form">
+                <div class="field">
+                    <label>Text:</label>
+                    <textarea class="form-textarea" name="card_text" maxlength="300" rows="3"
+                              cols="50">{{card.name}}</textarea>
                 </div>
+                <div class="field">
+                    <label>Emotions:</label>
+                    <input type="text" name="card_emotions" maxlength="40"
+                           value="{{card.emotions}}"/>
+                </div>
+                <div class="field">
+                    <label>Show:</label>
+                    <input type="text" name="card_show" maxlength="40"
+                           value="{{card.show}}"/>
+                </div>
+                <div class="field">
+                    <label>Type:</label>
+                    <select name="card_type">
+                        <option value="{{card.type}}">{{card.type}}</option>
+                        <option value="good">good</option>
+                        <option value="bad">bad</option>
+                    </select>
+                </div>
+                <button type="submit" class="fluid large ui yellow2 button" name="save_card_btn" value="save_card">
+                    Save
+                </button>
             </form>
+            {% if message %}
+            <div>Output:</div>
+            <div>{{message}}</div>
+            {% endif %}
         </div>
     </div>
     {% include 'footer.html' %}
