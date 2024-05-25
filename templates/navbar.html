@@ -1,29 +1,25 @@
-<div class="header-bar">
+<div class="ui inverted stackable menu">
+    <a href="/" class="ui black item"><i class="home icon"></i> Board</a>
+    <a href="/preview" class="ui black item"><i class="film icon"></i> Preview</a>
+    <a href="/goals" class="ui black item"><i class="bullseye icon"></i> Goals</a>
     {% if active_user %}
-    <span class="navbar" title="Click to logout">
-        <a href="/logout">
-            <span class="large ui circular label" style="background-color: {{active_user.color}}">{{active_user.icon}}</span>
-            <span>{{ active_user.name }}</span>
-        </a>
-    </span>
-    <span class="navbar" title="Configuration"><a href="/user_management/configuration"><i class="cog icon"></i></a></span>
-    <span class="navbar-info">|</span>
-    <span class="navbar"><a href="/"><i class="home icon"></i> Board</a></span>
-    <span class="navbar"><a href="/preview"><i class="film icon"></i> Preview</a></span>
-    <span class="navbar"><a href="/add_card"><i class="plus square icon"></i> Add Card</a></span>
-    <span class="navbar"><a href="/vote"><i class="vote yea icon"></i> Vote</a></span>
-    <span class="navbar"><a href="/goals"><i class="bullseye icon"></i> Goals</a></span>
-    {% else %}
-    <span class="navbar"><a href="/login">Sign in</a></span>
-    <span class="navbar"><a href="/">Board</a></span>
-    <span class="navbar"><a href="/preview">Preview</a></span>
-    <span class="navbar"><a href="/goals">Goals</a></span>
+    <a href="/add_card" class="ui black item"><i class="plus square icon"></i> Add Card</a>
+    <a href="/vote" class="ui black item"><i class="vote yea icon"></i> Vote</a>
     {% endif %}
 
-    {% if active_user and active_user.role == 'admin' %}
-    <span class="navbar-info">|</span>
-    <span class="navbar"><a href="/management/settings"><i class="cogs icon"></i> Settings</a></span>
-    <span class="navbar"><a href="/management/cards"><i class="tasks icon"></i> Cards</a></span>
-    <span class="navbar"><a href="/management/users"><i class="users icon"></i> Users</a></span>
-    {% endif %}
+    <div class="right menu">
+        {% if active_user %}
+        <div class="ui black item" style="background-color: {{active_user.color}}">
+            {{active_user.icon}} {{ active_user.name }}
+        </div>
+        <a href="/user_management/configuration" class="ui black icon item"><i class="cog icon"></i> Settings</a>
+        <a href="/logout" class="ui black icon item"><i class="sign out alternate icon"></i> Logout</a>
+        {% else %}
+        <a href="/login" class="ui black item"> Sign in</a>
+        {% endif %}
+
+        {% if active_user and active_user.role == 'admin' %}
+        <a href="/management/panel" class="ui black item"><i class="users icon"></i> Admin Panel</a>
+        {% endif %}
+    </div>
 </div>

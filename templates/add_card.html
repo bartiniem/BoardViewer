@@ -6,19 +6,20 @@
 <br>
 <div class="ui centered grid">
     <div class="ui six wide column">
-        <div class="ui inverted grey basic segment">
-            <form method="post" class="ui form">
+        <div class="ui inverted segment">
+            <h4>New card</h4>
+            <form method="post" class="ui inverted form">
                 <div class="field">
                     <label>Text (300-chars):</label>
-                    <textarea name="card_text" maxlength="300" rows="3" cols="50" required></textarea>
+                    <textarea name="card_text" class="custom-select" maxlength="300" rows="3" cols="50" required></textarea>
                 </div>
                 <div class="field">
                     <label>Emotions (40-chars):</label>
-                    <input type="text" name="card_emotions" maxlength="40" required/>
+                    <input type="text" name="card_emotions" class="custom-select" maxlength="40" required/>
                 </div>
                 <div class="field">
                     <label>Type:</label>
-                    <select name="card_type" required>
+                    <select name="card_type" class="custom-select" required>
                         <option value=""></option>
                         <option value="good">good</option>
                         <option value="bad">bad</option>
@@ -31,18 +32,19 @@
         </div>
     </div>
     <div class="ui six wide column">
-        <div class="ui grey inverted segment">
-            <form method="post" class="ui form">
+        <div class="ui inverted segment">
+            <h4>Last retro rating</h4>
+            <form method="post" class="ui inverted form">
                 <div class="field">
                     <label>Vote:</label>
-                    <select name="vote_type" required>
+                    <select name="vote_type" class="custom-select" required>
                         <option value=""></option>
                         <option value="+">positive</option>
                         <option value="-">negative</option>
                     </select>
                 </div>
                 <button type="submit" class="big fluid ui yellow2 button" name="vote_btn" value="vote_btn">
-                    Vote
+                    Save
                 </button>
             </form>
         </div>

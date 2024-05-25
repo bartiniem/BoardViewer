@@ -1,0 +1,31 @@
+<table class="ui striped inverted table">
+    <thead>
+    <tr>
+        <th>Id</th>
+        <th>Initials</th>
+        <th>Name</th>
+        <th>Role</th>
+        <th>Icon</th>
+        <th>Bg color</th>
+        <th>Card color</th>
+        <th></th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for user in users %}
+    <tr>
+        <td>{{user.id}}</td>
+        <td>{{user.initials}}</td>
+        <td>{{user.name}}</td>
+        <td>{{user.role}}</td>
+        <td>
+            <span class="large ui circular label" style="background-color: {{user.color}}">{{user.icon}}</span>
+        </td>
+        <td><span class="ui label" style="background-color: {{user.color}}">{{user.color}}</span></td>
+        <td><span class="ui label" style="background-color: {{user.card_color}}">{{user.card_color}}</span>
+        </td>
+        <td><a href="/management/user/{{user.id}}" class="ui grey button">✏️ Edit</a></td>
+    </tr>
+    {% endfor %}
+    </tbody>
+</table>

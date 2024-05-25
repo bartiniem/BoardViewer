@@ -5,38 +5,22 @@
 {% include 'navbar.html' %}
 <br>
 <div class="ui centered grid">
-    <div class="ui row">
+    <div class="three wide column">
         <div class="ui inverted segment">
-            <table class="ui selectable striped inverted table">
-                <thead>
-                <tr>
-                    <th>Id</th>
-                    <th>Initials</th>
-                    <th>Name</th>
-                    <th>Icon</th>
-                    <th>Bg color</th>
-                    <th>Card color</th>
-                    <th></th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr>
-                    <td>{{user.id}}</td>
-                    <td>{{user.initials}}</td>
-                    <td>{{user.name}}</td>
-                    <td><span class="large ui circular label"
-                              style="background-color: {{user.color}}">{{user.icon}}</span></td>
-                    <td><span style="background-color: {{user.color}}">{{user.color}}</span></td>
-                    <td><span style="background-color: {{user.card_color}}">{{user.card_color}}</span></td>
-                    <td><a href="/user_management/user/{{user.id}}"><span title="Edit">✏️</span></a></td>
-                </tr>
-                </tbody>
-            </table>
+            <h4><i class="address card icon"></i> User data</h4>
+            <div class="large ui grey label">Id: {{user.id}}</div>
+            <div class="large ui grey label">Initials: {{user.initials}}</div>
+            <div class="large ui grey label">Name: {{user.name}}</div>
+            <div class="large ui circular label" style="background-color: {{user.color}}">{{user.icon}}</div><br>
+            <div class="large ui grey label" style="background-color: {{user.color}}">Logo Color: {{user.color}}</div>
+            <div class="large ui grey label" style="background-color: {{user.card_color}}">Card Color: {{user.card_color}}</div><br>
+            <a href="/user_management/user/{{user.id}}" class="ui teal button"><i class="edit icon"></i> Edit</a>
         </div>
     </div>
-    <div class="ui row">
+    <div class="eight wide column">
         <div class="ui inverted segment">
-            <table class="ui selectable striped inverted table">
+            <h4>Cards</h4>
+            <table class="ui selectable inverted table">
                 <thead>
                 <tr>
                     <th>Id</th>
@@ -60,24 +44,32 @@
                     <td>{{card.type}}</td>
                     <td>{{card.points}}</td>
                     <td>{{card.points_sum}}</td>
-                    <td><a href="/user_management/showcard/{{card.id}}"><span title="{{card.show}}">{{'✔️' if card.show == True else '✖️' }}</span></a>
+                    <td>
+                        <a href="/user_management/showcard/{{card.id}}">
+                            <span title="{{card.show}}">{{'✔️' if card.show == True else '✖️' }}</span>
+                        </a>
                     </td>
-                    <td><a href="/user_management/card/{{card.id}}"><span title="Edit">✏️</span></a></td>
+                    <td>
+                        <a href="/user_management/card/{{card.id}}" class="ui teal button">
+                            <i class="edit icon"></i>
+                            Edit
+                        </a></td>
                 </tr>
                 {% endfor %}
                 </tbody>
             </table>
         </div>
     </div>
-    <div class="ui row">
+    <div class="four wide column">
         <div class="ui inverted segment">
+            <h4>Rating</h4>
             <table class="ui selectable striped inverted table">
                 <thead>
                 <tr>
                     <th>Id</th>
                     <th>Author</th>
                     <th>Value</th>
-                    <th>Show</th>
+                    <th>Show Status</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -86,16 +78,22 @@
                     <td>{{vote.id}}</td>
                     <td>{{vote.author}}</td>
                     <td>{{vote.value}}</td>
-                    <td><a href="/user_management/show_vote/{{vote.id}}"><span title="{{vote.show}}">{{'✔️' if vote.show == True else '✖️' }}</span></a>
+                    <td>
+                        <a href="/user_management/show_vote/{{vote.id}}" class="ui black icon button">
+                        {% if vote.show == True %}
+                            <i class="green check circle outline icon"></i>
+                        {% else %}
+                            <i class="red times circle icon"></i>
+                        {% endif %}
+                        </a>
                     </td>
                 </tr>
                 {% endfor %}
                 </tbody>
             </table>
         </div>
-    </div>
-    <div class="ui row">
         <div class="ui inverted segment">
+            <h4>Points</h4>
             <table class="ui selectable striped inverted table">
                 <thead>
                 <tr>

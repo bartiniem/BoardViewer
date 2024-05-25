@@ -8,10 +8,12 @@
         <div class="ui inverted segment">
             <form method="post" class="ui inverted form">
                 <div class="field">
-                    <label>Initials: {{user.initials}}</label>
+                    <label>Initials:</label>
+                    <div class="ui grey label">{{user.initials}}</div>
                 </div>
                 <div class="field">
-                    <label>Name: {{user.name}}</label>
+                    <label>Name:</label>
+                    <div class="ui grey label">{{user.name}}</div>
                 </div>
                 <div class="field">
                     <label>Icon:</label>
@@ -47,7 +49,7 @@
                     <input type="color" name="user_color" maxlength="40" value="{{user.color}}"/>
                 </div>
                 <div class="field">
-                    <label class="form-label">Card color:</label>
+                    <label>Card color:</label>
                     <input type="color" name="user_card_color" maxlength="40" value="{{user.card_color}}"/>
                 </div>
                 <button type="submit" class="fluid big ui yellow2 button" name="save_user_btn" value="save_user">

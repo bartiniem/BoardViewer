@@ -5,22 +5,17 @@
 {% include 'navbar.html' %}
 <br>
 <div class="ui centered grid">
-    {% if message %}
     <div class="ui row">
         <div class="ui inverted segment">
-            <span>{{message}}</span>
-        </div>
-    </div>
-    {% endif %}
-    {% if show_voting == true %}
-    {% if already_voted != true %}
-    <div class="ui row">
-        <div class="ui inverted segment">
-            <h2 class="ui header">Vote</h2>
+            <h2 class="ui header">Vote on cards</h2>
+            {% if message %}
+            <div>{{message}}</div>
+            {% endif %}
+            {% if show_voting == true and already_voted != true %}
             <form method="post" class="ui inverted form">
                 <div class="field">
                     <label>6 points: </label>
-                    <select name="points_6" class="custom-select large-select" required>
+                    <select name="points_6" class="custom-select" required>
                         <option value=""></option>
                         {% for card in cards %}
                         <option value={{card.id}}>#{{card.id}} {{card.type}} - {{card.name}}</option>
@@ -29,7 +24,7 @@
                 </div>
                 <div class="field">
                     <label>3 points: </label>
-                    <select name="points_3" class="custom-select large-select" required>
+                    <select name="points_3" class="custom-select" required>
                         <option value=""></option>
                         {% for card in cards %}
                         <option value={{card.id}}>#{{card.id}} {{card.type}} - {{card.name}}</option>
@@ -38,7 +33,7 @@
                 </div>
                 <div class="field">
                     <label>1 points: </label>
-                    <select name="points_1" class="custom-select large-select" required>
+                    <select name="points_1" class="custom-select" required>
                         <option value=""></option>
                         {% for card in cards %}
                         <option value={{card.id}}>#{{card.id}} {{card.type}} - {{card.name}}</option>
@@ -49,11 +44,10 @@
                     Vote <i class="vote yea icon"></i>
                 </button>
             </form>
+            {% endif %}
         </div>
     </div>
-    {% endif %}
-    {% endif %}
+    {% include 'footer.html' %}
 </div>
-{% include 'footer.html' %}
 </body>
 </html>

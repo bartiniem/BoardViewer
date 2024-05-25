@@ -5,16 +5,14 @@
 {% include 'navbar.html' %}
 <br>
 <div class="ui centered grid">
-    {% include 'components/dashboard_points.html' %}
+    <div class="ui inverted segment">
+        {% include 'components/dashboard_points.html' %}
+    </div>
     <div class="ui inverted segment board_good">
-        <div class="cards">
-            <div hx-trigger="load" hx-get="/cards/good/load"></div>
-        </div>
+        <div hx-trigger="load" hx-get="/cards/good/load" class="ui centered cards"></div>
     </div>
     <div class="ui inverted segment board_bad">
-        <div class="cards">
-            <div hx-trigger="load" hx-get="/cards/bad/load"></div>
-        </div>
+        <div hx-trigger="load" hx-get="/cards/bad/load" class="ui centered cards"></div>
     </div>
     {% include 'footer.html' %}
 </div>

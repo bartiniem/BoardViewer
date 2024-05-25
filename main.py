@@ -55,7 +55,10 @@ def cards_good_load():
     good_cards = [card for card in cards if card.get("type") in "good"]
     good_cards = DataUtils().update_user_data(good_cards)
     good_cards.sort(key=lambda c: c.get("last_edit"), reverse=False)
-    return render_template('components/cards_box.html', cards=good_cards)
+    params = {
+        'show_points': Settings().get_specific_setting("show_points")
+    }
+    return render_template('components/cards_box.html', cards=good_cards, params=params)
 
 
 @app.route('/cards/bad/load', methods=['GET', 'POST'])
@@ -65,7 +68,10 @@ def cards_bad_load():
     bad_cards = [card for card in cards if card.get("type") in "bad"]
     bad_cards = DataUtils().update_user_data(bad_cards)
     bad_cards.sort(key=lambda c: c.get("last_edit"), reverse=False)
-    return render_template('components/cards_box.html', cards=bad_cards)
+    params = {
+        'show_points': Settings().get_specific_setting("show_points")
+    }
+    return render_template('components/cards_box.html', cards=bad_cards, params=params)
 
 
 @app.route('/preview', methods=['GET', 'POST'])
@@ -99,17 +105,6 @@ def add_card():
     message = add_card_form(app.config['next_id'])
     message += vote_form(app.config['next_vote_id'])
     return render_template('add_card.html', title="Add card", active_user=active_user, message=message)
-
-
-@app.route('/management/cards', methods=['GET', 'POST'])
-def management_cards():
-    active_user = get_active_user()
-    if not active_user or active_user.get("role") != "admin":
-        return redirect(url_for('permission_denied'))
-
-    cards = DataUtils().get_cards()
-    return render_template('/management/management_cards.html', title="Management cards",
-                           active_user=active_user, cards=cards)
 
 
 @app.route('/management/card/<card_id>', methods=['GET', 'POST'])
@@ -152,14 +147,18 @@ def show_vote(vote_id):
     return redirect(url_for('management_cards'))
 
 
-@app.route('/management/users', methods=['GET', 'POST'])
-def management_users():
+@app.route('/management/panel', methods=['GET', 'POST'])
+def management_panel():
     active_user = get_active_user()
     if not active_user or active_user.get("role") != "admin":
         return redirect(url_for('permission_denied'))
-    users = DataUtils().get_users()
-    return render_template('/management/management_users.html', title="Management users", active_user=active_user,
-                           users=users)
+    params = {
+        'users': DataUtils().get_users(),
+        'settings': Settings().get_settings(),
+        'cards': DataUtils().get_cards(),
+    }
+    return render_template('/management/management_panel.html', title="Management panel", active_user=active_user,
+                           params=params)
 
 
 @app.route('/management/user/<user_id>', methods=['GET', 'POST'])
@@ -278,7 +277,7 @@ def goals():
     show_goals = Settings().get_specific_setting("show_goals")
     filtered_cards = DataUtils().get_visible_cards()
     filtered_cards.sort(key=lambda c: c.get("points_sum"), reverse=True)
-    return render_template('/goals.html', title="Goals", cards=filtered_cards[:5], active_user=active_user,
+    return render_template('/goals.html', title="Goals", cards=filtered_cards[:6], active_user=active_user,
                            message=message, show_goals=show_goals)
 
 
@@ -328,15 +327,34 @@ def vote_page():
                            already_voted=already_voted, show_voting=show_voting)
 
 
-@app.route('/management/settings', methods=['GET', 'POST'])
-def settings():
+@app.route('/management/users/get_table', methods=['GET', 'POST'])
+def management_users_get_table():
+    active_user = get_active_user()
+    if not active_user:
+        return redirect(url_for('login'))
+
+    users = DataUtils().get_users()
+    return render_template('management/component/users_table.html', users=users)
+
+
+@app.route('/management/cards/get_table', methods=['GET', 'POST'])
+def management_cards_get_table():
+    active_user = get_active_user()
+    if not active_user:
+        return redirect(url_for('login'))
+
+    cards = DataUtils().get_cards()
+    return render_template('management/component/cards_table.html', cards=cards)
+
+
+@app.route('/management/settings/get_table', methods=['GET', 'POST'])
+def management_settings_get_table():
     active_user = get_active_user()
     if not active_user:
         return redirect(url_for('login'))
 
     settings_data = Settings().get_settings()
-    return render_template('settings.html', title="settings", active_user=active_user,
-                           settings=settings_data)
+    return render_template('management/component/settings_table.html', settings=settings_data)
 
 
 @app.route('/management/settings/set/<name>', methods=['GET', 'POST'])
@@ -346,7 +364,8 @@ def settings_set(name):
         return redirect(url_for('login'))
 
     Settings().set_new_value(name)
-    return redirect(url_for('settings'))
+    settings_data = Settings().get_settings()
+    return render_template('management/component/settings_table.html', settings=settings_data)
 
 
 def add_votes(id_6, id_3, id_1, active_user):

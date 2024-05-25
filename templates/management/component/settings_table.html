@@ -1,0 +1,10 @@
+{% for setting, value in settings.items() %}
+<div class="big ui yellow2 icon button" hx-trigger="click" hx-get="/management/settings/set/{{setting}}"
+      hx-target="#settings_table">
+    {% if value == True %}
+    {{setting}} <i class="green check circle outline icon"></i>
+    {% else %}
+    {{setting}} <i class="red times circle icon"></i>
+    {% endif %}
+</div>
+{% endfor %}

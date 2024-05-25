@@ -1,27 +1,36 @@
 {% for card in cards %}
 {% if card.show == true %}
-<div class="card{{' card-large' if card.name|length > 80}}">
-      <span class="card-main{{' highlight_card' if card.highlight == true}}"
-            style="background-color: {{card.card_color}}">
-          <span class="card-line-text{{' card-line-text-large' if card.name|length > 80}}">
-              {% if card.name|length > 180 %}
-                <span data-tooltip="{{card.name}}" data-inverted="">{{card.name[0:180]}}..․</span>
-              {% else %}
-                <span>{{card.name}}</span>
-              {% endif %}
-              <span class="card-line-id">#{{card.id}}</span>
-              {% if card.points  != '' and show_points == true %}
-              <span class="card-line-points">{{card.points}} = {{card.points_sum}} {{ card.points_emoji }}</span>
-              {% endif %}
-          </span>
-      </span>
-    {% if card.emotions|length > 15 %}
-    <span class="card-line-emotion" data-tooltip="{{card.emotions}}" data-inverted="">{{card.emotions[0:15]}}...</span>
-    {% else %}
-    <span class="card-line-emotion">{{card.emotions}}</span>
-    {% endif %}
-    <span class="card-line-author author-{{card.author}}" data-tooltip="{{card.author}}" data-inverted=""
-          style="background-color: {{card.author_color}}">{{card.author_icon}}</span>
+
+{% if card.name|length > 100 %}
+{% set custom_class = 'card-xl-wide' %}
+{% endif %}
+
+<div class="ui card {{custom_class}}" style="background-color: {{card.card_color}};">
+    <div class="content">
+        <div class="meta">{{card.emotions}}
+            <span class="right floated like">#{{card.id}}</span>
+        </div>
+        <div class="description" style="font-size: 12pt; max-height: 100px;">
+            <span class="limit-text">{{card.name}}</span>
+        </div>
+    </div>
+    <div class="extra content" style="padding: .2em .4em;">
+        {% if card.points != '' and params.show_points == true %}
+        <div class="left floated">
+            <div class="ui grey inverted label">{{card.points}} = {{card.points_sum}} {{ card.points_emoji }}</div>
+        </div>
+        {% endif %}
+        <div class="right floated">
+            {% if card.name|length > 100 %}
+            <span class="ui grey icon label" data-tooltip="{{card.name | replace('\n', '')}}"
+                  data-position="bottom center"
+                  data-inverted="" data-variation="multiline"><i class="info circle icon"></i></span>
+            {% endif %}
+            <span class="ui white inverted label" style="background-color: {{card.author_color}}99;">
+                {{card.author}} {{card.author_icon}}
+            </span>
+        </div>
+    </div>
 </div>
 {% endif %}
 {% endfor %}
