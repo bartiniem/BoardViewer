@@ -13,8 +13,9 @@
             <div class="large ui grey label">Name: {{user.name}}</div>
             <div class="large ui circular label" style="background-color: {{user.color}}">{{user.icon}}</div><br>
             <div class="large ui grey label" style="background-color: {{user.color}}">Logo Color: {{user.color}}</div>
-            <div class="large ui grey label" style="background-color: {{user.card_color}}">Card Color: {{user.card_color}}</div><br>
-            <a href="/user_management/user/{{user.id}}" class="ui teal button"><i class="edit icon"></i> Edit</a>
+            <div class="large ui grey label" style="background-color: {{user.card_color}}">Card Color: {{user.card_color}}</div>
+            <hr>
+            <a href="/user_management/user/{{user.id}}" class="mini ui teal button"><i class="edit icon"></i> Edit</a>
         </div>
     </div>
     <div class="eight wide column">
@@ -50,7 +51,7 @@
                         </a>
                     </td>
                     <td>
-                        <a href="/user_management/card/{{card.id}}" class="ui teal button">
+                        <a href="/user_management/card/{{card.id}}" class="mini ui teal button">
                             <i class="edit icon"></i>
                             Edit
                         </a></td>

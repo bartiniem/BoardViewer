@@ -12,8 +12,8 @@ from datetime import datetime
 from flask import Flask, session, redirect, url_for, request, render_template
 
 # LOCAL IMPORTS
-from settings import Settings
-from datautils import DataUtils
+from utils.settings import Settings
+from utils.datautils import DataUtils
 
 # DEFINITIONS
 

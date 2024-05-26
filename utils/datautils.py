@@ -6,10 +6,10 @@
 
 import yaml
 
-USERS_FILENAME = "data/users.yaml"
-CARDS_FILE = "data/cards.yaml"
-VOTES_FILE = "data/votes.yaml"
-POINTS_FILE = "data/points.yaml"
+USERS_FILENAME = "./data/users.yaml"
+CARDS_FILE = "./data/cards.yaml"
+VOTES_FILE = "./data/votes.yaml"
+POINTS_FILE = "./data/points.yaml"
 
 
 class DataUtils:
