@@ -5,7 +5,7 @@
 {% set custom_class = 'card-xl-wide' %}
 {% endif %}
 
-<div class="ui card {{custom_class}}" style="background-color: {{card.card_color}};">
+<div class="ui large card {{custom_class}}" style="background-color: {{card.card_color}}; box-shadow: none;">
     <div class="content">
         <div class="meta">{{card.emotions}}
             <span class="right floated like">#{{card.id}}</span>
@@ -17,7 +17,9 @@
     <div class="extra content" style="padding: .2em .4em;">
         {% if card.points != '' and params.show_points == true %}
         <div class="left floated">
-            <div class="ui grey inverted label">{{card.points}} = {{card.points_sum}} {{ card.points_emoji }}</div>
+            <div class="ui grey inverted icon label">{{card.points}} = {{card.points_sum}}
+                {% autoescape false %}{{ card.points_emoji }}{% endautoescape %}
+            </div>
         </div>
         {% endif %}
         <div class="right floated">

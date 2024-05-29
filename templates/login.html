@@ -8,20 +8,15 @@
         <div class="ui inverted segment">
             <h3>Team Board v1.1</h3>
             {% include 'components/main_icons.html' %}
-        </div>
-    </div>
-    <div class="ui row">
-        <div class="four wide column">
-        <div class="ui inverted segment">
             {% if active_user.name is undefined %}
             <form method="post" class="ui inverted form">
                 <div class="field">
                     <label>Username:</label>
-                    <input type="text" id="login_name" name="login_name">
+                    <input type="text" id="login_name" name="login_name" class="custom-select">
                 </div>
                 <div class="field">
                     <label>Pin:</label>
-                    <input type="password" name="login_pass">
+                    <input type="password" name="login_pass" class="custom-select">
                 </div>
                 <div class="field">
                     <button class="big fluid ui yellow2 button" type="submit" name="login_btn" value="login_btn">
@@ -33,8 +28,8 @@
             <div>Logged as {{active_user.name}}</div>
             {% endif %}
         </div>
-        </div>
     </div>
+    {% include 'footer.html' %}
 </div>
 </body>
 </html>

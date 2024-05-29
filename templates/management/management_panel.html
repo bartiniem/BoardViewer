@@ -5,19 +5,19 @@
 {% include 'navbar.html' %}
 <br>
 <div class="ui centered grid">
+    <div class="ten wide column">
+        <div class="ui inverted centered aligned segment">
+            <h2 class="ui header">Cards</h2>
+            <div hx-trigger="load" hx-get="/management/cards/get_table"></div>
+        </div>
+    </div>
     <div class="six wide column">
-        <div class="ui inverted segment">
+        <div class="ui inverted center aligned segment">
             <div hx-trigger="load" hx-get="/management/settings/get_table" id="settings_table">></div>
         </div>
         <div class="ui inverted segment">
             <h2 class="ui header">Users</h2>
             <div hx-trigger="load" hx-get="/management/users/get_table"></div>
-        </div>
-    </div>
-    <div class="eight wide column">
-        <div class="ui inverted centered aligned segment">
-            <h2 class="ui header">Cards</h2>
-            <div hx-trigger="load" hx-get="/management/cards/get_table"></div>
         </div>
     </div>
     {% include 'footer.html' %}

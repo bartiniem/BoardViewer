@@ -12,14 +12,19 @@
         <div class="ui black item" style="background-color: {{active_user.color}}">
             {{active_user.icon}} {{ active_user.name }}
         </div>
-        <a href="/user_management/configuration" class="ui black icon item"><i class="cog icon"></i> Settings</a>
-        <a href="/logout" class="ui black icon item"><i class="sign out alternate icon"></i> Logout</a>
+
+        {% if active_user and active_user.role == 'admin' %}
+        <a href="/management/panel" class="ui black item">
+            <i class="blue users icon"></i>
+            Admin Panel
+        </a>
+        {% endif %}
+
+        <a href="/user_management/configuration" class="ui black item"><i class="cog icon"></i> Settings</a>
+        <a href="/logout" class="ui black item"><i class="sign out alternate icon"></i> Logout</a>
         {% else %}
         <a href="/login" class="ui black item"> Sign in</a>
         {% endif %}
 
-        {% if active_user and active_user.role == 'admin' %}
-        <a href="/management/panel" class="ui black item"><i class="users icon"></i> Admin Panel</a>
-        {% endif %}
     </div>
 </div>

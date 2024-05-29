@@ -88,11 +88,11 @@ class DataUtils:
         sorted_points = sorted([card.get("points_sum") for card in cards], reverse=True)
         for card in cards:
             if len(sorted_points) > 0 and card["points_sum"] == sorted_points[0]:
-                card["points_emoji"] = "🥇"
+                card["points_emoji"] = '<i class="caret right icon"></i><i class="yellow medal icon"></i>1'
             if len(sorted_points) > 1 and card["points_sum"] == sorted_points[1]:
-                card["points_emoji"] = "🥈"
+                card["points_emoji"] = '<i class="caret right icon"></i><i class="grey medal icon"></i> 2'
             if len(sorted_points) > 2 and card["points_sum"] == sorted_points[2]:
-                card["points_emoji"] = "🥉"
+                card["points_emoji"] = '<i class="caret right icon"></i><i class="brown medal icon"></i> 3'
         return cards
 
     def update_user_data(self, cards):

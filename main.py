@@ -125,12 +125,15 @@ def show_card(card_id):
     if not active_user or active_user.get("role") != "admin":
         return redirect(url_for('permission_denied'))
     cards = DataUtils().get_cards()
+    new_status = False
     for card in cards:
         if str(card.get("id")) == str(card_id):
+            new_status = False if card.get("show") in [True] else True
             card["show"] = False if card.get("show") in [True] else True
             card["last_edit"] = datetime.now().timestamp()
     DataUtils().save_cards(cards)
-    return redirect(url_for('management_cards'))
+    icon = "green check circle" if new_status else "red times circle"
+    return f'️<i class="{icon} icon"></i>'
 
 
 @app.route('/management/show_vote/<vote_id>', methods=['GET', 'POST'])
@@ -290,7 +293,7 @@ def goals_save_goals(card_id):
     for card in filtered_cards:
         if str(card['id']) == str(card_id):
             card["goals"] = request.args.get(f"goals_{card_id}")
-            message = f"{last_update} Data saved."
+            message = f"Saved {last_update}."
 
     DataUtils().save_cards(filtered_cards)
     return message
