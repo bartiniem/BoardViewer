@@ -5,13 +5,14 @@
     <a href="/add_card" class="ui item"><i class="plus square icon"></i> Add Card</a>
     <a href="/vote" class="ui item"><i class="vote yea icon"></i> Vote</a>
     {% endif %}
-    <a href="/goals" class="ui item"><i class="bullseye icon"></i> Goals</a>
+    <a href="/goals" class="ui item"><i class="yellow bullseye icon"></i> Goals</a>
 
     <div class="right menu">
         {% if active_user %}
         <div class="ui item" style="background-color: {{active_user.color}}">
             {{active_user.icon}} {{ active_user.name }}
         </div>
+        {% endif %}
 
         {% if active_user and active_user.role == 'admin' %}
         <a href="/management/panel" class="ui item">
@@ -20,6 +21,7 @@
         </a>
         {% endif %}
 
+        {% if active_user %}
         <a href="/user_management/configuration" class="ui item"><i class="cog icon"></i> Settings</a>
         <a href="/logout" class="ui item"><i class="sign out alternate icon"></i> Logout</a>
         {% else %}

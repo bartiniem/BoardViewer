@@ -22,15 +22,17 @@
         <td>{{card.type}}</td>
         <td>{{card.points}}</td>
         <td>{{card.points_sum}}</td>
-        <td><div hx-trigger="click" hx-get="/management/showcard/{{card.id}}" class="ui black icon button">
-            {% if card.show == True %}
-            <i class="green check circle icon"></i>
-            {% else %}
-            <i class="red times circle icon"></i>
-            {% endif %}
-        </div>
+        <td>
+            <div hx-trigger="click" hx-get="/management/showcard/{{card.id}}" class="ui black icon button">
+                {% if card.show == True %}
+                <i class="green check circle icon"></i>
+                {% else %}
+                <i class="red times circle icon"></i>
+                {% endif %}
+            </div>
         </td>
-        <td><a href="/management/card/{{card.id}}" class="ui teal icon button" data-tooltip="Edit" data-inverted=""><i class="edit icon"></i></a></td>
+        <td><a href="/management/card/{{card.id}}" class="ui teal icon button" data-tooltip="Edit" data-inverted=""><i
+                class="edit icon"></i></a></td>
     </tr>
     {% endfor %}
     </tbody>

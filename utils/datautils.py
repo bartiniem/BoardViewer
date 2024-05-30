@@ -118,8 +118,8 @@ class DataUtils:
 
     def get_cards_by_type(self, card_type=""):
         cards = self.get_cards()
-        cards = self.update_points_emoji(cards)
         specified_cards = [card for card in cards if card.get("type") in [card_type]]
+        specified_cards = self.update_points_emoji(specified_cards)
         specified_cards = self.update_user_data(specified_cards)
         specified_cards.sort(key=lambda c: c.get("last_edit"), reverse=False)
         return specified_cards

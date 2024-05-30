@@ -8,14 +8,35 @@
     <div class="three wide column">
         <div class="ui inverted segment">
             <h4><i class="address card icon"></i> User data</h4>
-            <div class="large ui grey label">Id: {{user.id}}</div>
-            <div class="large ui grey label">Initials: {{user.initials}}</div>
-            <div class="large ui grey label">Name: {{user.name}}</div>
-            <div class="large ui circular label" style="background-color: {{user.color}}">{{user.icon}}</div><br>
-            <div class="large ui grey label" style="background-color: {{user.color}}">Logo Color: {{user.color}}</div>
-            <div class="large ui grey label" style="background-color: {{user.card_color}}">Card Color: {{user.card_color}}</div>
-            <hr>
-            <a href="/user_management/user/{{user.id}}" class="ui teal button"><i class="edit icon"></i> Edit</a>
+            <div class="ui centered cards">
+                <div class="ui inverted center aligned basic card" style="background-color: {{user.card_color}}">
+                    <div class="content">
+                        <div class="meta">
+                            <div class="large ui centered grey circular label" style="background-color: {{user.color}}">
+                                {{user.icon}}
+                            </div>
+                            <span class="right floated like">#{{user.id}}</span>
+                        </div>
+                        <div class="description" style="font-size: 12pt;">
+                            <p class="large ui fluid centered grey basic label">
+                                {{user.initials}} {{user.name}}
+                            </p>
+                            <p class="large ui fluid centered grey label" style="background-color: {{user.color}}">
+                                Logo Color: {{user.color}}
+                            </p>
+                            <p class="large ui fluid centered black basic label"
+                               style="background-color: {{user.card_color}}">
+                                Card Color: {{user.card_color}}
+                            </p>
+                        </div>
+                    </div>
+                    <div class="extra content">
+                        <a href="/user_management/user/{{user.id}}" class="ui teal button">
+                            <i class="edit icon"></i> Edit
+                        </a>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
     <div class="eight wide column">
@@ -46,9 +67,15 @@
                     <td>{{card.points}}</td>
                     <td>{{card.points_sum}}</td>
                     <td>
-                        <a href="/user_management/showcard/{{card.id}}">
-                            <span title="{{card.show}}">{{'✔️' if card.show == True else '✖️' }}</span>
-                        </a>
+                        <div hx-trigger="click" hx-get="/user_management/showcard/{{card.id}}"
+                             class="ui black icon button">
+                            {% if card.show == True %}
+                            <i class="green check circle icon"></i>
+                            {% else %}
+                            <i class="red times circle icon"></i>
+                            {% endif %}
+                        </div>
+
                     </td>
                     <td>
                         <a href="/user_management/card/{{card.id}}" class="ui teal button">
@@ -70,7 +97,7 @@
                     <th>Id</th>
                     <th>Author</th>
                     <th>Value</th>
-                    <th>Show Status</th>
+                    <th>Visible</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -81,11 +108,11 @@
                     <td>{{vote.value}}</td>
                     <td>
                         <a href="/user_management/show_vote/{{vote.id}}" class="ui black icon button">
-                        {% if vote.show == True %}
+                            {% if vote.show == True %}
                             <i class="green check circle outline icon"></i>
-                        {% else %}
+                            {% else %}
                             <i class="red times circle icon"></i>
-                        {% endif %}
+                            {% endif %}
                         </a>
                     </td>
                 </tr>
@@ -127,5 +154,6 @@
     </div>
 </div>
 {% include 'footer.html' %}
+<script type="text/javascript" src="/static/js/htmx.min.js"></script>
 </body>
 </html>

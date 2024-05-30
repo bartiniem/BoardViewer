@@ -181,15 +181,13 @@ def user_configuration():
 
 @app.route('/user_management/showcard/<card_id>', methods=['GET', 'POST'])
 def show_user_card(card_id):
-    if not get_active_user():
-        return redirect(url_for('login'))
-    cards = DataUtils().get_cards()
-    for card in cards:
-        if str(card.get("id")) == str(card_id):
-            card["show"] = False if card.get("show") in [True] else True
-            card["last_edit"] = datetime.now().timestamp()
-    DataUtils().save_cards(cards)
-    return redirect(url_for('user_configuration'))
+    active_user = get_active_user()
+    if not active_user:
+        return redirect(url_for('permission_denied'))
+
+    new_status = DataUtils().show_hide_card(card_id)
+    icon = "green check circle" if new_status else "red times circle"
+    return f'️<i class="{icon} icon"></i>'
 
 
 @app.route('/user_management/show_vote/<vote_id>', methods=['GET', 'POST'])
