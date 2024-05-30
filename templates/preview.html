@@ -6,7 +6,8 @@
 <br>
 <div class="ui centered grid">
     <div class="ui inverted segment">
-        {% include 'components/dashboard_points.html' %}
+        <div>(Refresh every 10s)</div>
+        <div hx-trigger="load, every 10s" hx-get="/votes/load" class=""></div>
         <h4 class="ui horizontal divider header">
             <i class="olive plus circle icon"></i> Positive
         </h4>

@@ -3,6 +3,7 @@
 #  Designed and implemented by bartiniem
 #  -----------------------------------------------------------------------
 #  """
+from datetime import datetime
 
 import yaml
 
@@ -53,24 +54,6 @@ class DataUtils:
     def save_users(self, users):
         self.save_data_to_yaml(users, USERS_FILENAME)
 
-    def save_cards(self, cards):
-        self.save_data_to_yaml(cards, CARDS_FILE)
-
-    def save_votes(self, votes):
-        self.save_data_to_yaml(votes, VOTES_FILE)
-
-    def save_points(self, votes):
-        self.save_data_to_yaml(votes, POINTS_FILE)
-
-    @staticmethod
-    def get_card_by_id(card_id):
-        cards = DataUtils().load_yaml_data(CARDS_FILE)
-        matched_card = {}
-        for card in cards:
-            if str(card.get("id")) == str(card_id):
-                matched_card = card
-        return matched_card
-
     def get_users(self):
         users = self.load_yaml_data(USERS_FILENAME)
         return users
@@ -90,6 +73,33 @@ class DataUtils:
         user = [user for user in users if str(user.get("id")) == str(user_id)]
         return user[0] if user else {}
 
+    def add_user(self, user_data: dict):
+        users = self.load_yaml_data(USERS_FILENAME)
+        users.append(user_data)
+        self.save_users(users)
+
+    def get_max_user_id(self):
+        users_id_max = max([int(u.get("id")) for u in self.get_users()]) + 1
+        return users_id_max
+
+    def save_cards(self, cards):
+        self.save_data_to_yaml(cards, CARDS_FILE)
+
+    def save_votes(self, votes):
+        self.save_data_to_yaml(votes, VOTES_FILE)
+
+    def save_points(self, votes):
+        self.save_data_to_yaml(votes, POINTS_FILE)
+
+    @staticmethod
+    def get_card_by_id(card_id):
+        cards = DataUtils().load_yaml_data(CARDS_FILE)
+        matched_card = {}
+        for card in cards:
+            if str(card.get("id")) == str(card_id):
+                matched_card = card
+        return matched_card
+
     def get_user_initials(self, username):
         user = self.get_user_by_name(username)
         return user.get("initials") if user else {}
@@ -105,6 +115,14 @@ class DataUtils:
             if len(sorted_points) > 2 and card["points_sum"] == sorted_points[2]:
                 card["points_emoji"] = '<i class="caret right icon"></i><i class="brown medal icon"></i> 3'
         return cards
+
+    def get_cards_by_type(self, card_type=""):
+        cards = self.get_cards()
+        cards = self.update_points_emoji(cards)
+        specified_cards = [card for card in cards if card.get("type") in [card_type]]
+        specified_cards = self.update_user_data(specified_cards)
+        specified_cards.sort(key=lambda c: c.get("last_edit"), reverse=False)
+        return specified_cards
 
     def update_user_data(self, cards):
         for card in cards:
@@ -146,6 +164,44 @@ class DataUtils:
             sum_points += points_sum
         return sum_points
 
+    def get_stats(self):
+        cards = self.get_cards()
+        sum_cards = len(cards)
+        sum_points = self.get_points_for_cards()
+        stats = {
+            'sum_cards': sum_cards,
+            'sum_points': sum_points,
+        }
+        return stats
+
     def get_visible_cards(self):
         cards = self.get_cards()
         return [card for card in cards if bool(card.get("show"))]
+
+    def add_votes(self, id_6, id_3, id_1, active_user):
+        cards = self.get_cards()
+        points = self.get_points()
+        for card in cards:
+            if card.get("id") == id_6:
+                card["points"] += ",6" if card["points"] else "6"
+            if card.get("id") == id_3:
+                card["points"] += ",3" if card["points"] else "3"
+            if card.get("id") == id_1:
+                card["points"] += ",1" if card["points"] else "1"
+        new_points = {"author": active_user.get("name"), "points_6": id_6, "points_3": id_3, "points_1": id_1}
+        points.append(new_points)
+        self.save_points(points)
+        self.save_cards(cards)
+        message = f"Thank you for votes. 6 -> #{id_6} | 3 -> #{id_3} | 1 -> #{id_1}"
+        return message
+
+    def show_hide_card(self, card_id):
+        cards = self.get_cards()
+        new_status = False
+        for card in cards:
+            if str(card.get("id")) == str(card_id):
+                new_status = False if card.get("show") in [True] else True
+                card["show"] = False if card.get("show") in [True] else True
+                card["last_edit"] = datetime.now().timestamp()
+        self.save_cards(cards)
+        return new_status

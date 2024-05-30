@@ -1,8 +1,7 @@
-{% if show_votes %}
 {% for vote in votes %}
 {% if vote.show == true %}
-<div class="big ui grey icon label" style="background-color: {{vote.author_color}}"
-     data-tooltip="{{vote.author}}" data-inverted="">
+<div class="big ui grey icon label" style="background-color: {{vote.author_color}}" data-tooltip="{{vote.author}}"
+     data-inverted="">
     {{vote.author_icon}}
     {% if vote.value == "+" %}
     <i class="yellow thumbs up icon"></i>
@@ -14,12 +13,11 @@
 </div>
 {% endif %}
 {% endfor %}
+
+{% if stats.sum_cards %}
+<div class="big ui grey label">Cards: {{stats.sum_cards}}</div>
 {% endif %}
 
-{% if sum_cards %}
-<div class="big ui grey label">Cards: {{sum_cards}}</div>
-{% endif %}
-
-{% if sum_points %}
-<div class="big ui grey label">Points: {{sum_points}}</div>
+{% if stats.sum_points %}
+<div class="big ui grey label">Points: {{stats.sum_points}}</div>
 {% endif %}

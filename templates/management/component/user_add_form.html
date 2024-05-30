@@ -1,0 +1,68 @@
+<div class="ui inverted form">
+    <div class="three fields">
+        <div class="field">
+            <label>Name</label>
+            <input class="custom-select" type="text" name="user_name">
+        </div>
+        <div class="field">
+            <label>Initials</label>
+            <input class="custom-select" type="text" name="user_initials">
+        </div>
+        <div class="field">
+            <label>Pin</label>
+            <input class="custom-select" type="text" name="user_pin">
+        </div>
+    </div>
+    <div class="four fields">
+        <div class="field">
+            <label>Role</label>
+            <select class="custom-select" name="user_role">
+                <option value="user" selected>user</option>
+                <option value="admin">admin</option>
+            </select>
+        </div>
+        <div class="field">
+            <label>Icon</label>
+            <select class="custom-select" name="user_icon">
+                <option value="🐳">🐳</option>
+                <option value="🐦">🐦</option>
+                <option value="🐵">🐵</option>
+                <option value="🐴">🐴</option>
+                <option value="🐨">🐨</option>
+                <option value="🐺">🐺</option>
+                <option value="🐙">🐙</option>
+                <option value="🦇">🦇</option>
+                <option value="🦅">🦅</option>
+                <option value="🐘">🐘</option>
+                <option value="🐘">🐘</option>
+                <option value="🦧">🦧</option>
+                <option value="🦗">🦗</option>
+                <option value="🦟">🦟</option>
+                <option value="🐓">🐓</option>
+                <option value="🐠">🐠</option>
+                <option value="🦙">🦙</option>
+                <option value="🦓">🦓</option>
+                <option value="🦝">🦝</option>
+                <option value="🦉">🦉</option>
+                <option value="🦊">🦊</option>
+                <option value="🦘">🦘</option>
+                <option value="🐝">🐝</option>
+            </select>
+        </div>
+    <div class="field">
+        <label>Bg color</label>
+        <input class="custom-select" type="color" name="user_bg_color">
+    </div>
+    <div class="field">
+        <label>Card Color</label>
+        <input class="custom-select" type="color" name="user_card_color" value="#ceb553">
+    </div>
+    </div>
+    <a class="ui yellow2 button" hx-trigger="click" hx-get="/management/users/add_user"
+       hx-target="#add_user_output"
+       hx-include="[name='user_name'],[name='user_initials'],[name='user_pin'],[name='user_role'],[name='user_icon'],[name='user_bg_color'],[name='user_card_color']"
+       hx-indicator="#add_user_loader"
+    >Add user</a>
+    <div id="add_user_loader" class="htmx-indicator">Loading</div>
+    <div id="add_user_output"></div>
+</div>

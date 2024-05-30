@@ -1,4 +1,8 @@
+BUG:
+
+FEATURES:
 1. Zabezpieczenie duplikowania kart (problem przy edycji)
 2. Grupowanie kartek
 3. Show cards/vote w panelu bocznym
 4. Modal w dlugich kartkach
+

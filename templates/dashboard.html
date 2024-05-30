@@ -6,15 +6,15 @@
 <br>
 <div class="ui centered grid">
     <div class="ui inverted segment">
-        {% include 'components/dashboard_points.html' %}
+        <div hx-trigger="load" hx-get="/votes/load" class=""></div>
         <h4 class="ui horizontal divider header">
-            <i class="plus circle icon"></i> Positive
+            <i class="olive plus circle icon"></i> Positive
         </h4>
         <div class="board_good">
             <div hx-trigger="load" hx-get="/cards/good/load" class="ui centered basic cards"></div>
         </div>
         <h4 class="ui horizontal divider header">
-            <i class="minus circle icon"></i> Negative
+            <i class="pink minus circle icon"></i> Negative
         </h4>
         <div class="board_bad">
             <div hx-trigger="load" hx-get="/cards/bad/load" class="ui centered basic cards"></div>

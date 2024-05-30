@@ -28,73 +28,33 @@ app.config['next_vote_id'] = 100
 @app.route('/', methods=['GET', 'POST'])
 def index():
     active_user = get_active_user()
-    last_update = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
-    show_points = Settings().get_specific_setting("show_points")
-    cards = DataUtils().get_cards()
-    cards = DataUtils().update_points_emoji(cards)
-    good_cards = [card for card in cards if card.get("type") in "good"]
-    bad_cards = [card for card in cards if card.get("type") in "bad"]
-    votes = DataUtils().get_votes()
-    sum_cards = len(cards)
-    sum_points = DataUtils().get_points_for_cards()
-    good_cards = DataUtils().update_user_data(good_cards)
-    bad_cards = DataUtils().update_user_data(bad_cards)
-    votes = DataUtils().update_votes_data(votes)
-    good_cards.sort(key=lambda c: c.get("last_edit"), reverse=False)
-    bad_cards.sort(key=lambda c: c.get("last_edit"), reverse=False)
-    votes.sort(key=lambda c: c.get("last_edit"), reverse=False)
-    return render_template('dashboard.html', title="BoardViewer", active_user=active_user,
-                           good_cards=good_cards, bad_cards=bad_cards, last_update=last_update, votes=votes,
-                           sum_cards=sum_cards, sum_points=sum_points, show_votes=True, show_points=show_points)
-
-
-@app.route('/cards/good/load', methods=['GET', 'POST'])
-def cards_good_load():
-    cards = DataUtils().get_cards()
-    cards = DataUtils().update_points_emoji(cards)
-    good_cards = [card for card in cards if card.get("type") in "good"]
-    good_cards = DataUtils().update_user_data(good_cards)
-    good_cards.sort(key=lambda c: c.get("last_edit"), reverse=False)
-    params = {
-        'show_points': Settings().get_specific_setting("show_points")
-    }
-    return render_template('components/cards_box.html', cards=good_cards, params=params)
-
-
-@app.route('/cards/bad/load', methods=['GET', 'POST'])
-def cards_bad_load():
-    cards = DataUtils().get_cards()
-    cards = DataUtils().update_points_emoji(cards)
-    bad_cards = [card for card in cards if card.get("type") in "bad"]
-    bad_cards = DataUtils().update_user_data(bad_cards)
-    bad_cards.sort(key=lambda c: c.get("last_edit"), reverse=False)
-    params = {
-        'show_points': Settings().get_specific_setting("show_points")
-    }
-    return render_template('components/cards_box.html', cards=bad_cards, params=params)
+    return render_template('dashboard.html', title="BoardViewer", active_user=active_user)
 
 
 @app.route('/preview', methods=['GET', 'POST'])
 def preview():
     active_user = get_active_user()
-    last_update = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+    return render_template('preview.html', title="BoardViewer", active_user=active_user)
+
+
+@app.route('/votes/load', methods=['GET', 'POST'])
+def votes_load():
     show_points = Settings().get_specific_setting("show_points")
-    cards = DataUtils().get_cards()
-    cards = DataUtils().update_points_emoji(cards)
-    good_cards = [card for card in cards if card.get("type") in "good"]
-    bad_cards = [card for card in cards if card.get("type") in "bad"]
+    stats = DataUtils().get_stats()
     votes = DataUtils().get_votes()
-    sum_cards = len(cards)
-    sum_points = DataUtils().get_points_for_cards()
-    good_cards = DataUtils().update_user_data(good_cards)
-    bad_cards = DataUtils().update_user_data(bad_cards)
     votes = DataUtils().update_votes_data(votes)
-    good_cards.sort(key=lambda c: c.get("last_edit"), reverse=False)
-    bad_cards.sort(key=lambda c: c.get("last_edit"), reverse=False)
     votes.sort(key=lambda c: c.get("last_edit"), reverse=False)
-    return render_template('preview.html', title="BoardViewer", active_user=active_user,
-                           good_cards=good_cards, bad_cards=bad_cards, last_update=last_update, votes=votes,
-                           sum_cards=sum_cards, sum_points=sum_points, show_votes=True, show_points=show_points)
+    return render_template('components/dashboard_points.html', votes=votes, show_points=show_points,
+                           stats=stats)
+
+
+@app.route('/cards/<card_type>/load', methods=['GET', 'POST'])
+def cards_good_load(card_type):
+    cards = DataUtils().get_cards_by_type(card_type)
+    params = {
+        'show_points': Settings().get_specific_setting("show_points")
+    }
+    return render_template('components/cards_box.html', cards=cards, params=params)
 
 
 @app.route('/add_card', methods=['GET', 'POST'])
@@ -124,16 +84,33 @@ def show_card(card_id):
     active_user = get_active_user()
     if not active_user or active_user.get("role") != "admin":
         return redirect(url_for('permission_denied'))
-    cards = DataUtils().get_cards()
-    new_status = False
-    for card in cards:
-        if str(card.get("id")) == str(card_id):
-            new_status = False if card.get("show") in [True] else True
-            card["show"] = False if card.get("show") in [True] else True
-            card["last_edit"] = datetime.now().timestamp()
-    DataUtils().save_cards(cards)
+
+    new_status = DataUtils().show_hide_card(card_id)
     icon = "green check circle" if new_status else "red times circle"
     return f'️<i class="{icon} icon"></i>'
+
+
+@app.route('/management/users/add_user', methods=['GET', 'POST'])
+def management_add_user():
+    active_user = get_active_user()
+    if not active_user or active_user.get("role") != "admin":
+        return redirect(url_for('permission_denied'))
+
+    name = request.args.get('user_name', '')
+    pin = request.args.get('user_pin', '')
+    encoded_pin = str(hashlib.md5(pin.encode("utf-8")).hexdigest())
+    user_data = {
+        'card_color': request.args.get('user_card_color', ''),
+        'color': request.args.get('user_bg_color', ''),
+        'icon': request.args.get('user_icon', ''),
+        'id': DataUtils().get_max_user_id(),
+        'initials': request.args.get('user_initials', ''),
+        'name': name,
+        'passwd': encoded_pin,
+        'role': request.args.get('user_role', ''),
+    }
+    DataUtils().add_user(user_data)
+    return f"Done. User {name} was added."
 
 
 @app.route('/cards/card/<card_id>/get_modal', methods=['GET', 'POST'])
@@ -328,7 +305,7 @@ def vote_page():
                 if len({id_6, id_3, id_1}) < len([id_6, id_3, id_1]):
                     message = "Duplicated cards. The Vote was canceled."
                 else:
-                    message = add_votes(id_6, id_3, id_1, active_user)
+                    message = DataUtils().add_votes(id_6, id_3, id_1, active_user)
                     already_voted = True
         filtered_cards = DataUtils().get_visible_cards()
         filtered_cards.sort(key=lambda c: c.get("id"), reverse=False)
@@ -377,24 +354,6 @@ def settings_set(name):
     return render_template('management/component/settings_table.html', settings=settings_data)
 
 
-def add_votes(id_6, id_3, id_1, active_user):
-    cards = DataUtils().get_cards()
-    points = DataUtils().get_points()
-    for card in cards:
-        if card.get("id") == id_6:
-            card["points"] += ",6" if card["points"] else "6"
-        if card.get("id") == id_3:
-            card["points"] += ",3" if card["points"] else "3"
-        if card.get("id") == id_1:
-            card["points"] += ",1" if card["points"] else "1"
-    new_points = {"author": active_user.get("name"), "points_6": id_6, "points_3": id_3, "points_1": id_1}
-    points.append(new_points)
-    DataUtils().save_points(points)
-    DataUtils().save_cards(cards)
-    message = "Thank you for votes. 6 -> #{} | 3 -> #{} | 1 -> #{}".format(id_6, id_3, id_1)
-    return message
-
-
 # [ERRORS]
 @app.errorhandler(404)
 def not_found(error):
@@ -417,7 +376,7 @@ def add_card_form(id_to_set):
                         "name": card_text, "points": "", "show": False, "type": card_type, "last_edit": 0}
             cards.append(new_card)
             DataUtils().save_cards(cards)
-            message = "New card added: {}".format(new_card)
+            message = f"New card was added: {new_card}"
             app.config['next_id'] += 1
     return message
 
@@ -433,7 +392,7 @@ def vote_form(id_to_set):
                         "last_edit": 0}
             votes.append(new_vote)
             DataUtils().save_votes(votes)
-            message = "New vote added: {}".format(new_vote)
+            message = f"New vote added: {new_vote}"
             app.config['next_vote_id'] += 1
     return message
 
@@ -455,7 +414,7 @@ def edit_card_form(card_id):
                 if str(card.get("id")) == str(card_id):
                     card.update(new_card)
             DataUtils().save_cards(cards)
-            message = "Saved card data: {}".format(new_card)
+            message = f"Saved card data: {new_card}"
     return message
 
 
@@ -472,7 +431,7 @@ def edit_user_form_from_user(user_id):
                 if str(user.get("id")) == str(user_id):
                     user.update(new_user_data)
             DataUtils().save_users(users)
-            message = "Saved user data: {}".format(new_user_data)
+            message = f"Saved user data: {new_user_data}"
     return message
 
 
@@ -497,7 +456,7 @@ def edit_user_form(user_id):
                 if str(user.get("id")) == str(user_id):
                     user.update(new_user_data)
             DataUtils().save_users(users)
-            message = "Saved user data: {}".format(new_user_data)
+            message = f"Saved user data: {new_user_data}"
     return message
 
 

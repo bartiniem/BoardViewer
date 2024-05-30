@@ -1,29 +1,29 @@
 <div class="ui inverted stackable menu">
-    <a href="/" class="ui black item"><i class="home icon"></i> Board</a>
-    <a href="/preview" class="ui black item"><i class="film icon"></i> Preview</a>
-    <a href="/goals" class="ui black item"><i class="bullseye icon"></i> Goals</a>
+    <a href="/" class="ui item"><i class="home icon"></i> Board</a>
+    <a href="/preview" class="ui item"><i class="film icon"></i> Preview</a>
     {% if active_user %}
-    <a href="/add_card" class="ui black item"><i class="plus square icon"></i> Add Card</a>
-    <a href="/vote" class="ui black item"><i class="vote yea icon"></i> Vote</a>
+    <a href="/add_card" class="ui item"><i class="plus square icon"></i> Add Card</a>
+    <a href="/vote" class="ui item"><i class="vote yea icon"></i> Vote</a>
     {% endif %}
+    <a href="/goals" class="ui item"><i class="bullseye icon"></i> Goals</a>
 
     <div class="right menu">
         {% if active_user %}
-        <div class="ui black item" style="background-color: {{active_user.color}}">
+        <div class="ui item" style="background-color: {{active_user.color}}">
             {{active_user.icon}} {{ active_user.name }}
         </div>
 
         {% if active_user and active_user.role == 'admin' %}
-        <a href="/management/panel" class="ui black item">
+        <a href="/management/panel" class="ui item">
             <i class="blue users icon"></i>
             Admin Panel
         </a>
         {% endif %}
 
-        <a href="/user_management/configuration" class="ui black item"><i class="cog icon"></i> Settings</a>
-        <a href="/logout" class="ui black item"><i class="sign out alternate icon"></i> Logout</a>
+        <a href="/user_management/configuration" class="ui item"><i class="cog icon"></i> Settings</a>
+        <a href="/logout" class="ui item"><i class="sign out alternate icon"></i> Logout</a>
         {% else %}
-        <a href="/login" class="ui black item"> Sign in</a>
+        <a href="/login" class="ui item"> Sign in</a>
         {% endif %}
 
     </div>
