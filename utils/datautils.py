@@ -39,6 +39,17 @@ class DataUtils:
             card["points_sum"] = points_sum
         return cards
 
+    @staticmethod
+    def get_card_data(card_id):
+        cards = DataUtils().load_yaml_data(CARDS_FILE)
+        card_data = {}
+        for card in cards:
+            if str(card.get("id")) == str(card_id):
+                card_data = card
+                break
+
+        return card_data
+
     def save_users(self, users):
         self.save_data_to_yaml(users, USERS_FILENAME)
 

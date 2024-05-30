@@ -136,6 +136,12 @@ def show_card(card_id):
     return f'️<i class="{icon} icon"></i>'
 
 
+@app.route('/cards/card/<card_id>/get_modal', methods=['GET', 'POST'])
+def get_card_modal(card_id):
+    card_data = DataUtils.get_card_data(card_id)
+    return render_template('components/basic_modal.html', card_data=card_data)
+
+
 @app.route('/management/show_vote/<vote_id>', methods=['GET', 'POST'])
 def show_vote(vote_id):
     active_user = get_active_user()

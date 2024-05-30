@@ -5,7 +5,7 @@
 {% set custom_class = 'card-xl-wide' %}
 {% endif %}
 
-<div class="ui large card {{custom_class}}" style="background-color: {{card.card_color}}; box-shadow: none;">
+<div class="ui large card {{custom_class}}" style="background-color: {{card.card_color}};">
     <div class="content">
         <div class="meta">{{card.emotions}}
             <span class="right floated like">#{{card.id}}</span>
@@ -24,9 +24,11 @@
         {% endif %}
         <div class="right floated">
             {% if card.name|length > 100 %}
-            <span class="ui grey icon label" data-tooltip="{{card.name | replace('\n', '')}}"
-                  data-position="bottom center"
-                  data-inverted="" data-variation="multiline"><i class="info circle icon"></i></span>
+            <a class="ui grey icon label"
+                  hx-trigger="click" hx-get="/cards/card/{{card.id}}/get_modal" hx-target="#basic_modal_output"
+                  data-tooltip="Details" data-inverted="">
+                <i class="info circle icon"></i>
+            </a>
             {% endif %}
             <span class="ui white inverted label" style="background-color: {{card.author_color}}99;">
                 {{card.author}} {{card.author_icon}}
