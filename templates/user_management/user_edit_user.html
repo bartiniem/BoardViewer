@@ -56,17 +56,17 @@
                         <input type="color" name="user_card_color" maxlength="40" value="{{user.card_color}}"/>
                     </div>
                 </div>
-                <button type="submit" class="fluid big ui yellow2 button" name="save_user_btn" value="save_user">
+                <button class="fluid big ui yellow2 button"
+                        hx-trigger="click" hx-target="#output" hx-get="/user_management/user/{{user.id}}/save_new_data"
+                        hx-include="[name='user_icon'],[name='user_color'],[name='user_card_color']">
                     Save
                 </button>
+                <div id="output"></div>
             </form>
-            {% if message %}
-            <div>Output:</div>
-            <div>{{message}}</div>
-            {% endif %}
         </div>
     </div>
     {% include 'footer.html' %}
 </div>
+<script type="text/javascript" src="/static/js/htmx.min.js"></script>
 </body>
 </html>

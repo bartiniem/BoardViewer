@@ -29,9 +29,8 @@ class DataUtils:
             yaml_data = yaml.load(file, Loader=yaml.Loader)
             return yaml_data
 
-    @staticmethod
-    def get_cards():
-        cards = DataUtils().load_yaml_data(CARDS_FILE)
+    def get_cards(self):
+        cards = self.load_yaml_data(CARDS_FILE)
         for card in cards:
             points_sum = 0
             if card.get("points"):
@@ -40,16 +39,37 @@ class DataUtils:
             card["points_sum"] = points_sum
         return cards
 
-    @staticmethod
-    def get_card_data(card_id):
-        cards = DataUtils().load_yaml_data(CARDS_FILE)
-        card_data = {}
+    def add_card(self, card_data):
+        cards = self.get_cards()
+        id_to_set = self.get_cards_next_id()
+        card_data.update({'id': id_to_set, "points": "", "show": False, "last_edit": 0})
+        cards.append(card_data)
+        self.save_cards(cards)
+        return f"New card was added: {card_data}"
+
+    def add_vote(self, vote_data):
+        votes = self.get_votes()
+        id_to_set = self.get_votes_next_id()
+        vote_data.update({'id': id_to_set, "points": "", "show": False, "last_edit": 0})
+        votes.append(vote_data)
+        self.save_votes(votes)
+        return f"New vote was added: {vote_data}"
+
+    def get_cards_next_id(self):
+        ids = [int(c.get('id')) for c in self.get_cards()]
+        return max(ids) + 1
+
+    def get_votes_next_id(self):
+        ids = [int(c.get('id')) for c in self.get_votes()]
+        return max(ids) + 1
+
+    def get_card_by_id(self, card_id):
+        cards = self.get_cards()
+        matched_card = {}
         for card in cards:
             if str(card.get("id")) == str(card_id):
-                card_data = card
-                break
-
-        return card_data
+                matched_card = card
+        return matched_card
 
     def save_users(self, users):
         self.save_data_to_yaml(users, USERS_FILENAME)
@@ -90,15 +110,6 @@ class DataUtils:
 
     def save_points(self, votes):
         self.save_data_to_yaml(votes, POINTS_FILE)
-
-    @staticmethod
-    def get_card_by_id(card_id):
-        cards = DataUtils().load_yaml_data(CARDS_FILE)
-        matched_card = {}
-        for card in cards:
-            if str(card.get("id")) == str(card_id):
-                matched_card = card
-        return matched_card
 
     def get_user_initials(self, username):
         user = self.get_user_by_name(username)
@@ -141,20 +152,26 @@ class DataUtils:
             vote["author_color"] = user.get("color") if user else "#333"
         return votes
 
+    def get_votes_with_users(self):
+        votes = self.get_votes()
+        for vote in votes:
+            user = self.get_user(vote.get("author"))
+            vote["author_initials"] = user.get("initials") if user else vote["author"][0:2]
+            vote["author_icon"] = user.get("icon") if user else vote["author"]
+            vote["author_color"] = user.get("color") if user else "#333"
+        return votes
+
     @staticmethod
     def get_votes():
-        votes = DataUtils().load_yaml_data(VOTES_FILE)
-        return votes
+        return DataUtils().load_yaml_data(VOTES_FILE)
 
     @staticmethod
     def get_points():
-        votes = DataUtils().load_yaml_data(POINTS_FILE)
-        return votes
+        return DataUtils().load_yaml_data(POINTS_FILE)
 
-    @staticmethod
-    def get_points_for_cards():
+    def get_points_for_cards(self):
         sum_points = 0
-        cards = DataUtils().load_yaml_data(CARDS_FILE)
+        cards = self.get_cards()
         for card in cards:
             points_sum = 0
             if card.get("points"):
@@ -192,7 +209,7 @@ class DataUtils:
         points.append(new_points)
         self.save_points(points)
         self.save_cards(cards)
-        message = f"Thank you for votes. 6 -> #{id_6} | 3 -> #{id_3} | 1 -> #{id_1}"
+        message = f"Thank you for votes. 6 points -> #{id_6} | 3 points -> #{id_3} | 1 point -> #{id_1}"
         return message
 
     def show_hide_card(self, card_id):

@@ -8,11 +8,10 @@
     <div class="ui row">
         <div class="ui inverted segment">
             <h2 class="ui header">Vote on cards</h2>
-            {% if message %}
-            <div>{{message}}</div>
-            {% endif %}
-            {% if show_voting == true and already_voted != true %}
-            <form method="post" class="ui inverted form">
+            {% if show_voting == false or already_voted == true %}
+            <div>You have already voted.</div>
+            {% else %}
+            <div class="ui inverted form">
                 <div class="field">
                     <label>6 points: </label>
                     <select name="points_6" class="custom-select" required>
@@ -40,14 +39,18 @@
                         {% endfor %}
                     </select>
                 </div>
-                <button type="submit" class="fluid big ui yellow2 icon button" name="vote_btn" value="vote_btn">
+                <button class="fluid big ui yellow2 icon button"
+                        hx-trigger="click" hx-get="/vote_on_cards" hx-target="#vote_output"
+                        hx-include="[name='points_6'],[name='points_3'],[name='points_1']">
                     Vote <i class="vote yea icon"></i>
                 </button>
-            </form>
+                <div id='vote_output'></div>
+            </div>
             {% endif %}
         </div>
     </div>
     {% include 'footer.html' %}
 </div>
+<script type="text/javascript" src="/static/js/htmx.min.js"></script>
 </body>
 </html>

@@ -20,8 +20,6 @@ from utils.datautils import DataUtils
 # INIT
 app = Flask(__name__)
 app.config['SECRET_KEY'] = os.getenv('SECRET_KEY') or 'e5ac358c-f0bf-11e5-9e39-d3b532c10a28'
-app.config['next_id'] = 100
-app.config['next_vote_id'] = 100
 
 
 # ROUTES
@@ -39,13 +37,10 @@ def preview():
 
 @app.route('/votes/load', methods=['GET', 'POST'])
 def votes_load():
-    show_points = Settings().get_specific_setting("show_points")
     stats = DataUtils().get_stats()
-    votes = DataUtils().get_votes()
-    votes = DataUtils().update_votes_data(votes)
+    votes = DataUtils().get_votes_with_users()
     votes.sort(key=lambda c: c.get("last_edit"), reverse=False)
-    return render_template('components/dashboard_points.html', votes=votes, show_points=show_points,
-                           stats=stats)
+    return render_template('components/dashboard_points.html', votes=votes, stats=stats)
 
 
 @app.route('/cards/<card_type>/load', methods=['GET', 'POST'])
@@ -57,14 +52,33 @@ def cards_good_load(card_type):
     return render_template('components/cards_box.html', cards=cards, params=params)
 
 
+@app.route('/cards/add_card', methods=['GET', 'POST'])
+def cards_add_card():
+    active_user = get_active_user()
+    card_text = request.args.get('card_text')
+    card_emotions = request.args.get('card_emotions')
+    card_type = request.args.get('card_type')
+    new_card = {"author": active_user.get("name"), "emotions": card_emotions, "name": card_text, "type": card_type}
+    message = DataUtils().add_card(new_card)
+    return message
+
+
+@app.route('/cards/vote', methods=['GET', 'POST'])
+def cards_vote():
+    active_user = get_active_user()
+    vote_type = request.args.get("vote_type", "").upper()
+    new_vote = {"author": active_user.get("name"), "value": vote_type}
+    message = DataUtils().add_vote(new_vote)
+    return message
+
+
 @app.route('/add_card', methods=['GET', 'POST'])
 def add_card():
-    if not get_active_user():
-        return redirect(url_for('login'))
     active_user = get_active_user()
-    message = add_card_form(app.config['next_id'])
-    message += vote_form(app.config['next_vote_id'])
-    return render_template('add_card.html', title="Add card", active_user=active_user, message=message)
+    if not active_user:
+        return redirect(url_for('login'))
+
+    return render_template('add_card.html', title="Add card", active_user=active_user)
 
 
 @app.route('/management/card/<card_id>', methods=['GET', 'POST'])
@@ -73,10 +87,50 @@ def edit_card(card_id):
     if not active_user or active_user.get("role") != "admin":
         return redirect(url_for('permission_denied'))
 
-    message = edit_card_form(card_id)
     card = DataUtils().get_card_by_id(card_id)
-    return render_template('/management/management_edit_card.html', title="Edit card", active_user=active_user,
-                           card=card, message=message)
+    return render_template('/management/management_edit_card.html', title="Edit card",
+                           active_user=active_user, card=card)
+
+
+@app.route('/management/cards/<card_id>/save_new_data', methods=['GET', 'POST'])
+def management_card_save_new_data(card_id):
+    active_user = get_active_user()
+    if not active_user or active_user.get("role") != "admin":
+        return redirect(url_for('permission_denied'))
+
+    card_emotions = request.args.get("card_emotions").capitalize() if request.args.get("card_emotions") else ""
+    card_text = request.args.get("card_text") if request.args.get("card_text") else ""
+    card_type = request.args.get("card_type") if request.args.get("card_type") else ""
+    card_points = request.args.get("card_points") if request.args.get("card_points") else ""
+    cards = DataUtils().get_cards()
+    new_card = {"emotions": card_emotions, "name": card_text, "type": card_type}
+    if card_points:
+        new_card["points"] = card_points
+    for card in cards:
+        if str(card.get("id")) == str(card_id):
+            card.update(new_card)
+    DataUtils().save_cards(cards)
+    message = f"Saved card data: {new_card}"
+    return message
+
+
+@app.route('/user/cards/<card_id>/save_new_data', methods=['GET', 'POST'])
+def user_card_save_new_data(card_id):
+    active_user = get_active_user()
+    if not active_user:
+        return redirect(url_for('permission_denied'))
+
+    card_emotions = request.args.get("card_emotions").capitalize() if request.args.get("card_emotions") else ""
+    card_text = request.args.get("card_text") if request.args.get("card_text") else ""
+    card_type = request.args.get("card_type") if request.args.get("card_type") else ""
+    cards = DataUtils().get_cards()
+    new_card = {"emotions": card_emotions, "name": card_text, "type": card_type}
+    for card in cards:
+        if str(card.get("id")) == str(card_id):
+            card.update(new_card)
+    DataUtils().save_cards(cards)
+    message = f"Saved card data: {new_card}"
+    return message
 
 
 @app.route('/management/showcard/<card_id>', methods=['GET', 'POST'])
@@ -115,7 +169,7 @@ def management_add_user():
 
 @app.route('/cards/card/<card_id>/get_modal', methods=['GET', 'POST'])
 def get_card_modal(card_id):
-    card_data = DataUtils.get_card_data(card_id)
+    card_data = DataUtils().get_card_by_id(card_id)
     return render_template('components/basic_modal.html', card_data=card_data)
 
 
@@ -124,10 +178,11 @@ def show_vote(vote_id):
     active_user = get_active_user()
     if not active_user or active_user.get("role") != "admin":
         return redirect(url_for('permission_denied'))
+
     votes = DataUtils().get_votes()
     for vote in votes:
         if str(vote.get("id")) == str(vote_id):
-            vote["show"] = False if vote.get("show") in [True] else True
+            vote["show"] = not vote.get("show")
             vote["last_edit"] = datetime.now().timestamp()
     DataUtils().save_votes(votes)
     return redirect(url_for('management_cards'))
@@ -143,8 +198,8 @@ def management_panel():
         'settings': Settings().get_settings(),
         'cards': DataUtils().get_cards(),
     }
-    return render_template('/management/management_panel.html', title="Management panel", active_user=active_user,
-                           params=params)
+    return render_template('/management/management_panel.html', title="Management panel",
+                           active_user=active_user, params=params)
 
 
 @app.route('/management/user/<user_id>', methods=['GET', 'POST'])
@@ -152,10 +207,37 @@ def edit_user(user_id):
     active_user = get_active_user()
     if not active_user or active_user.get("role") not in ["admin"]:
         return redirect(url_for('permission_denied'))
-    message = edit_user_form(user_id)
+
     user = DataUtils().get_user_by_id(user_id)
-    return render_template('/management/management_edit_user.html', title="Edit user", active_user=active_user,
-                           user=user, message=message)
+    return render_template('/management/management_edit_user.html', title="Edit user",
+                           active_user=active_user, user=user)
+
+
+@app.route('/management/user/<user_id>/save_new_data', methods=['GET', 'POST'])
+def management_edit_user_save_new_data(user_id):
+    active_user = get_active_user()
+    if not active_user or active_user.get("role") not in ["admin"]:
+        return redirect(url_for('permission_denied'))
+
+    user_initials = request.args.get("user_initials") if request.args.get("user_initials") else ""
+    user_name = request.args.get("user_name") if request.args.get("user_name") else ""
+    user_icon = request.args.get("user_icon") if request.args.get("user_icon") else ""
+    user_color = request.args.get("user_color") if request.args.get("user_color") else ""
+    user_card_color = request.args.get("user_card_color") if request.args.get("user_card_color") else ""
+    active_user = get_active_user()
+    if active_user.get("role") in ["admin"]:
+        user_role = request.args.get("user_role") if request.args.get("user_role") else "user"
+    else:
+        user_role = active_user.get("role")
+    users = DataUtils().get_users()
+    new_user_data = {"initials": user_initials, "name": user_name, "icon": user_icon, "color": user_color,
+                     "card_color": user_card_color, "role": user_role}
+    for user in users:
+        if str(user.get("id")) == str(user_id):
+            user.update(new_user_data)
+    DataUtils().save_users(users)
+    message = f"Saved user data: {new_user_data}"
+    return message
 
 
 @app.route('/user_management/configuration', methods=['GET', 'POST'])
@@ -194,10 +276,11 @@ def show_user_card(card_id):
 def show_user_vote(vote_id):
     if not get_active_user():
         return redirect(url_for('login'))
+
     votes = DataUtils().get_votes()
     for vote in votes:
         if str(vote.get("id")) == str(vote_id):
-            vote["show"] = False if vote.get("show") in [True] else True
+            vote["show"] = not vote.get("show")
             vote["last_edit"] = datetime.now().timestamp()
     DataUtils().save_votes(votes)
     return redirect(url_for('user_configuration'))
@@ -208,10 +291,10 @@ def edit_user_card(card_id):
     active_user = get_active_user()
     if not active_user:
         return redirect(url_for('login'))
-    message = edit_card_form(card_id)
+
     card = DataUtils().get_card_by_id(card_id)
     return render_template('/user_management/user_edit_card.html', title="Edit user card", active_user=active_user,
-                           card=card, message=message)
+                           card=card)
 
 
 @app.route('/user_management/user/<user_id>', methods=['GET', 'POST'])
@@ -219,10 +302,29 @@ def user_edit_user_card(user_id):
     active_user = get_active_user()
     if not active_user or str(active_user.get("id")) != user_id:
         return redirect(url_for('permission_denied'))
-    message = edit_user_form_from_user(user_id)
+
     user = DataUtils().get_user_by_id(user_id)
     return render_template('/user_management/user_edit_user.html', title="Edit user", active_user=active_user,
-                           user=user, message=message)
+                           user=user)
+
+
+@app.route('/user_management/user/<user_id>/save_new_data', methods=['GET', 'POST'])
+def user_edit_user_card_save_new_data(user_id):
+    active_user = get_active_user()
+    if not active_user or str(active_user.get("id")) != user_id:
+        return redirect(url_for('permission_denied'))
+
+    user_icon = request.args.get("user_icon") if request.args.get("user_icon") else ""
+    user_color = request.args.get("user_color") if request.args.get("user_color") else ""
+    user_card_color = request.args.get("user_card_color") if request.args.get("user_card_color") else ""
+    users = DataUtils().get_users()
+    new_user_data = {"icon": user_icon, "color": user_color, "card_color": user_card_color}
+    for user in users:
+        if str(user.get("id")) == str(user_id):
+            user.update(new_user_data)
+    DataUtils().save_users(users)
+    message = f"Saved user data: {new_user_data}"
+    return message
 
 
 @app.route('/login', methods=['GET', 'POST'])
@@ -285,30 +387,43 @@ def vote_page():
     active_user = get_active_user()
     if not active_user:
         return redirect(url_for('login'))
-    message = ""
+
     show_voting = Settings().get_specific_setting("show_voting")
     filtered_cards = []
     already_voted = False
     points = DataUtils().get_points()
     users_voted = [elem.get("author") for elem in points]
     if active_user.get("name") in users_voted:
-        message = "You have already voted."
         already_voted = True
     else:
-        if request.method == 'POST':
-            if request.form.get("vote_btn"):
-                id_6 = int(request.form.get("points_6"))
-                id_3 = int(request.form.get("points_3"))
-                id_1 = int(request.form.get("points_1"))
-                if len({id_6, id_3, id_1}) < len([id_6, id_3, id_1]):
-                    message = "Duplicated cards. The Vote was canceled."
-                else:
-                    message = DataUtils().add_votes(id_6, id_3, id_1, active_user)
-                    already_voted = True
         filtered_cards = DataUtils().get_visible_cards()
         filtered_cards.sort(key=lambda c: c.get("id"), reverse=False)
-    return render_template('/vote.html', title="Vote", cards=filtered_cards, active_user=active_user, message=message,
+
+    return render_template('/vote.html', title="Vote", cards=filtered_cards, active_user=active_user,
                            already_voted=already_voted, show_voting=show_voting)
+
+
+@app.route('/vote_on_cards', methods=['GET', 'POST'])
+def vote_on_cards():
+    active_user = get_active_user()
+    if not active_user:
+        return redirect(url_for('permission_denied'))
+
+    show_voting = Settings().get_specific_setting("show_voting")
+    points = DataUtils().get_points()
+    users_voted = [elem.get("author") for elem in points]
+    if active_user.get("name") in users_voted or not show_voting:
+        message = "You have already voted."
+    else:
+        id_6 = int(request.args.get("points_6"))
+        id_3 = int(request.args.get("points_3"))
+        id_1 = int(request.args.get("points_1"))
+        if len({id_6, id_3, id_1}) < len([id_6, id_3, id_1]):
+            message = "Duplicated cards. The Vote was canceled."
+        else:
+            message = DataUtils().add_votes(id_6, id_3, id_1, active_user)
+
+    return message
 
 
 @app.route('/management/users/get_table', methods=['GET', 'POST'])
@@ -325,7 +440,7 @@ def management_users_get_table():
 def management_cards_get_table():
     active_user = get_active_user()
     if not active_user:
-        return redirect(url_for('login'))
+        return redirect(url_for('permission_denied'))
 
     cards = DataUtils().get_cards()
     return render_template('management/component/cards_table.html', cards=cards)
@@ -335,7 +450,7 @@ def management_cards_get_table():
 def management_settings_get_table():
     active_user = get_active_user()
     if not active_user:
-        return redirect(url_for('login'))
+        return redirect(url_for('permission_denied'))
 
     settings_data = Settings().get_settings()
     return render_template('management/component/settings_table.html', settings=settings_data)
@@ -345,7 +460,7 @@ def management_settings_get_table():
 def settings_set(name):
     active_user = get_active_user()
     if not active_user:
-        return redirect(url_for('login'))
+        return redirect(url_for('permission_denied'))
 
     Settings().set_new_value(name)
     settings_data = Settings().get_settings()
@@ -361,103 +476,6 @@ def not_found(error):
 
 
 # [LOCAL]
-def add_card_form(id_to_set):
-    message = ""
-    if request.method == 'POST':
-        if request.form.get("add_card_btn"):
-            active_user = get_active_user()
-            card_emotions = request.form.get("card_emotions").capitalize() if request.form.get("card_emotions") else ""
-            card_text = request.form.get("card_text") if request.form.get("card_text") else ""
-            card_type = request.form.get("card_type") if request.form.get("card_type") else ""
-            cards = DataUtils().get_cards()
-            new_card = {"author": active_user.get("name"), "emotions": card_emotions, "id": int(id_to_set),
-                        "name": card_text, "points": "", "show": False, "type": card_type, "last_edit": 0}
-            cards.append(new_card)
-            DataUtils().save_cards(cards)
-            message = f"New card was added: {new_card}"
-            app.config['next_id'] += 1
-    return message
-
-
-def vote_form(id_to_set):
-    message = ""
-    if request.method == 'POST':
-        if request.form.get("vote_btn"):
-            active_user = get_active_user()
-            vote_type = request.form.get("vote_type").upper() if request.form.get("vote_type") else ""
-            votes = DataUtils().get_votes()
-            new_vote = {"author": active_user.get("name"), "id": int(id_to_set), "value": vote_type, "show": False,
-                        "last_edit": 0}
-            votes.append(new_vote)
-            DataUtils().save_votes(votes)
-            message = f"New vote added: {new_vote}"
-            app.config['next_vote_id'] += 1
-    return message
-
-
-def edit_card_form(card_id):
-    message = ""
-    if request.method == 'POST':
-        if request.form.get("save_card_btn"):
-            card_emotions = request.form.get("card_emotions").capitalize() if request.form.get("card_emotions") else ""
-            card_text = request.form.get("card_text") if request.form.get("card_text") else ""
-            card_type = request.form.get("card_type") if request.form.get("card_type") else ""
-            card_show = request.form.get("card_show") if request.form.get("card_show") == "True" else False
-            card_points = request.form.get("card_points") if request.form.get("card_points") else ""
-            cards = DataUtils().get_cards()
-            new_card = {"emotions": card_emotions, "name": card_text, "show": bool(card_show), "type": card_type}
-            if card_points:
-                new_card["points"] = card_points
-            for card in cards:
-                if str(card.get("id")) == str(card_id):
-                    card.update(new_card)
-            DataUtils().save_cards(cards)
-            message = f"Saved card data: {new_card}"
-    return message
-
-
-def edit_user_form_from_user(user_id):
-    message = ""
-    if request.method == 'POST':
-        if request.form.get("save_user_btn"):
-            user_icon = request.form.get("user_icon") if request.form.get("user_icon") else ""
-            user_color = request.form.get("user_color") if request.form.get("user_color") else ""
-            user_card_color = request.form.get("user_card_color") if request.form.get("user_card_color") else ""
-            users = DataUtils().get_users()
-            new_user_data = {"icon": user_icon, "color": user_color, "card_color": user_card_color}
-            for user in users:
-                if str(user.get("id")) == str(user_id):
-                    user.update(new_user_data)
-            DataUtils().save_users(users)
-            message = f"Saved user data: {new_user_data}"
-    return message
-
-
-def edit_user_form(user_id):
-    message = ""
-    if request.method == 'POST':
-        if request.form.get("save_user_btn"):
-            user_initials = request.form.get("user_initials") if request.form.get("user_initials") else ""
-            user_name = request.form.get("user_name") if request.form.get("user_name") else ""
-            user_icon = request.form.get("user_icon") if request.form.get("user_icon") else ""
-            user_color = request.form.get("user_color") if request.form.get("user_color") else ""
-            user_card_color = request.form.get("user_card_color") if request.form.get("user_card_color") else ""
-            active_user = get_active_user()
-            if active_user.get("role") in ["admin"]:
-                user_role = request.form.get("user_role") if request.form.get("user_role") else "user"
-            else:
-                user_role = active_user.get("role")
-            users = DataUtils().get_users()
-            new_user_data = {"initials": user_initials, "name": user_name, "icon": user_icon, "color": user_color,
-                             "card_color": user_card_color, "role": user_role}
-            for user in users:
-                if str(user.get("id")) == str(user_id):
-                    user.update(new_user_data)
-            DataUtils().save_users(users)
-            message = f"Saved user data: {new_user_data}"
-    return message
-
-
 def get_username():
     return session['bv_username'] if 'bv_username' in session else 'N/A'
 

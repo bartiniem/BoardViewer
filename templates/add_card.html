@@ -26,16 +26,19 @@
                         <option value="bad">bad</option>
                     </select>
                 </div>
-                <button type="submit" class="big fluid ui yellow2 button" name="add_card_btn" value="add_card">
+                <button type="submit" class="big fluid ui yellow2 button"
+                        hx-trigger="click" hx-get="/cards/add_card" hx-target="#output"
+                        hx-include="[name='card_text'],[name='card_emotions'],[name='card_type']">
                     Add card
                 </button>
+                <div id="output"></div>
             </form>
         </div>
     </div>
     <div class="ui six wide column">
         <div class="ui inverted segment">
             <h2>Last retro rating</h2>
-            <form method="post" class="ui inverted form">
+            <div class="ui inverted form">
                 <div class="field">
                     <label>Vote:</label>
                     <select name="vote_type" class="custom-select" required>
@@ -44,13 +47,16 @@
                         <option value="-">negative</option>
                     </select>
                 </div>
-                <button type="submit" class="big fluid ui yellow2 button" name="vote_btn" value="vote_btn">
+                <button class="big fluid ui yellow2 button" hx-trigger="click" hx-get="/cards/vote"
+                        hx-target="#output2" hx-include="[name='vote_type']">
                     Save
                 </button>
-            </form>
+                <div id="output2"></div>
+            </div>
         </div>
     </div>
     {% include 'footer.html' %}
 </div>
+<script type="text/javascript" src="/static/js/htmx.min.js"></script>
 </body>
 </html>
