@@ -51,8 +51,8 @@ input, select, textarea {
             box-sizing: border-box;
 }
 
-.board_good {background-color: #1b251a !important;}
-.board_bad {background-color: #211616 !important;}
+.board_positive {background-color: #1b251a !important;}
+.board_negative {background-color: #211616 !important;}
 
 .goals {
     color: #aaa;

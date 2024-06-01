@@ -10,14 +10,14 @@
         <h4 class="ui horizontal divider header">
             <i class="olive plus circle icon"></i> Positive
         </h4>
-        <div class="board_good">
-            <div hx-trigger="load" hx-get="/cards/good/load" class="ui centered basic cards"></div>
+        <div class="board_positive">
+            <div hx-trigger="load" hx-get="/cards/positive/load" class="ui centered basic cards"></div>
         </div>
         <h4 class="ui horizontal divider header">
             <i class="pink minus circle icon"></i> Negative
         </h4>
-        <div class="board_bad">
-            <div hx-trigger="load" hx-get="/cards/bad/load" class="ui centered basic cards"></div>
+        <div class="board_negative">
+            <div hx-trigger="load" hx-get="/cards/negative/load" class="ui centered basic cards"></div>
         </div>
     </div>
     {% include 'footer.html' %}

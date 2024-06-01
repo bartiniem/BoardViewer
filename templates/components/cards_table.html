@@ -1,4 +1,4 @@
-<table class="ui selectable striped inverted table">
+<table class="ui selectable inverted table">
     <thead>
     <tr>
         <th>Id</th>
@@ -19,11 +19,19 @@
         <td>{{card.name}}</td>
         <td>{{card.emotions}}</td>
         <td>{{card.author}}</td>
-        <td>{{card.type}}</td>
+        <td>
+            {% if card.type == "positive" %}
+            <i class="olive plus circle icon"></i>
+            {% elif card.type == "negative" %}
+            <i class="pink minus circle icon"></i>
+            {% else %}
+            {{card.type}}
+            {% endif %}
+        </td>
         <td>{{card.points}}</td>
         <td>{{card.points_sum}}</td>
         <td>
-            <div hx-trigger="click" hx-get="/management/showcard/{{card.id}}" class="ui black icon button">
+            <div hx-trigger="click" hx-get="/cards/card/{{card.id}}/showcard" class="ui black icon button">
                 {% if card.show == True %}
                 <i class="green check circle icon"></i>
                 {% else %}
@@ -31,8 +39,9 @@
                 {% endif %}
             </div>
         </td>
-        <td><a href="/management/card/{{card.id}}" class="ui teal icon button" data-tooltip="Edit" data-inverted=""><i
-                class="edit icon"></i></a></td>
+        <td>
+            <a href="/cards/card/{{card.id}}/edit" class="ui teal button"><i class="edit icon"></i>Edit</a>
+        </td>
     </tr>
     {% endfor %}
     </tbody>

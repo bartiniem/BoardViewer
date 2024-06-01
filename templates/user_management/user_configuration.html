@@ -31,8 +31,8 @@
                         </div>
                     </div>
                     <div class="extra content">
-                        <a href="/user_management/user/{{user.id}}" class="ui teal button">
-                            <i class="edit icon"></i> Edit
+                        <a href="/user_management/user/{{user.id}}" class="fluid ui yellow2 button">
+                            <i class="edit icon"></i>Edit
                         </a>
                     </div>
                 </div>
@@ -42,50 +42,7 @@
     <div class="eight wide column">
         <div class="ui inverted segment">
             <h4>Cards</h4>
-            <table class="ui selectable inverted table">
-                <thead>
-                <tr>
-                    <th>Id</th>
-                    <th>Name</th>
-                    <th>Emotions</th>
-                    <th>Author</th>
-                    <th>Type</th>
-                    <th>Points</th>
-                    <th>Sum</th>
-                    <th>Visible</th>
-                    <th></th>
-                </tr>
-                </thead>
-                <tbody>
-                {% for card in cards %}
-                <tr>
-                    <td>{{card.id}}</td>
-                    <td>{{card.name}}</td>
-                    <td>{{card.emotions}}</td>
-                    <td>{{card.author}}</td>
-                    <td>{{card.type}}</td>
-                    <td>{{card.points}}</td>
-                    <td>{{card.points_sum}}</td>
-                    <td>
-                        <div hx-trigger="click" hx-get="/user_management/showcard/{{card.id}}"
-                             class="ui black icon button">
-                            {% if card.show == True %}
-                            <i class="green check circle icon"></i>
-                            {% else %}
-                            <i class="red times circle icon"></i>
-                            {% endif %}
-                        </div>
-
-                    </td>
-                    <td>
-                        <a href="/user_management/card/{{card.id}}" class="ui teal button">
-                            <i class="edit icon"></i>
-                            Edit
-                        </a></td>
-                </tr>
-                {% endfor %}
-                </tbody>
-            </table>
+            {% include 'components/cards_table.html' %}
         </div>
     </div>
     <div class="four wide column">
