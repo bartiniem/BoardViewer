@@ -37,8 +37,7 @@ def preview():
 @app.route('/votes/load', methods=['GET', 'POST'])
 def votes_load():
     stats = DataUtils().get_stats()
-    votes = DataUtils().get_votes_with_users()
-    votes.sort(key=lambda c: c.get("last_edit"), reverse=False)
+    votes = DataUtils().get_votes_with_users(sort_by_last_edit=True)
     return render_template('components/dashboard_points.html', votes=votes, stats=stats)
 
 

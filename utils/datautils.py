@@ -139,13 +139,16 @@ class DataUtils:
             card["card_color"] = user.get("card_color") if user else "#ceb553"
         return cards
 
-    def get_votes_with_users(self) -> list:
+    def get_votes_with_users(self, sort_by_last_edit=False) -> list:
         votes = self.get_votes()
         for vote in votes:
             user = self.get_user_by_name(vote.get("author"))
             vote["author_initials"] = user.get("initials") if user else vote["author"][0:2]
             vote["author_icon"] = user.get("icon") if user else vote["author"]
             vote["author_color"] = user.get("color") if user else "#333"
+
+        if sort_by_last_edit:
+            votes.sort(key=lambda c: c.get("last_edit"), reverse=False)
         return votes
 
     def get_votes(self) -> list:
