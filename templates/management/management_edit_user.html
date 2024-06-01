@@ -62,7 +62,7 @@
                         <input class="custom-select" type="color" name="user_card_color" value="{{user.card_color}}"/>
                     </div>
                 </div>
-                <button type="submit" class="fluid big ui yellow2 button"
+                <button class="fluid big ui yellow2 button"
                         hx-trigger="click" hx-target="#output" hx-get="/management/user/{{user.id}}/save_new_data"
                         hx-include="[name='user_initials'],[name='user_name'],[name='user_icon'],[name='user_role'],[name='user_color'],[name='user_card_color']">
                     Save

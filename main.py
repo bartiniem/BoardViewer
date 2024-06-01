@@ -55,6 +55,9 @@ def cards_good_load(card_type):
 @app.route('/cards/add_card', methods=['GET', 'POST'])
 def cards_add_card():
     active_user = get_active_user()
+    if not active_user:
+        return redirect(url_for('permission_denied'))
+
     card_text = request.args.get('card_text')
     card_emotions = request.args.get('card_emotions')
     card_type = request.args.get('card_type')
@@ -66,6 +69,9 @@ def cards_add_card():
 @app.route('/cards/vote', methods=['GET', 'POST'])
 def cards_vote():
     active_user = get_active_user()
+    if not active_user:
+        return redirect(url_for('permission_denied'))
+
     vote_type = request.args.get("vote_type", "").upper()
     new_vote = {"author": active_user.get("name"), "value": vote_type}
     message = DataUtils().add_vote(new_vote)
@@ -102,15 +108,11 @@ def management_card_save_new_data(card_id):
     card_text = request.args.get("card_text") if request.args.get("card_text") else ""
     card_type = request.args.get("card_type") if request.args.get("card_type") else ""
     card_points = request.args.get("card_points") if request.args.get("card_points") else ""
-    cards = DataUtils().get_cards()
     new_card = {"emotions": card_emotions, "name": card_text, "type": card_type}
     if card_points:
         new_card["points"] = card_points
-    for card in cards:
-        if str(card.get("id")) == str(card_id):
-            card.update(new_card)
-    DataUtils().save_cards(cards)
-    message = f"Saved card data: {new_card}"
+
+    message = DataUtils().edit_card_data(card_id, new_card)
     return message
 
 
@@ -123,13 +125,8 @@ def user_card_save_new_data(card_id):
     card_emotions = request.args.get("card_emotions").capitalize() if request.args.get("card_emotions") else ""
     card_text = request.args.get("card_text") if request.args.get("card_text") else ""
     card_type = request.args.get("card_type") if request.args.get("card_type") else ""
-    cards = DataUtils().get_cards()
     new_card = {"emotions": card_emotions, "name": card_text, "type": card_type}
-    for card in cards:
-        if str(card.get("id")) == str(card_id):
-            card.update(new_card)
-    DataUtils().save_cards(cards)
-    message = f"Saved card data: {new_card}"
+    message = DataUtils().edit_card_data(card_id, new_card)
     return message
 
 
@@ -179,12 +176,7 @@ def show_vote(vote_id):
     if not active_user or active_user.get("role") != "admin":
         return redirect(url_for('permission_denied'))
 
-    votes = DataUtils().get_votes()
-    for vote in votes:
-        if str(vote.get("id")) == str(vote_id):
-            vote["show"] = not vote.get("show")
-            vote["last_edit"] = datetime.now().timestamp()
-    DataUtils().save_votes(votes)
+    DataUtils().vote_show_hide(vote_id)
     return redirect(url_for('management_cards'))
 
 
@@ -242,16 +234,16 @@ def management_edit_user_save_new_data(user_id):
 
 @app.route('/user_management/configuration', methods=['GET', 'POST'])
 def user_configuration():
-    username = get_username()
     active_user = get_active_user()
     if not active_user:
         return redirect(url_for('login'))
+
     cards = DataUtils().get_cards()
     votes = DataUtils().get_votes()
     points = DataUtils().get_points()
-    user_cards = [card for card in cards if card.get("author") == username]
-    user_votes = [vote for vote in votes if vote.get("author") == username]
-    user_points = [point_row for point_row in points if point_row.get("author") == username]
+    user_cards = [card for card in cards if card.get("author") == active_user.get('name')]
+    user_votes = [vote for vote in votes if vote.get("author") == active_user.get('name')]
+    user_points = [point_row for point_row in points if point_row.get("author") == active_user.get('name')]
     for user_p in user_points:
         user_p["name_6"] = DataUtils().get_card_by_id(user_p["points_6"])["name"]
         user_p["name_3"] = DataUtils().get_card_by_id(user_p["points_3"])["name"]
@@ -359,18 +351,16 @@ def permission_denied():
 @app.route('/goals', methods=['GET', 'POST'])
 def goals():
     active_user = get_active_user()
-    message = ""
     show_goals = Settings().get_specific_setting("show_goals")
     filtered_cards = DataUtils().get_visible_cards()
     filtered_cards.sort(key=lambda c: c.get("points_sum"), reverse=True)
     return render_template('/goals.html', title="Goals", cards=filtered_cards[:6], active_user=active_user,
-                           message=message, show_goals=show_goals)
+                           show_goals=show_goals)
 
 
 @app.route('/goals/save/<card_id>', methods=['GET', 'POST'])
 def goals_save_goals(card_id):
     filtered_cards = DataUtils().get_visible_cards()
-    filtered_cards.sort(key=lambda c: c.get("points_sum"), reverse=True)
     last_update = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
     message = "n/a"
     for card in filtered_cards:

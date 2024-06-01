@@ -222,3 +222,20 @@ class DataUtils:
                 card["last_edit"] = datetime.now().timestamp()
         self.save_cards(cards)
         return new_status
+
+    def edit_card_data(self, card_id, new_card_data: dict):
+        cards = self.get_cards()
+        for card in cards:
+            if str(card.get("id")) == str(card_id):
+                card.update(new_card_data)
+
+        self.save_cards(cards)
+        return f"Saved card data: {new_card_data}"
+
+    def vote_show_hide(self, vote_id):
+        votes = self.get_votes()
+        for vote in votes:
+            if str(vote.get("id")) == str(vote_id):
+                vote["show"] = not vote.get("show")
+                vote["last_edit"] = datetime.now().timestamp()
+        self.save_votes(votes)
