@@ -11,15 +11,14 @@
     <table class="ui inverted table">
         <thead>
         <tr>
-            <th>Text</th>
             <th>Type</th>
+            <th>Text</th>
             <th>Visible</th>
         </tr>
         </thead>
         <tbody>
         {% for card in cards %}
         <tr>
-            <td>{{card.name}}</td>
             <td>
                 {% if card.type == "positive" %}
                 <i class="olive plus circle icon"></i>
@@ -29,6 +28,7 @@
                 {{card.type}}
                 {% endif %}
             </td>
+            <td data-tooltip="{{card.emotions}}" data-inverted="">#{{card.id}} {{card.name}}</td>
             <td>
                 <button hx-trigger="click" hx-get="/cards/card/{{card.id}}/showcard" class="ui black icon button">
                     {% if card.show == True %}
@@ -42,14 +42,6 @@
         {% endfor %}
         </tbody>
     </table>
-    <button class="ui black icon button" hx-trigger="click" hx-get="/cards/positive/load"
-            data-tooltip="Refresh positive cards" data-inverted="" hx-target="#positive_cards_container">
-        <i class="sync alternate icon"></i><i class="olive plus circle icon"></i>
-    </button>
-    <button class="ui black icon button" hx-trigger="click" hx-get="/cards/negative/load"
-            data-tooltip="Refresh negative cards" data-inverted="" hx-target="#negative_cards_container">
-        <i class="sync alternate icon"></i><i class="pink minus circle icon"></i>
-    </button>
 
     <h3>Retro Rating:</h3>
     {% for vote in votes %}
@@ -69,9 +61,6 @@
         {% endif %}
     </button>
     {% endfor %}
-    <button class="ui black icon button" hx-trigger="click" hx-get="/votes/load" hx-target="#votes_container">
-        <i class="sync alternate icon"></i>Refresh votes
-    </button>
 
     <h3>Points:</h3>
     {% for point_row in points %}

@@ -1,11 +1,11 @@
 <table class="ui selectable inverted table">
     <thead>
     <tr>
-        <th>Id</th>
+        <th>#</th>
+        <th>Type</th>
         <th>Name</th>
         <th>Emotions</th>
         <th>Author</th>
-        <th>Type</th>
         <th>Points</th>
         <th>Sum</th>
         <th>Visible</th>
@@ -16,9 +16,6 @@
     {% for card in cards %}
     <tr>
         <td>{{card.id}}</td>
-        <td>{{card.name}}</td>
-        <td>{{card.emotions}}</td>
-        <td>{{card.author}}</td>
         <td>
             {% if card.type == "positive" %}
             <i class="olive plus circle icon"></i>
@@ -28,6 +25,9 @@
             {{card.type}}
             {% endif %}
         </td>
+        <td>{{card.name}}</td>
+        <td>{{card.emotions}}</td>
+        <td>{{card.author}}</td>
         <td>{{card.points}}</td>
         <td>{{card.points_sum}}</td>
         <td>

@@ -19,21 +19,21 @@
     <div class="ui centered grid">
         <div class="ui inverted segment">
             <div>(Refresh every 10s)</div>
-            <div hx-trigger="load, every 10s" hx-get="/votes/load" class=""></div>
+            <div hx-trigger="votes-updated from:body, load, every 10s" hx-get="/votes/load" class=""></div>
             <h4 class="ui horizontal divider header">
                 <i class="olive plus circle icon"></i> Positive
             </h4>
             <div class="board_positive">
-                <div hx-trigger="load, every 10s" hx-get="/cards/positive/load" class="ui centered basic cards"></div>
+                <div hx-trigger="cards-updated from:body, load, every 10s" hx-get="/cards/positive/load" class="ui centered basic cards"></div>
             </div>
             <h4 class="ui horizontal divider header">
                 <i class="pink minus circle icon"></i> Negative
             </h4>
             <div class="board_negative">
-                <div hx-trigger="load, every 10s" hx-get="/cards/negative/load" class="ui centered basic cards"></div>
+                <div hx-trigger="cards-updated from:body, load, every 10s" hx-get="/cards/negative/load" class="ui centered basic cards"></div>
             </div>
         </div>
-        <div hx-get="/sample_message" hx-trigger="contacts-updated from:body">Here:</div>
+        <div hx-get="/sample_message" hx-trigger="votes-updated from:body, cards-updated from:body">Timestamp:</div>
         {% include 'footer.html' %}
     </div>
 </div>
