@@ -6,6 +6,7 @@
 
 # GLOBAL IMPORTS
 import argparse
+import datetime
 import hashlib
 import os
 from flask import Flask, session, redirect, url_for, request, render_template
@@ -37,13 +38,13 @@ def preview():
 @app.route('/votes/load', methods=['GET', 'POST'])
 def votes_load():
     stats = DataUtils().get_stats()
-    votes = DataUtils().get_votes_with_users(sort_by_last_edit=True)
+    votes = DataUtils().get_votes_with_users(sort_by_last_edit=True, only_visible=True)
     return render_template('components/dashboard_points.html', votes=votes, stats=stats)
 
 
 @app.route('/cards/<card_type>/load', methods=['GET', 'POST'])
 def cards_positive_load(card_type):
-    cards = DataUtils().get_cards_by_type(card_type)
+    cards = DataUtils().get_cards_by_type(card_type, True)
     params = {
         'show_points': Settings().get_specific_setting("show_points")
     }
@@ -320,6 +321,8 @@ def management_add_user():
         return redirect(url_for('permission_denied'))
 
     name = request.args.get('user_name', '')
+    initials = request.args.get('user_initials', '')
+    role = request.args.get('user_role', '')
     pin = request.args.get('user_pin', '')
     encoded_pin = str(hashlib.md5(pin.encode("utf-8")).hexdigest())
     user_data = {
@@ -327,13 +330,26 @@ def management_add_user():
         'color': request.args.get('user_bg_color', ''),
         'icon': request.args.get('user_icon', ''),
         'id': DataUtils().get_max_user_id(),
-        'initials': request.args.get('user_initials', ''),
+        'initials': initials,
         'name': name,
         'passwd': encoded_pin,
-        'role': request.args.get('user_role', ''),
+        'role': role,
     }
-    DataUtils().add_user(user_data)
-    return f"Done. User {name} was added."
+    if name and initials and role:
+        DataUtils().add_user(user_data)
+        message = f"Done. User '{name}' (role: {role}) was added."
+    else:
+        message = "Error. Wrong input data."
+    return message
+
+
+@app.route('/management/users/add_user_form', methods=['GET', 'POST'])
+def management_add_user_form():
+    active_user = get_active_user()
+    if not active_user or active_user.get("role") != "admin":
+        return redirect(url_for('permission_denied'))
+
+    return render_template('management/component/user_add_form.html')
 
 
 @app.route('/management/show_vote/<vote_id>', methods=['GET', 'POST'])

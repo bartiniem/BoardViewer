@@ -122,12 +122,15 @@ class DataUtils:
                 card["points_emoji"] = '<i class="caret right icon"></i><i class="brown medal icon"></i> 3'
         return cards
 
-    def get_cards_by_type(self, card_type="") -> list:
+    def get_cards_by_type(self, card_type="", only_visible=False) -> list:
         cards = self.get_cards()
         specified_cards = [card for card in cards if card.get("type") in [card_type]]
+        if only_visible:
+            specified_cards = [c for c in specified_cards if c.get('show', False)]
+
         specified_cards = self._update_points_emoji(specified_cards)
         specified_cards = self._update_user_data(specified_cards)
-        specified_cards.sort(key=lambda c: c.get("last_edit"), reverse=False)
+        specified_cards.sort(key=lambda c: c.get("last_edit", 0), reverse=False)
         return specified_cards
 
     def _update_user_data(self, cards) -> list:
@@ -139,8 +142,11 @@ class DataUtils:
             card["card_color"] = user.get("card_color") if user else "#ceb553"
         return cards
 
-    def get_votes_with_users(self, sort_by_last_edit=False) -> list:
+    def get_votes_with_users(self, sort_by_last_edit=False, only_visible=False) -> list:
         votes = self.get_votes()
+        if only_visible:
+            votes = [v for v in votes if v.get('show', False)]
+
         for vote in votes:
             user = self.get_user_by_name(vote.get("author"))
             vote["author_initials"] = user.get("initials") if user else vote["author"][0:2]
@@ -148,7 +154,7 @@ class DataUtils:
             vote["author_color"] = user.get("color") if user else "#333"
 
         if sort_by_last_edit:
-            votes.sort(key=lambda c: c.get("last_edit"), reverse=False)
+            votes.sort(key=lambda c: c.get("last_edit", 0), reverse=False)
         return votes
 
     def get_votes(self) -> list:
@@ -226,6 +232,7 @@ class DataUtils:
             if str(vote.get("id")) == str(vote_id):
                 vote["show"] = not vote.get("show")
                 vote["last_edit"] = datetime.now().timestamp()
+
         self.save_votes(votes)
 
     def save_goals_for_specific_cards(self, card_id, goals_text) -> str:

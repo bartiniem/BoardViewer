@@ -1,5 +1,4 @@
 {% for vote in votes %}
-{% if vote.show == true %}
 <div class="big ui grey icon label" style="background-color: {{vote.author_color}}" data-tooltip="{{vote.author}}"
      data-inverted="">
     {{vote.author_icon}}
@@ -11,7 +10,6 @@
     <span>{{vote.value}}</span>
     {% endif %}
 </div>
-{% endif %}
 {% endfor %}
 
 {% if stats.sum_cards %}

@@ -8,7 +8,8 @@
     <div class="ten wide column">
         <div class="ui inverted center aligned segment">
             <h2 class="ui header">Cards</h2>
-            <div hx-trigger="load" hx-get="/management/cards/get_table" style="max-height: 1000px; overflow-y: scroll;"></div>
+            <div hx-trigger="load" hx-get="/management/cards/get_table"
+                 style="max-height: 1000px; overflow-y: scroll;"></div>
         </div>
     </div>
     <div class="six wide column">
@@ -22,7 +23,12 @@
         </div>
         <div class="ui inverted center aligned segment">
             <h2 class="ui header">New user</h2>
-            {% include 'management/component/user_add_form.html' %}
+            <div id="user_add_form">
+                <button class="ui teal button" hx-trigger="click" hx-get="/management/users/add_user_form"
+                        hx-target="#user_add_form">Add user
+                </button>
+
+            </div>
         </div>
     </div>
     {% include 'footer.html' %}

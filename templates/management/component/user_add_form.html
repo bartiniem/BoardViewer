@@ -2,11 +2,11 @@
     <div class="three fields">
         <div class="field">
             <label>Name</label>
-            <input class="custom-select" type="text" name="user_name">
+            <input class="custom-select" type="text" name="user_name" required>
         </div>
         <div class="field">
             <label>Initials</label>
-            <input class="custom-select" type="text" name="user_initials">
+            <input class="custom-select" type="text" name="user_initials" required>
         </div>
         <div class="field">
             <label>Pin</label>
@@ -16,7 +16,7 @@
     <div class="four fields">
         <div class="field">
             <label>Role</label>
-            <select class="custom-select" name="user_role">
+            <select class="custom-select" name="user_role" required>
                 <option value="user" selected>user</option>
                 <option value="admin">admin</option>
             </select>
@@ -49,14 +49,14 @@
                 <option value="🐝">🐝</option>
             </select>
         </div>
-    <div class="field">
-        <label>Bg color</label>
-        <input class="custom-select" type="color" name="user_bg_color">
-    </div>
-    <div class="field">
-        <label>Card Color</label>
-        <input class="custom-select" type="color" name="user_card_color" value="#ceb553">
-    </div>
+        <div class="field">
+            <label>Bg color</label>
+            <input class="custom-select" type="color" name="user_bg_color" required>
+        </div>
+        <div class="field">
+            <label>Card Color</label>
+            <input class="custom-select" type="color" name="user_card_color" value="#ceb553" required>
+        </div>
     </div>
     <a class="ui yellow2 button" hx-trigger="click" hx-get="/management/users/add_user"
        hx-target="#add_user_output"

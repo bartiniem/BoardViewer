@@ -25,8 +25,8 @@
         <div class="right floated">
             {% if card.name|length > 100 %}
             <a class="ui grey icon label"
-                  hx-trigger="click" hx-get="/cards/card/{{card.id}}/get_modal" hx-target="#basic_modal_output"
-                  data-tooltip="Details" data-inverted="">
+               hx-trigger="click" hx-get="/cards/card/{{card.id}}/get_modal" hx-target="#basic_modal_output"
+               data-tooltip="Details" data-inverted="">
                 <i class="info circle icon"></i>
             </a>
             {% endif %}

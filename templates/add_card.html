@@ -26,7 +26,7 @@
                         <option value="negative">negative</option>
                     </select>
                 </div>
-                <button class="big fluid ui yellow2 button"
+                <button class="big ui yellow2 button"
                         hx-trigger="click" hx-get="/cards/add_card" hx-target="#output"
                         hx-include="[name='card_text'],[name='card_emotions'],[name='card_type']">
                     Add card
@@ -37,7 +37,7 @@
     </div>
     <div class="ui six wide column">
         <div class="ui inverted segment">
-            <h2>Last retro rating</h2>
+            <h2>Rating of the last retrospective</h2>
             <div class="ui inverted form">
                 <div class="field">
                     <label>Vote:</label>
@@ -47,7 +47,7 @@
                         <option value="negative">negative</option>
                     </select>
                 </div>
-                <button class="big fluid ui yellow2 button" hx-trigger="click" hx-get="/cards/vote"
+                <button class="big ui yellow2 button" hx-trigger="click" hx-get="/cards/vote"
                         hx-target="#output2" hx-include="[name='vote_type']">
                     Save
                 </button>
