@@ -1,0 +1,82 @@
+<i class="close icon"></i>
+<div class="ui header">
+    <div class="content">
+        <div class="big ui inverted label" style="background-color: {{active_user.color}}">
+            {{active_user.icon}} {{ active_user.name }}
+        </div>
+    </div>
+</div>
+<div class="scrolling content">
+    <h3>Cards:</h3>
+    <table class="ui inverted table">
+        <thead>
+        <tr>
+            <th>Text</th>
+            <th>Type</th>
+            <th>Visible</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for card in cards %}
+        <tr>
+            <td>{{card.name}}</td>
+            <td>
+                {% if card.type == "positive" %}
+                <i class="olive plus circle icon"></i>
+                {% elif card.type == "negative" %}
+                <i class="pink minus circle icon"></i>
+                {% else %}
+                {{card.type}}
+                {% endif %}
+            </td>
+            <td>
+                <button hx-trigger="click" hx-get="/cards/card/{{card.id}}/showcard" class="ui black icon button">
+                    {% if card.show == True %}
+                    <i class="green check circle icon"></i>
+                    {% else %}
+                    <i class="red times circle icon"></i>
+                    {% endif %}
+                </button>
+            </td>
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    <button class="ui black icon button" hx-trigger="click" hx-get="/cards/positive/load"
+            data-tooltip="Refresh positive cards" data-inverted="" hx-target="#positive_cards_container">
+        <i class="sync alternate icon"></i><i class="olive plus circle icon"></i>
+    </button>
+    <button class="ui black icon button" hx-trigger="click" hx-get="/cards/negative/load"
+            data-tooltip="Refresh negative cards" data-inverted="" hx-target="#negative_cards_container">
+        <i class="sync alternate icon"></i><i class="pink minus circle icon"></i>
+    </button>
+
+    <h3>Retro Rating:</h3>
+    {% for vote in votes %}
+    {% if vote.value == "+" %}
+    <i class="yellow thumbs up icon"></i>
+    {% elif vote.value == "-" %}
+    <i class="pink thumbs down icon"></i>
+    {% else %}
+    <span>{{vote.value}}</span>
+    {% endif %}
+
+    <button hx-get="/user_management/show_vote/{{vote.id}}" class="ui black icon button">
+        {% if vote.show == True %}
+        <i class="green check circle outline icon"></i>
+        {% else %}
+        <i class="red times circle icon"></i>
+        {% endif %}
+    </button>
+    {% endfor %}
+    <button class="ui black icon button" hx-trigger="click" hx-get="/votes/load" hx-target="#votes_container">
+        <i class="sync alternate icon"></i>Refresh votes
+    </button>
+
+    <h3>Points:</h3>
+    {% for point_row in points %}
+    <div class="ui grey label">6 points: <br>{{point_row.points_6}}. {{point_row.name_6}}</div>
+    <div class="ui grey label">3 points: <br>{{point_row.points_3}}. {{point_row.name_3}}</div>
+    <div class="ui grey label">1 point: <br>{{point_row.points_1}}. {{point_row.name_1}}</div>
+    {% endfor %}
+</div>

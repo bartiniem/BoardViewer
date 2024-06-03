@@ -2,25 +2,39 @@
 <html lang="pl-PL">
 {% include 'head.html' %}
 <body>
-{% include 'navbar.html' %}
-<br>
-<div class="ui centered grid">
-    <div class="ui inverted segment">
-        <div hx-trigger="load" hx-get="/votes/load" class=""></div>
-        <h4 class="ui horizontal divider header">
-            <i class="olive plus circle icon"></i> Positive
-        </h4>
-        <div class="board_positive">
-            <div hx-trigger="load" hx-get="/cards/positive/load" class="ui centered basic cards"></div>
-        </div>
-        <h4 class="ui horizontal divider header">
-            <i class="pink minus circle icon"></i> Negative
-        </h4>
-        <div class="board_negative">
-            <div hx-trigger="load" hx-get="/cards/negative/load" class="ui centered basic cards"></div>
+<div class="ui inverted flyout" hx-trigger="load" hx-get="/user/load_menu">
+    <i class="close icon"></i>
+    <div class="ui header">
+        <div class="content">
+            Quick actions menu
         </div>
     </div>
-    {% include 'footer.html' %}
+    <div class="content">
+        <p>Loading</p>
+    </div>
+</div>
+<div class="pusher" style="background-color: #24242b;">
+    {% include 'navbar.html' %}
+    <br>
+    <div class="ui centered grid">
+        <div class="ui inverted segment">
+            <div hx-trigger="votes-updated from:body, load" hx-get="/votes/load" class="" id="votes_container"></div>
+            <h4 class="ui horizontal divider header">
+                <i class="olive plus circle icon"></i> Positive
+            </h4>
+            <div class="board_positive">
+                <div hx-trigger="cards-updated from:body, load" hx-get="/cards/positive/load" class="ui centered basic cards" id="positive_cards_container"></div>
+            </div>
+            <h4 class="ui horizontal divider header">
+                <i class="pink minus circle icon"></i> Negative
+            </h4>
+            <div class="board_negative">
+                <div hx-trigger="cards-updated from:body, load" hx-get="/cards/negative/load" class="ui centered basic cards" id="negative_cards_container"></div>
+            </div>
+        </div>
+        <div hx-get="/sample_message" hx-trigger="votes-updated from:body, cards-updated from:body">Here:</div>
+        {% include 'footer.html' %}
+    </div>
 </div>
 <div class="ui inverted modal" id="basic_modal_output"></div>
 <script type="text/javascript" src="/static/js/htmx.min.js"></script>

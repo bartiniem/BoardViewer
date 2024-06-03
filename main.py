@@ -9,7 +9,7 @@ import argparse
 import datetime
 import hashlib
 import os
-from flask import Flask, session, redirect, url_for, request, render_template
+from flask import Flask, session, redirect, url_for, request, render_template, make_response
 
 # LOCAL IMPORTS
 from utils.settings import Settings
@@ -26,19 +26,27 @@ app.config['SECRET_KEY'] = os.getenv('SECRET_KEY') or 'e5ac358c-f0bf-11e5-9e39-d
 @app.route('/', methods=['GET', 'POST'])
 def index():
     active_user = get_active_user()
-    return render_template('dashboard.html', title="BoardViewer", active_user=active_user)
+    return render_template('dashboard.html', title="BoardViewer", active_user=active_user,
+                           quick_action=True)
 
 
 @app.route('/preview', methods=['GET', 'POST'])
 def preview():
     active_user = get_active_user()
-    return render_template('preview.html', title="BoardViewer", active_user=active_user)
+    return render_template('preview.html', title="BoardViewer", active_user=active_user,
+                           quick_action=True)
 
 
 @app.route('/votes/load', methods=['GET', 'POST'])
 def votes_load():
     stats = DataUtils().get_stats()
     votes = DataUtils().get_votes_with_users(sort_by_last_edit=True, only_visible=True)
+    # resp = make_response(
+    #     render_template('components/dashboard_points.html', votes=votes, stats=stats)
+    # )
+    # resp.headers['HX-Trigger'] = 'votes-updated'
+    # return resp
+
     return render_template('components/dashboard_points.html', votes=votes, stats=stats)
 
 
@@ -49,6 +57,11 @@ def cards_positive_load(card_type):
         'show_points': Settings().get_specific_setting("show_points")
     }
     return render_template('components/cards_box.html', cards=cards, params=params)
+
+
+@app.route('/sample_message', methods=['GET', 'POST'])
+def sample_message():
+    return str(datetime.datetime.now())
 
 
 @app.route('/cards/add_card', methods=['GET', 'POST'])
@@ -139,16 +152,47 @@ def cards_card_showcard(card_id):
         icon = "green check circle" if new_status else "red times circle"
     else:
         icon = "yellow exclamation triangle"
-    return f'️<i class="{icon} icon"></i>'
+
+    resp = make_response(f'️<i class="{icon} icon"></i>')
+    resp.headers['HX-Trigger'] = 'cards-updated'
+    return resp
+
+    # return f'️<i class="{icon} icon"></i>'
+
+
+@app.route('/user/load_menu', methods=['GET', 'POST'])
+def user_load_menu():
+    active_user = get_active_user()
+    if not active_user:
+        return redirect(url_for('permission_denied'))
+
+    cards = DataUtils().get_cards_by_user(active_user.get('name'))
+    votes = DataUtils().get_votes_by_user(active_user.get('name'))
+    user_points = DataUtils().get_points_by_user(active_user.get('name'))
+    for user_p in user_points:
+        user_p["name_6"] = DataUtils().get_card_by_id(user_p["points_6"])["name"]
+        user_p["name_3"] = DataUtils().get_card_by_id(user_p["points_3"])["name"]
+        user_p["name_1"] = DataUtils().get_card_by_id(user_p["points_1"])["name"]
+    return render_template('user_management/user_menu.html', active_user=active_user, cards=cards,
+                           votes=votes, points=user_points)
 
 
 @app.route('/user_management/show_vote/<vote_id>', methods=['GET', 'POST'])
 def show_user_vote(vote_id):
-    if not get_active_user():
+    active_user = get_active_user()
+    if not active_user:
         return redirect(url_for('login'))
 
-    DataUtils().vote_show_hide(vote_id)
-    return redirect(url_for('user_configuration'))
+    vote = DataUtils().get_vote_by_id(vote_id)
+    if active_user.get("role") == "admin" or vote.get('author') == active_user.get('name'):
+        new_status = DataUtils().vote_show_hide(vote_id)
+        icon = "green check circle" if new_status else "red times circle"
+    else:
+        icon = "yellow exclamation triangle"
+
+    resp = make_response(f'️<i class="{icon} icon"></i>')
+    resp.headers['HX-Trigger'] = 'votes-updated'
+    return resp
 
 
 @app.route('/cards/card/<card_id>/edit', methods=['GET', 'POST'])

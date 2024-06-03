@@ -64,13 +64,14 @@
                     <td>{{vote.author}}</td>
                     <td>{{vote.value}}</td>
                     <td>
-                        <a href="/user_management/show_vote/{{vote.id}}" class="ui black icon button">
+                        <button class="ui black icon button" hx-trigger="click"
+                                hx-get="/user_management/show_vote/{{vote.id}}">
                             {% if vote.show == True %}
                             <i class="green check circle outline icon"></i>
                             {% else %}
                             <i class="red times circle icon"></i>
                             {% endif %}
-                        </a>
+                        </button>
                     </td>
                 </tr>
                 {% endfor %}

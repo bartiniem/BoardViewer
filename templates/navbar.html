@@ -6,6 +6,9 @@
     <a href="/vote" class="ui item"><i class="vote yea icon"></i> Vote</a>
     {% endif %}
     <a href="/goals" class="ui item"><i class="yellow bullseye icon"></i> Goals</a>
+    {% if quick_action %}
+    <a class="ui teal item" onclick="$('.ui.flyout').flyout('toggle');">Quick Action</a>
+    {% endif %}
 
     <div class="right menu">
         {% if active_user %}

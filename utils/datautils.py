@@ -133,6 +133,11 @@ class DataUtils:
         specified_cards.sort(key=lambda c: c.get("last_edit", 0), reverse=False)
         return specified_cards
 
+    def get_cards_by_user(self, username="") -> list:
+        cards = self.get_cards()
+        specified_cards = [card for card in cards if card.get("author") == username]
+        return specified_cards
+
     def _update_user_data(self, cards) -> list:
         for card in cards:
             user = self.get_user_by_name(card.get("author"))
@@ -160,8 +165,18 @@ class DataUtils:
     def get_votes(self) -> list:
         return self.load_yaml_data(VOTES_FILE)
 
+    def get_votes_by_user(self, username: str) -> list:
+        votes = self.get_votes()
+        votes = [v for v in votes if v.get('author') == username]
+        return votes
+
     def get_points(self) -> list:
         return self.load_yaml_data(POINTS_FILE)
+
+    def get_points_by_user(self, username: str) -> list:
+        points = self.get_points()
+        points = [p for p in points if p.get('author') == username]
+        return points
 
     def _get_sum_points_for_cards(self) -> int:
         sum_points = 0
@@ -226,14 +241,27 @@ class DataUtils:
         self.save_cards(cards)
         return f"Saved card data: {new_card_data}"
 
-    def vote_show_hide(self, vote_id):
+    def vote_show_hide(self, vote_id) -> bool:
         votes = self.get_votes()
+        new_status = False
         for vote in votes:
             if str(vote.get("id")) == str(vote_id):
                 vote["show"] = not vote.get("show")
+                new_status = vote["show"]
                 vote["last_edit"] = datetime.now().timestamp()
 
         self.save_votes(votes)
+        return new_status
+
+    def get_vote_by_id(self, vote_id):
+        votes = self.get_votes()
+        vote_data = {}
+        for vote in votes:
+            if str(vote.get("id")) == str(vote_id):
+                vote_data = vote
+                break
+
+        return vote_data
 
     def save_goals_for_specific_cards(self, card_id, goals_text) -> str:
         cards = self.get_cards()
