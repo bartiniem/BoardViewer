@@ -1,13 +1,23 @@
 <div class="ui inverted stackable menu">
+    {% if quick_action %}
+    <a class="ui teal icon item" onclick="$('.ui.flyout').flyout('toggle');"><i class="angle double right icon"></i></a>
+    {% endif %}
     <a href="/" class="ui item"><i class="home icon"></i> Board</a>
-    <a href="/preview" class="ui item"><i class="film icon"></i> Preview</a>
     {% if active_user %}
     <a href="/add_card" class="ui item"><i class="plus square icon"></i> Add Card</a>
     <a href="/vote" class="ui item"><i class="vote yea icon"></i> Vote</a>
     {% endif %}
     <a href="/goals" class="ui item"><i class="yellow bullseye icon"></i> Goals</a>
+
     {% if quick_action %}
-    <a class="ui teal item" onclick="$('.ui.flyout').flyout('toggle');">Quick Action</a>
+    <div class="ui item">
+        <div class="tiny ui inverted toggle checkbox">
+            <input type="checkbox" name="auto_refresh_checkbox" hx-trigger="change"
+                   hx-get="/get_auto_refresh_trigger" hx-target="#board_container"
+                   hx-include="[name='auto_refresh_checkbox']">
+            <label>Auto Refresh</label>
+        </div>
+    </div>
     {% endif %}
 
     <div class="right menu">

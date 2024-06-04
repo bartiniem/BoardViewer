@@ -1,0 +1,15 @@
+<div hx-trigger="votes-updated from:body, load" hx-get="/votes/load" class="" id="votes_container"></div>
+<h4 class="ui horizontal divider header">
+    <i class="olive plus circle icon"></i> Positive
+</h4>
+<div class="board_positive">
+    <div hx-trigger="cards-updated from:body, load" hx-get="/cards/positive/load"
+         class="ui centered basic cards" id="positive_cards_container"></div>
+</div>
+<h4 class="ui horizontal divider header">
+    <i class="pink minus circle icon"></i> Negative
+</h4>
+<div class="board_negative">
+    <div hx-trigger="cards-updated from:body, load" hx-get="/cards/negative/load"
+         class="ui centered basic cards" id="negative_cards_container"></div>
+</div>

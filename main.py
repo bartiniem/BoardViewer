@@ -29,12 +29,12 @@ def index():
     return render_template('dashboard.html', title="BoardViewer", active_user=active_user,
                            quick_action=True)
 
-
-@app.route('/preview', methods=['GET', 'POST'])
-def preview():
+@app.route('/get_auto_refresh_trigger', methods=['GET', 'POST'])
+def get_auto_refresh_trigger():
     active_user = get_active_user()
-    return render_template('preview.html', title="BoardViewer", active_user=active_user,
-                           quick_action=True)
+    checkbox_value = request.args.get('auto_refresh_checkbox')
+    board_template = 'components/board_dynamic.html' if checkbox_value == 'on' else 'components/board_static.html'
+    return render_template(board_template, title="BoardViewer", active_user=active_user, quick_action=True)
 
 
 @app.route('/votes/load', methods=['GET', 'POST'])
