@@ -9,6 +9,13 @@
     <div class="content">
         <div class="meta">{{card.emotions}}
             <span class="right floated like">#{{card.id}}</span>
+            {% if card.name|length > 100 %}
+            <a class="right floated icon"
+               hx-trigger="click" hx-get="/cards/card/{{card.id}}/get_modal" hx-target="#basic_modal_output"
+               data-tooltip="Details" data-inverted="">
+                <i class="info circle icon"></i>
+            </a>
+            {% endif %}
         </div>
         <div class="description" style="font-size: 12pt; max-height: 100px;">
             <span class="limit-text">{{card.name}}</span>
@@ -23,14 +30,7 @@
         </div>
         {% endif %}
         <div class="right floated">
-            {% if card.name|length > 100 %}
-            <a class="ui grey icon label"
-               hx-trigger="click" hx-get="/cards/card/{{card.id}}/get_modal" hx-target="#basic_modal_output"
-               data-tooltip="Details" data-inverted="">
-                <i class="info circle icon"></i>
-            </a>
-            {% endif %}
-            <span class="ui white inverted label" style="background-color: {{card.author_color}}99;">
+             <span class="ui white inverted label" style="background-color: {{card.author_color}}99;">
                 {{card.author}} {{card.author_icon}}
             </span>
         </div>

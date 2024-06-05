@@ -1,5 +1,5 @@
 <div class="ui inverted stackable menu">
-    {% if quick_action %}
+    {% if active_user and quick_action %}
     <a class="ui teal icon item" onclick="$('.ui.flyout').flyout('toggle');"><i class="angle double right icon"></i></a>
     {% endif %}
     <a href="/" class="ui item"><i class="home icon"></i> Board</a>
