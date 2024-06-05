@@ -1,35 +1,14 @@
-html {
-  position: relative;
-  min-height: 100%;
-}
-
 body {
   background-color: #24242b;
   font-family: "Montserrat",sans-serif;
-  margin: 0;
-  padding: 0;
-  margin-bottom: 60px;
   color: #aaa;
 }
 
-.header {text-align: center; border-bottom: 1px solid #aaa; margin: 0 40px;}
-.footer {width: 100%; text-align: center;}
-
 body::-webkit-scrollbar {width: 1em;}
 body::-webkit-scrollbar-track {box-shadow: inset 0 0 6p rgba(0, 0, 0, 0.3);}
+body::-webkit-scrollbar-thumb {background-color: darkgrey;outline: 1px solid slategrey;}
 
-body::-webkit-scrollbar-thumb {
-  background-color: darkgrey;
-  outline: 1px solid slategrey;
-}
-
-.main-icons {
-    margin: 1em;
-    padding: 1em;
-}
-
-.active {background-color: #00953a;}
-
+.footer {width: 100%; text-align: center;}
 .form-textarea {
     width: 500px;
     overflow-wrap: break-word;
@@ -40,28 +19,17 @@ body::-webkit-scrollbar-thumb {
 
 .form-textarea-goals {
     overflow-wrap: break-word;
-    font-family: "Montserrat",sans-serif;
-    font-size: 20px !important;
+    font-size: 12pt !important;
     background-color: #afafaf !important;
-}
-
-input, select, textarea {
-    -webkit-box-sizing: border-box;
-       -moz-box-sizing: border-box;
-            box-sizing: border-box;
 }
 
 .board_positive {background-color: #1b251a !important;}
 .board_negative {background-color: #211616 !important;}
 
-.goals {
-    color: #aaa;
-    background-color: #555;
-}
 .ui.button.yellow2 {background-color: #fbbd08; color: black !important;}
 .ui.table.yellow2 {background-color: #fbbd08; color: black !important;}
+
 .custom-select {background-color: #9e9e9e !important;}
-.large-select {font-size: large;}
 
 .limit-text {
    overflow: hidden;

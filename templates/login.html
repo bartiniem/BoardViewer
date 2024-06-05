@@ -3,33 +3,45 @@
 {% include 'head.html' %}
 <body>
 {% include 'navbar.html' %}
-<div class="ui centered grid">
-    <div class="ui row">
-        <div class="ui inverted segment">
-            <h3>Team Board v1.1</h3>
-            {% include 'components/main_icons.html' %}
-            {% if active_user.name is undefined %}
-            <form method="post" class="ui inverted form">
-                <div class="field">
-                    <label>Username:</label>
-                    <input type="text" id="login_name" name="login_name" class="custom-select">
-                </div>
-                <div class="field">
-                    <label>Pin:</label>
-                    <input type="password" name="login_pass" class="custom-select">
-                </div>
-                <div class="field">
-                    <button class="big fluid ui yellow2 button" type="submit" name="login_btn" value="login_btn">
-                        Go!
-                    </button>
-                </div>
-            </form>
-            {% else %}
-            <div>Logged as {{active_user.name}}</div>
-            {% endif %}
+<div class="ui center aligned inverted segment">
+    <div class="ui centered container">
+        <h3>Team Board v1.1</h3>
+        <div class="ui centered container">
+            <p>
+                <span class="massive ui red circular label" style="background-color: #888888">🐳</span>
+                <span class="massive ui red circular label" style="background-color: #016d6d">🐦</span>
+                <span class="massive ui red circular label" style="background-color: #154767">🐵</span>
+                <span class="massive ui red circular label" style="background-color: #414e90">🐴</span>
+                <span class="massive ui red circular label" style="background-color: #671515">🐨</span>
+                <span class="massive ui red circular label" style="background-color: #326715">🐺</span>
+            </p>
         </div>
+        {% if active_user.name is undefined %}
+        <br>
+        <div class="ui centered grid">
+            <div class="six wide column">
+                <form method="post" class="ui inverted form">
+                    <div class="field">
+                        <label>Username:</label>
+                        <input type="text" id="login_name" name="login_name" class="custom-select">
+                    </div>
+                    <div class="field">
+                        <label>Pin:</label>
+                        <input type="password" name="login_pass" class="custom-select">
+                    </div>
+                    <div class="field">
+                        <button class="big fluid ui yellow2 button" type="submit" name="login_btn" value="login_btn">
+                            Go!
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        {% else %}
+        <div>Logged as {{active_user.name}}</div>
+        {% endif %}
     </div>
-    {% include 'footer.html' %}
 </div>
+{% include 'footer.html' %}
 </body>
 </html>
