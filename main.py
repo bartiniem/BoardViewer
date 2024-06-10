@@ -52,7 +52,7 @@ def votes_load():
 
 @app.route('/cards/<card_type>/load', methods=['GET', 'POST'])
 def cards_positive_load(card_type):
-    cards = DataUtils().get_cards_by_type(card_type, True)
+    cards = DataUtils().get_cards_by_type(card_type, only_visible=True)
     params = {
         'show_points': Settings().get_specific_setting("show_points")
     }
@@ -151,8 +151,6 @@ def cards_card_showcard(card_id):
     resp = make_response(f'️<i class="{icon} icon"></i>')
     resp.headers['HX-Trigger'] = 'cards-updated'
     return resp
-
-    # return f'️<i class="{icon} icon"></i>'
 
 
 @app.route('/user/load-menu', methods=['GET', 'POST'])
