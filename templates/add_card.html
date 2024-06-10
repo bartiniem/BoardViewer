@@ -1,9 +1,7 @@
-<!DOCTYPE html>
-<html lang="pl-PL">
-{% include 'head.html' %}
-<body>
+{% extends 'base.html' %}
+
+{% block content %}
 {% include 'navbar.html' %}
-<br>
 <div class="ui centered grid">
     <div class="ui six wide column">
         <div class="ui inverted segment">
@@ -27,7 +25,7 @@
                     </select>
                 </div>
                 <button class="big ui yellow2 button"
-                        hx-trigger="click" hx-get="/cards/add_card" hx-target="#output"
+                        hx-trigger="click" hx-get="/cards/add-card" hx-target="#output"
                         hx-include="[name='card_text'],[name='card_emotions'],[name='card_type']">
                     Add card
                 </button>
@@ -57,6 +55,4 @@
     </div>
     {% include 'footer.html' %}
 </div>
-<script type="text/javascript" src="/static/js/htmx.min.js"></script>
-</body>
-</html>
+{% endblock %}

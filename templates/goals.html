@@ -1,9 +1,7 @@
-<!DOCTYPE html>
-<html lang="pl-PL">
-{% include 'head.html' %}
-<body>
+{% extends 'base.html' %}
+
+{% block content %}
 {% include 'navbar.html' %}
-<br>
 <div class="ui basic three cards">
     {% if show_goals == true %}
     {% for card in cards %}
@@ -14,11 +12,12 @@
                     {% if active_user and active_user.role == 'admin' %}
                     <div class="field">
                         <label>{{ card.author }} | {{ card.name }} | {{ card.emotions }} | {{ card.points_sum }}</label>
-                        <textarea class="form-textarea-goals" id="goals_{{card.id}}" name="goals_{{card.id}}" rows="7">{{card.goals}}</textarea>
+                        <textarea class="form-textarea-goals" id="goals_{{card.id}}" name="goals_{{card.id}}"
+                                  rows="7">{{card.goals}}</textarea>
                     </div>
-                    <button class="ui yellow2 button" hx-trigger="click"
-                            hx-get="/goals/save/{{card.id}}" hx-include="[name='goals_{{card.id}}']"
-                            hx-target="#output_{{card.id}}">Save
+                    <button class="ui yellow2 button"
+                            hx-trigger="click" hx-get="/goals/save/{{card.id}}"
+                            hx-include="[name='goals_{{card.id}}']" hx-target="#output_{{card.id}}">Save
                     </button>
                     <span id="output_{{card.id}}"></span>
                     {% else %}
@@ -35,6 +34,4 @@
     {% endif %}
     {% include 'footer.html' %}
 </div>
-<script type="text/javascript" src="/static/js/htmx.min.js"></script>
-</body>
-</html>
+{% endblock %}

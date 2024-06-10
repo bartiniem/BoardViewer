@@ -30,7 +30,7 @@
             </td>
             <td data-tooltip="{{card.emotions}}" data-inverted="">#{{card.id}} {{card.name}}</td>
             <td>
-                <button hx-trigger="click" hx-get="/cards/card/{{card.id}}/showcard" class="ui black icon button">
+                <button hx-trigger="click" hx-get="/cards/card/{{card.id}}/show-card" class="ui black icon button">
                     {% if card.show == True %}
                     <i class="green check circle icon"></i>
                     {% else %}
@@ -53,7 +53,7 @@
     <span>{{vote.value}}</span>
     {% endif %}
 
-    <button hx-get="/user_management/show_vote/{{vote.id}}" class="ui black icon button">
+    <button hx-get="/user-management/show-vote/{{vote.id}}" class="ui black icon button">
         {% if vote.show == True %}
         <i class="green check circle outline icon"></i>
         {% else %}

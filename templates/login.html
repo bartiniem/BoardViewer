@@ -1,7 +1,6 @@
-<!DOCTYPE html>
-<html lang="pl-PL">
-{% include 'head.html' %}
-<body>
+{% extends 'base.html' %}
+
+{% block content %}
 {% include 'navbar.html' %}
 <div class="ui center aligned inverted segment">
     <div class="ui centered container">
@@ -43,5 +42,4 @@
     </div>
 </div>
 {% include 'footer.html' %}
-</body>
-</html>
+{% endblock %}

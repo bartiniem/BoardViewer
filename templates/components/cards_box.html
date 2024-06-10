@@ -1,5 +1,4 @@
 {% for card in cards %}
-{% if card.show == true %}
 
 {% if card.name|length > 100 %}
 {% set custom_class = 'card-xl-wide' %}
@@ -11,7 +10,7 @@
             <span class="right floated like">#{{card.id}}</span>
             {% if card.name|length > 100 %}
             <a class="right floated icon"
-               hx-trigger="click" hx-get="/cards/card/{{card.id}}/get_modal" hx-target="#basic_modal_output"
+               hx-trigger="click" hx-get="/cards/card/{{card.id}}/get-modal" hx-target="#basic_modal_output"
                data-tooltip="Details" data-inverted="">
                 <i class="info circle icon"></i>
             </a>
@@ -36,5 +35,4 @@
         </div>
     </div>
 </div>
-{% endif %}
 {% endfor %}

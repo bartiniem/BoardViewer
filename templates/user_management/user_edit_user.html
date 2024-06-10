@@ -1,7 +1,6 @@
-<!DOCTYPE html>
-<html lang="pl-PL">
-{% include 'head.html' %}
-<body>
+{% extends 'base.html' %}
+
+{% block content %}
 {% include 'navbar.html' %}
 <div class="ui centered grid">
     <div class="six wide column">
@@ -57,7 +56,7 @@
                     </div>
                 </div>
                 <button class="fluid big ui yellow2 button"
-                        hx-trigger="click" hx-target="#output" hx-get="/user_management/user/{{user.id}}/save_new_data"
+                        hx-trigger="click" hx-target="#output" hx-get="/user-management/user/{{user.id}}/save-new-data"
                         hx-include="[name='user_icon'],[name='user_color'],[name='user_card_color']">
                     Save
                 </button>
@@ -67,6 +66,4 @@
     </div>
     {% include 'footer.html' %}
 </div>
-<script type="text/javascript" src="/static/js/htmx.min.js"></script>
-</body>
-</html>
+{% endblock %}

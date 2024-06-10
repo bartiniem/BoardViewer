@@ -1,8 +1,7 @@
-<!DOCTYPE html>
-<html lang="pl-PL">
-{% include 'head.html' %}
-<body>
-<div class="ui inverted flyout" hx-trigger="load" hx-get="/user/load_menu">
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="ui inverted flyout" hx-trigger="load" hx-get="/user/load-menu">
     <i class="close icon"></i>
     <div class="ui header">
         <div class="content">
@@ -15,7 +14,6 @@
 </div>
 <div class="pusher" style="background-color: #24242b;">
     {% include 'navbar.html' %}
-    <br>
     <div class="ui centered grid">
         <div class="ui inverted segment" id="board_container">
             {% include 'components/board_static.html' %}
@@ -24,6 +22,4 @@
     {% include 'footer.html' %}
 </div>
 <div class="ui inverted modal" id="basic_modal_output"></div>
-<script type="text/javascript" src="/static/js/htmx.min.js"></script>
-</body>
-</html>
+{% endblock %}

@@ -58,8 +58,7 @@
             <input class="custom-select" type="color" name="user_card_color" value="#ceb553" required>
         </div>
     </div>
-    <a class="ui yellow2 button" hx-trigger="click" hx-get="/management/users/add_user"
-       hx-target="#add_user_output"
+    <a class="ui yellow2 button" hx-trigger="click" hx-get="/management/users/add-user" hx-target="#add_user_output"
        hx-include="[name='user_name'],[name='user_initials'],[name='user_pin'],[name='user_role'],[name='user_icon'],[name='user_bg_color'],[name='user_card_color']"
        hx-indicator="#add_user_loader"
     >Add user</a>

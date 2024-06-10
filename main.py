@@ -6,7 +6,6 @@
 
 # GLOBAL IMPORTS
 import argparse
-import datetime
 import hashlib
 import os
 from flask import Flask, session, redirect, url_for, request, render_template, make_response
@@ -29,7 +28,8 @@ def index():
     return render_template('dashboard.html', title="BoardViewer", active_user=active_user,
                            quick_action=True)
 
-@app.route('/get_auto_refresh_trigger', methods=['GET', 'POST'])
+
+@app.route('/get-auto-refresh-trigger', methods=['GET', 'POST'])
 def get_auto_refresh_trigger():
     active_user = get_active_user()
     checkbox_value = request.args.get('auto_refresh_checkbox')
@@ -59,12 +59,7 @@ def cards_positive_load(card_type):
     return render_template('components/cards_box.html', cards=cards, params=params)
 
 
-@app.route('/sample_message', methods=['GET', 'POST'])
-def sample_message():
-    return str(datetime.datetime.now())
-
-
-@app.route('/cards/add_card', methods=['GET', 'POST'])
+@app.route('/cards/add-card', methods=['GET', 'POST'])
 def cards_add_card():
     active_user = get_active_user()
     if not active_user:
@@ -90,7 +85,7 @@ def cards_vote():
     return message
 
 
-@app.route('/add_card', methods=['GET', 'POST'])
+@app.route('/add-card', methods=['GET', 'POST'])
 def add_card():
     active_user = get_active_user()
     if not active_user:
@@ -99,7 +94,7 @@ def add_card():
     return render_template('add_card.html', title="Add card", active_user=active_user)
 
 
-@app.route('/user/cards/<card_id>/save_new_data', methods=['GET', 'POST'])
+@app.route('/user/cards/<card_id>/save-new-data', methods=['GET', 'POST'])
 def user_card_save_new_data(card_id):
     active_user = get_active_user()
     if not active_user:
@@ -113,13 +108,13 @@ def user_card_save_new_data(card_id):
     return message
 
 
-@app.route('/cards/card/<card_id>/get_modal', methods=['GET', 'POST'])
+@app.route('/cards/card/<card_id>/get-modal', methods=['GET', 'POST'])
 def get_card_modal(card_id):
     card_data = DataUtils().get_card_by_id(card_id)
     return render_template('components/basic_modal.html', card_data=card_data)
 
 
-@app.route('/user_management/configuration', methods=['GET', 'POST'])
+@app.route('/user-management/configuration', methods=['GET', 'POST'])
 def user_configuration():
     active_user = get_active_user()
     if not active_user:
@@ -140,7 +135,7 @@ def user_configuration():
                            points=user_points)
 
 
-@app.route('/cards/card/<card_id>/showcard', methods=['GET', 'POST'])
+@app.route('/cards/card/<card_id>/show-card', methods=['GET', 'POST'])
 def cards_card_showcard(card_id):
     active_user = get_active_user()
     if not active_user:
@@ -160,7 +155,7 @@ def cards_card_showcard(card_id):
     # return f'️<i class="{icon} icon"></i>'
 
 
-@app.route('/user/load_menu', methods=['GET', 'POST'])
+@app.route('/user/load-menu', methods=['GET', 'POST'])
 def user_load_menu():
     active_user = get_active_user()
     if not active_user:
@@ -177,7 +172,7 @@ def user_load_menu():
                            votes=votes, points=user_points)
 
 
-@app.route('/user_management/show_vote/<vote_id>', methods=['GET', 'POST'])
+@app.route('/user-management/show-vote/<vote_id>', methods=['GET', 'POST'])
 def show_user_vote(vote_id):
     active_user = get_active_user()
     if not active_user:
@@ -205,7 +200,8 @@ def edit_user_card(card_id):
     if active_user.get("role") == "admin":
         return render_template('/management/management_edit_card.html', title="Edit admin card",
                                active_user=active_user, card=card)
-    elif card.get('author') == active_user.get('name'):
+
+    if card.get('author') == active_user.get('name'):
         return render_template('/user_management/user_edit_card.html', title="Edit user card",
                                active_user=active_user, card=card)
 
@@ -213,7 +209,7 @@ def edit_user_card(card_id):
                            active_user=active_user)
 
 
-@app.route('/user_management/user/<user_id>', methods=['GET', 'POST'])
+@app.route('/user-management/user/<user_id>', methods=['GET', 'POST'])
 def user_edit_user_card(user_id):
     active_user = get_active_user()
     if not active_user or str(active_user.get("id")) != user_id:
@@ -224,7 +220,7 @@ def user_edit_user_card(user_id):
                            user=user)
 
 
-@app.route('/user_management/user/<user_id>/save_new_data', methods=['GET', 'POST'])
+@app.route('/user-management/user/<user_id>/save-new-data', methods=['GET', 'POST'])
 def user_edit_user_card_save_new_data(user_id):
     active_user = get_active_user()
     if not active_user or str(active_user.get("id")) != user_id:
@@ -261,7 +257,7 @@ def logout():
     return redirect(url_for('login'))
 
 
-@app.route('/permission_denied', methods=['GET', 'POST'])
+@app.route('/permission-denied', methods=['GET', 'POST'])
 def permission_denied():
     active_user = get_active_user()
     return render_template('message_page.html', title="Permission denied.", message="Permission denied.",
@@ -306,7 +302,7 @@ def vote_page():
                            already_voted=already_voted, show_voting=show_voting)
 
 
-@app.route('/vote_on_cards', methods=['GET', 'POST'])
+@app.route('/vote-on-cards', methods=['GET', 'POST'])
 def vote_on_cards():
     active_user = get_active_user()
     if not active_user:
@@ -340,7 +336,7 @@ def edit_card(card_id):
                            active_user=active_user, card=card)
 
 
-@app.route('/management/cards/<card_id>/save_new_data', methods=['GET', 'POST'])
+@app.route('/management/cards/<card_id>/save-new-data', methods=['GET', 'POST'])
 def management_card_save_new_data(card_id):
     active_user = get_active_user()
     if not active_user or active_user.get("role") != "admin":
@@ -358,7 +354,7 @@ def management_card_save_new_data(card_id):
     return message
 
 
-@app.route('/management/users/add_user', methods=['GET', 'POST'])
+@app.route('/management/users/add-user', methods=['GET', 'POST'])
 def management_add_user():
     active_user = get_active_user()
     if not active_user or active_user.get("role") != "admin":
@@ -387,7 +383,7 @@ def management_add_user():
     return message
 
 
-@app.route('/management/users/add_user_form', methods=['GET', 'POST'])
+@app.route('/management/users/add-user-form', methods=['GET', 'POST'])
 def management_add_user_form():
     active_user = get_active_user()
     if not active_user or active_user.get("role") != "admin":
@@ -396,7 +392,7 @@ def management_add_user_form():
     return render_template('management/component/user_add_form.html')
 
 
-@app.route('/management/show_vote/<vote_id>', methods=['GET', 'POST'])
+@app.route('/management/show-vote/<vote_id>', methods=['GET', 'POST'])
 def show_vote(vote_id):
     active_user = get_active_user()
     if not active_user or active_user.get("role") != "admin":
@@ -432,7 +428,7 @@ def edit_user(user_id):
                            active_user=active_user, user=user)
 
 
-@app.route('/management/user/<user_id>/save_new_data', methods=['GET', 'POST'])
+@app.route('/management/user/<user_id>/save-new-data', methods=['GET', 'POST'])
 def management_edit_user_save_new_data(user_id):
     active_user = get_active_user()
     if not active_user or active_user.get("role") not in ["admin"]:
@@ -455,7 +451,7 @@ def management_edit_user_save_new_data(user_id):
     return message
 
 
-@app.route('/management/users/get_table', methods=['GET', 'POST'])
+@app.route('/management/users/get-table', methods=['GET', 'POST'])
 def management_users_get_table():
     active_user = get_active_user()
     if not active_user:
@@ -465,7 +461,7 @@ def management_users_get_table():
     return render_template('management/component/users_table.html', users=users)
 
 
-@app.route('/management/cards/get_table', methods=['GET', 'POST'])
+@app.route('/management/cards/get-table', methods=['GET', 'POST'])
 def management_cards_get_table():
     active_user = get_active_user()
     if not active_user:
@@ -475,7 +471,7 @@ def management_cards_get_table():
     return render_template('components/cards_table.html', cards=cards)
 
 
-@app.route('/management/settings/get_table', methods=['GET', 'POST'])
+@app.route('/management/settings/get-table', methods=['GET', 'POST'])
 def management_settings_get_table():
     active_user = get_active_user()
     if not active_user:

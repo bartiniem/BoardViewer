@@ -31,7 +31,7 @@
         <td>{{card.points}}</td>
         <td>{{card.points_sum}}</td>
         <td>
-            <div hx-trigger="click" hx-get="/cards/card/{{card.id}}/showcard" class="ui black icon button">
+            <div hx-trigger="click" hx-get="/cards/card/{{card.id}}/show-card" class="ui black icon button">
                 {% if card.show == True %}
                 <i class="green check circle icon"></i>
                 {% else %}
@@ -39,9 +39,7 @@
                 {% endif %}
             </div>
         </td>
-        <td>
-            <a href="/cards/card/{{card.id}}/edit" class="ui teal button"><i class="edit icon"></i>Edit</a>
-        </td>
+        <td><a href="/cards/card/{{card.id}}/edit" class="ui teal button"><i class="edit icon"></i>Edit</a></td>
     </tr>
     {% endfor %}
     </tbody>

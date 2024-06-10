@@ -18,12 +18,9 @@
         <td>{{user.initials}}</td>
         <td>{{user.name}}</td>
         <td>{{user.role}}</td>
-        <td>
-            <span class="large ui circular label" style="background-color: {{user.color}}">{{user.icon}}</span>
-        </td>
+        <td><span class="large ui circular label" style="background-color: {{user.color}}">{{user.icon}}</span></td>
         <td><span class="ui label" style="background-color: {{user.color}}">{{user.color}}</span></td>
-        <td><span class="ui label" style="background-color: {{user.card_color}}">{{user.card_color}}</span>
-        </td>
+        <td><span class="ui label" style="background-color: {{user.card_color}}">{{user.card_color}}</span></td>
         <td><a href="/management/user/{{user.id}}" class="ui teal icon button"><i class="edit icon"></i>Edit</a></td>
     </tr>
     {% endfor %}

@@ -1,9 +1,7 @@
-<!DOCTYPE html>
-<html lang="pl-PL">
-{% include 'head.html' %}
-<body>
+{% extends 'base.html' %}
+
+{% block content %}
 {% include 'navbar.html' %}
-<br>
 <div class="ui centered grid">
     <div class="ui row">
         <div class="ui inverted segment">
@@ -40,7 +38,7 @@
                     </select>
                 </div>
                 <button class="fluid big ui yellow2 icon button"
-                        hx-trigger="click" hx-get="/vote_on_cards" hx-target="#vote_output"
+                        hx-trigger="click" hx-get="/vote-on-cards" hx-target="#vote_output"
                         hx-include="[name='points_6'],[name='points_3'],[name='points_1']">
                     Vote <i class="vote yea icon"></i>
                 </button>
@@ -51,6 +49,4 @@
     </div>
     {% include 'footer.html' %}
 </div>
-<script type="text/javascript" src="/static/js/htmx.min.js"></script>
-</body>
-</html>
+{% endblock %}
