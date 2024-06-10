@@ -5,7 +5,7 @@
 #  """
 """Settings module"""
 
-import yaml
+from utils.data_files_utils import DataFilesUtils
 
 SETTINGS_FILENAME = "./data/settings.yaml"
 
@@ -19,15 +19,12 @@ class Settings:
     @staticmethod
     def save_data_to_yaml(my_data, dict_file):
         """Save data to base"""
-        with open(dict_file, 'w', encoding="utf-8") as file:
-            yaml.dump(my_data, file, default_flow_style=False)
+        DataFilesUtils().save_data_to_yaml(my_data, dict_file)
 
     @staticmethod
     def load_yaml_data(dict_file):
         """Read database"""
-        with open(dict_file, "r", encoding="utf-8") as file:
-            yaml_data = yaml.load(file, Loader=yaml.Loader)
-            return yaml_data
+        return DataFilesUtils().load_yaml_data(dict_file)
 
     def get_settings(self):
         """Get Settings"""
